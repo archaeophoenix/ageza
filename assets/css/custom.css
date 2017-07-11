@@ -1,0 +1,20 @@
+.thumbnail {
+  position:relative;
+  overflow:hidden;
+}
+
+.daterangepicker, .select2-selection, .select2-dropdown, .select2-search{z-index:200001 !important;}
+
+.caption {
+  position:absolute;
+  top:0;
+  right:0;
+  background:rgba(202, 66, 139, 0.75);
+  width:100%;
+  height:100%;
+  padding:1%;
+  display: none;
+  text-align:center;
+  color:#fff !important;
+  z-index:2;
+}
