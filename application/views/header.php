@@ -35,25 +35,7 @@
         <ul class="sidebar-nav">
         
         <?php //if ($_SESSION['masuk']['status'] == 1){ ?>
-          <li>
-            <a href="<?php echo base_url(); ?>temuan">
-              <div class="icon">
-                <i class="fa fa-list-alt" aria-hidden="true"></i>
-              </div>
-              <div class="title text-capitalize">Temuan</div>
-            </a>
-          </li>
-
-          <li>
-            <a href="<?php echo base_url(); ?>berita">
-              <div class="icon">
-                <i class="fa fa-file-text-o" aria-hidden="true"></i>
-              </div>
-              <div class="title text-capitalize">Berita Acara</div>
-            </a>
-          </li>
-
-          <li>
+          <li <?php echo ($class == 'skpd') ? 'class="active"' : '' ; ?>>
             <a href="<?php echo base_url(); ?>skpd">
               <div class="icon">
                 <i class="fa fa-bank" aria-hidden="true"></i>
@@ -62,7 +44,34 @@
             </a>
           </li>
           
-          <li>
+          <li <?php echo ($class == 'temuan') ? 'class="active"' : '' ; ?>>
+            <a href="<?php echo base_url(); ?>temuan">
+              <div class="icon">
+                <i class="fa fa-list-alt" aria-hidden="true"></i>
+              </div>
+              <div class="title text-capitalize">Temuan</div>
+            </a>
+          </li>
+
+          <li <?php echo ($class == 'berita') ? 'class="active"' : '' ; ?>>
+            <a href="<?php echo base_url(); ?>berita">
+              <div class="icon">
+                <i class="fa fa-file-text-o" aria-hidden="true"></i>
+              </div>
+              <div class="title text-capitalize">Berita Acara</div>
+            </a>
+          </li>
+
+          <li <?php echo ($class == 'polling') ? 'class="active"' : '' ; ?>>
+            <a href="<?php echo base_url(); ?>polling">
+              <div class="icon">
+                <i class="fa fa-pie-chart" aria-hidden="true"></i>
+              </div>
+              <div class="title text-capitalize">Polling</div>
+            </a>
+          </li>
+
+          <li <?php echo ($class == 'user') ? 'class="active"' : '' ; ?>>
             <a href="<?php echo base_url(); ?>user">
               <div class="icon">
                 <i class="fa fa-users" aria-hidden="true"></i>
@@ -144,18 +153,18 @@
       </div>
     </nav>
 
-    <!-- <div class="btn-floating" id="help-actions">
-      <div class="btn-bg"></div>
-      <button type="button" class="btn btn-default btn-toggle" data-toggle="toggle" data-target="#help-actions">
+    <div class="btn-floating" id="help-actions">
+      <div class="btn-bg" style="background-color: #39c3da;box-shadow: #39c3da 0px 1px 3px 0px;"></div>
+      <button type="button" class="btn btn-info btn-toggle" data-toggle="toggle" data-target="#help-actions">
         <i class="icon fa fa-plus"></i>
         <span class="help-text">Shortcut</span>
       </button>
       <div class="toggle-content">
         <ul class="actions">
-          <li><a href="#">Website</a></li>
-          <li><a href="#">Documentation</a></li>
-          <li><a href="#">Issues</a></li>
-          <li><a href="#">About</a></li>
+          <li><a onclick="window.location='<?php echo base_url(); ?>skpd'"><i class="fa fa-bank" aria-hidden="true"></i>&nbsp;SKPD</a></li>
+          <li><a onclick="window.location='<?php echo base_url(); ?>temuan/form'"><i class="fa fa-list-alt" aria-hidden="true"></i>&nbsp;Temuan</a></li>
+          <li><a onclick="window.location='<?php echo base_url(); ?>polling'"><i class="fa fa-pie-chart" aria-hidden="true"></i>&nbsp;Polling</a></li>
+          <li><a onclick="window.location='<?php echo base_url(); ?>user'"><i class="fa fa-user" aria-hidden="true"></i>&nbsp;User</a></li>
         </ul>
       </div>
-    </div> -->
+    </div>

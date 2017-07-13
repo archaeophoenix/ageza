@@ -6,15 +6,6 @@ class Skpd extends CI_Controller {
 		$this->load->model('Dml_model');
 		$this->load->library('session');
 		$this->load->helper('url_helper');
-        // $this->Dml_model->cancel();
-        
-        /*if ($_SESSION['cur'] == 1) {
-            redirect('currency');
-        }
-        
-        if (empty($_SESSION['param']) || is_null($_SESSION['param'])) {
-            $_SESSION['param'] = ['bulan' => date('m') ,'tahun' => date('Y')];
-        }
 
         if (empty($_SESSION['masuk'])) {
             redirect('');
@@ -31,25 +22,19 @@ class Skpd extends CI_Controller {
         if($_SESSION['masuk']['status'] != 1){
             redirect('');
         }
-        date_default_timezone_set('Asia/'.$_SESSION['time']);
-        */
     }
 
     function index(){
-       /* if (empty($_SESSION['masuk'])) {
+        if (empty($_SESSION['masuk'])) {
             redirect('');
         } else {
-        }*/
-        redirect('skpd/field/');
+            redirect('skpd/field/');
+        }
     }
 
     private function data($id = null){
-        // SELECT * FROM `kodepos` ORDER BY `id` ASC LIMIT 10, 20 
-        $limit = (empty($limit)) ? 0 : ($limit-1) * 12 ;
-        // echo "$limit";die();
-
-        $condition = (empty($id)) ? "" : "WHERE id = '$id'" ;
         $method = (empty($id)) ? 'read' : 'one' ;
+        $condition = (empty($id)) ? "" : "WHERE id = '$id'" ;
 
         return $this->Dml_model->{$method}('skpd',$condition);
     }

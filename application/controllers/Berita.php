@@ -16,11 +16,11 @@ class Berita extends CI_Controller {
     }
 
     function index(){
-        /*if (empty($_SESSION['masuk'])) {
+        if (empty($_SESSION['masuk'])) {
             $this->load->view('login');
         } else {
-        }*/
-        redirect('berita/datas/');
+            redirect('berita/datas/');
+        }
     }
 
     private function tindakan($id = null , $periode){
@@ -28,7 +28,7 @@ class Berita extends CI_Controller {
         $method = (empty($id)) ? 'read' : 'one' ;
 
         $atad = array();
-        $berita = $this->Dml_model->{$method}('berita','JOIN temuan ON temuan.id = id_temuan JOIN skpd ON skpd.id = id_skpd '.$condition, 'berita.id, id_temuan, skpd.nama skpd, tj, ketua, anggota, no, ts, berita.uu, DATE_FORMAT(berita.tanggal,"%d-%m-%Y") tanggal, saran, DATE_FORMAT(batas,"%d-%m-%Y") batas, status');
+        $berita = $this->Dml_model->{$method}('berita','JOIN temuan ON temuan.id = id_temuan JOIN skpd ON skpd.id = id_skpd '.$condition, 'berita.id, id_temuan, skpd.nama skpd, tj, ketua, anggota, no, ts, berita.uu, DATE_FORMAT(berita.tgl,"%d-%m-%Y") tgl, DATE_FORMAT(berita.tanggal,"%d-%m-%Y") tanggal, saran, DATE_FORMAT(batas,"%d-%m-%Y") batas, status');
 
         $ids = array();
         foreach ($berita as $key => $value) {
@@ -69,8 +69,18 @@ class Berita extends CI_Controller {
 
             if (!empty($_POST)) { echo "post";
                 $_POST['id_temuan'] = (isset($_POST['id_temuan'])) ? $_POST['id_temuan'] : $ids[0] ;
-                $_POST['batas'] = date('Y-m-d',strtotime($_POST['batas']));
-                $_POST['tanggal'] = date('Y-m-d',strtotime($_POST['tanggal']));
+                
+                if (isset($_POST['tgl'])) {
+                    $_POST['tgl'] = date('Y-m-d',strtotime($_POST['tgl']));
+                }
+                
+                if (isset($_POST['batas'])) {
+                    $_POST['batas'] = date('Y-m-d',strtotime($_POST['batas']));
+                }
+                
+                if (isset($_POST['tanggal'])) {
+                    $_POST['tanggal'] = date('Y-m-d',strtotime($_POST['tanggal']));
+                }
 
                 if($ids[1] == 'post'){
                     $id_berita = $this->Dml_model->create('berita',$_POST);
@@ -81,8 +91,8 @@ class Berita extends CI_Controller {
 
             if ($ids[1] == 'edit') {
                 if (!empty($_FILES['file']['name'])) { echo "file";
-                    $gambar = $_FILES['file'];
                     $upload = null;
+                    $gambar = $_FILES['file'];
                     foreach ($gambar['type'] as $key => $value) {
                         if($value == 'image/gif' || $value == 'image/svg' || $value == 'image/jpeg' || $value == 'image/png'){
                             // $_POST['foto'] = $file['name'];
@@ -123,7 +133,7 @@ class Berita extends CI_Controller {
 
         // print_r($ids);die();
         $header['class'] = $this->router->fetch_class();
-        $header['method'] = $this->router->fetch_method();
+        // $header['method'] = $this->router->fetch_method();
         
         $data['submit'] = $id;
         $data['type'] = $ids[1];
@@ -148,8 +158,8 @@ class Berita extends CI_Controller {
 
         $data['param'] = ['bulan' => $bulan, 'tahun' => $tahun];
         $data['status'] = ['Belum Selesai', 'Proses', 'Selesai'];
-        $data['tahun'] = $this->Dml_model->read('berita','','DISTINCT(YEAR(tanggal)) tahun');
-        $data['data'] = $this->tindakan(null,'MONTH(berita.tanggal) = '.$bulan.' AND YEAR(berita.tanggal) = '.$tahun);
+        $data['tahun'] = $this->Dml_model->read('berita','','DISTINCT(YEAR(tgl)) tahun');
+        $data['data'] = $this->tindakan(null,'MONTH(berita.tgl) = '.$bulan.' AND YEAR(berita.tgl) = '.$tahun);
         $data['bulan'] = ['01'=>'Januari','02'=>'Februari','03'=>'Maret','04'=>'April','05'=>'Mei','06'=>'Juni','07'=>'Juli','08'=>'Agustus','09'=>'September','10'=>'Oktober','11'=>'November','12'=>'Desember'];
 
         $footer['link'] = 'berita/datas';

@@ -1,5 +1,5 @@
 <?php
-class User extends CI_Controller {
+class Polling extends CI_Controller {
 
 	public function __construct() {
 		parent::__construct();
@@ -19,16 +19,13 @@ class User extends CI_Controller {
             }
         }
 
-        if($_SESSION['masuk']['status'] != 1){
-            redirect('');
-        }
     }
 
     function index(){
         if (empty($_SESSION['masuk'])) {
             redirect('');
         } else {
-            redirect('user/field/');
+            redirect('polling/field/');
         }
     }
 
@@ -36,7 +33,7 @@ class User extends CI_Controller {
         $method = (empty($id)) ? 'read' : 'one' ;
         $condition = (empty($id)) ? null : 'WHERE user.id = '.$id ;
 
-        return $this->Dml_model->{$method}('user' ,'LEFT JOIN skpd ON skpd.id = id_skpd '.$condition,'user.id, user.nama, status, telpon, skpd.nama skpd, username');
+        return $this->Dml_model->{$method}('skpd' ,'LEFT JOIN skpd ON skpd.id = id_skpd '.$condition,'user.id, user.nama, status, telpon, skpd.nama skpd, username');
     }
 
     function field($id = null){
@@ -44,50 +41,24 @@ class User extends CI_Controller {
         $header['class'] = $this->router->fetch_class();
         $header['method'] = $this->router->fetch_method();
 
-        $data['list'] = $this->data() ;
+        $data['sum'] = $this->Dml_model->one('polling','WHERE MONTH(tanggal) = '.date('m'),'SUM(nilai) nilai');
         $data['skpd'] = $this->Dml_model->read('skpd') ;
-        $id = ($_SESSION['masuk']['status'] == 1) ? $id : $_SESSION['masuk']['id'] ;
-        $data['id'] = ($_SESSION['masuk']['status'] == 1) ? $id : $_SESSION['masuk']['id'] ;
-        $data['data'] = (empty($id)) ? null : $this->data($id) ;
-        $data['status'] = ['Inactive','Admin','Irjen/Auditor','Evaluator','K-SKPD','Inspektur/Sekretaris'];
+        $data['abjad'] = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
+        $data['bulan'] = $this->Dml_model->read('polling','JOIN skpd ON id_skpd = skpd.id WHERE MONTH(tanggal) = '.date('m').' GROUP BY id_skpd','SUM(nilai) nilai, skpd.nama skpd');
 
-
-        // echo "<pre>"; print_r($data); die();
-        /*extract($data);
-        foreach ($travel as $key => $value) {
-            if (!empty($id_travel)) {
-                $keys = array_keys(array_column($id_travel, 'id'), $value['id']);
-                echo (empty($keys)) ? '' : 'ok' ;
-            }
-        }*/
-        
         // echo "<pre>";print_r($data);die();
+       
         $this->load->view('header',$header);
-        $this->load->view('user/field',$data);
+        $this->load->view('polling/field',$data);
         $this->load->view('footer');
     }
 
-    function submit($id = null){
+    function submit(){
         if(isset($_POST)){
-            extract($_POST);
-
-            if (is_null($id)) {
-                $user['password'] = $this->Dml_model->dencrypt('encrypt' ,$user['password']);
-                $this->Dml_model->create('user',$user);
-
-            } else {
-                if(empty($user['password'])){
-                    unset($user['password']);
-                } else {
-                    $user['password'] = $this->Dml_model->dencrypt('encrypt' ,$user['password']);
-                }
-                
-                $this->Dml_model->update('user',"id = '$id'",$user);
-            }
-            // die();
-
+            $_POST['tanggal '] = date('Y-m-d');
+            $this->Dml_model->create('polling',$_POST);
         }
-        redirect('user/field/');
+        redirect('polling/field/');
     }
 
     function username(){

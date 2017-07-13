@@ -28,6 +28,17 @@
                   </select>
                 </div>
               </div>
+
+             <!--  <div class="form-group">
+                <div class="col-xs-12">
+                  <select class="form-control select2" name="user[id_skpd]">
+                    <option value="">&nbsp;</option>
+                    <?php foreach ($skpd as $key => $value){ ?>
+                      <option value="<?php echo $value['id']; ?>" <?php echo ($data['id_skpd'] == $value['id']) ? 'selected="selected"' : '' ; ?>><?php echo $value['nama']; ?></option>
+                      <?php } ?>
+                  </select>
+                </div>
+              </div> -->
               <?php } ?>
               
               <div class="form-group">
@@ -72,7 +83,7 @@
                 <th class="text-center">#</th>
                 <th class="text-center text-capitalize">nama</th>
                 <th class="text-center text-capitalize">username</th>
-                <th class="text-center text-capitalize">telpon</th>
+                <!-- <th class="text-center text-capitalize">SKPD</th> -->
                 <th class="text-center text-capitalize">status</th>
                 <th class="text-center text-capitalize">opsi</th>
               </tr>
@@ -83,7 +94,7 @@
                 <td style="vertical-align: middle;" id="no<?php echo $key;?>"><?php echo $key+1; ?></td>
                 <td style="vertical-align: middle;" class="text-capitalize"><?php echo $value['nama']; ?></td>
                 <td style="vertical-align: middle;" class="text-capitalize"><?php echo $value['username']; ?></td>
-                <td style="vertical-align: middle;" class="text-capitalize"><?php echo $value['telpon']; ?></td>
+                <!-- <td style="vertical-align: middle;" class="text-capitalize"><?php echo $value['skpd']; ?></td> -->
                 <td style="vertical-align: middle;" class="text-capitalize"><?php echo $status[$value['status']]; ?></td>
                 <td style="vertical-align: middle;">
                   <?php if (is_null($id)){ ?>

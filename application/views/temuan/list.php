@@ -51,14 +51,17 @@
                       <tbody>
                         <?php foreach ($data as $key => $value){ ?>
                         <tr>
-                          <td style="vertical-align: middle;" class="text-capitalize"><?php echo $key; ?></td>
+                          <td style="vertical-align: middle;" class="text-capitalize"><?php echo ($key+1); ?></td>
                           <td style="vertical-align: middle;" class="text-capitalize"><?php echo $value['skpd']; ?></td>
                           <td style="vertical-align: middle;" class="text-capitalize"><?php echo $value['uu']; ?></td>
                           <td style="vertical-align: middle;" class="text-center text-capitalize"><?php echo $value['tanggal']; ?></td>
                           <td style="vertical-align: middle;" class="text-right text-capitalize"><?php echo $value['pendapatan']; ?></td>
                           <td style="vertical-align: middle;" class="text-center text-capitalize">
+                            <?php if ($_SESSION['masuk']['status'] == 1 || $_SESSION['masuk']['status'] == 2){ ?>
                             <button type="button" onclick="window.location='<?php echo base_url().'temuan/form/'.$value['id'];?>'" title="Edit" class="btn badge badge-info badge-icon"><i class="fa fa-edit" aria-hidden="true"></i></button>
+                            <?php } if ($_SESSION['masuk']['status'] == 1 || $_SESSION['masuk']['status'] == 3){ ?>
                             <button type="button" onclick="window.location='<?php echo base_url().'berita/form/berita/'.$value['id'].'-post';?>'" title="Berita Acara" class="btn badge badge-success badge-icon"><i class="fa fa-newspaper-o" aria-hidden="true"></i></button>
+                            <?php } ?>
                           </td>
                         </tr>
                         <?php } ?>
@@ -81,15 +84,18 @@
                       <tbody>
                         <?php foreach ($data as $key => $value){ ?>
                         <tr>
-                          <td style="vertical-align: middle;" class="text-capitalize"><?php echo $key; ?></td>
+                          <td style="vertical-align: middle;" class="text-capitalize"><?php echo ($key+1); ?></td>
                           <td style="vertical-align: middle;" class="text-capitalize"><?php echo $value['btl_uraian']; ?></td>
                           <td style="vertical-align: middle;" class="text-right text-capitalize"><?php echo $value['btl_anggaran']; ?></td>
                           <td style="vertical-align: middle;" class="text-right text-capitalize"><?php echo $value['btl_realisasi']; ?></td>
                           <td style="vertical-align: middle;" class="text-capitalize"><?php echo $value['btl_spj']; ?></td>
                           <td style="vertical-align: middle;" class="text-right text-capitalize"><?php echo $value['btl_sisa']; ?></td>
                           <td style="vertical-align: middle;" class="text-center text-capitalize">
+                            <?php if ($_SESSION['masuk']['status'] == 1 || $_SESSION['masuk']['status'] == 2){ ?>
                             <button type="button" onclick="window.location='<?php echo base_url().'temuan/form/'.$value['id'];?>'" title="Edit" class="btn badge badge-info badge-icon"><i class="fa fa-edit" aria-hidden="true"></i></button>
-                            <button type="button" onclick="window.location='<?php echo base_url().'temuan/berita/'.$value['id'].'-post';?>'" title="Berita Acara" class="btn badge badge-success badge-icon"><i class="fa fa-newspaper-o" aria-hidden="true"></i></button>
+                            <?php } if ($_SESSION['masuk']['status'] == 1 || $_SESSION['masuk']['status'] == 3){ ?>
+                            <button type="button" onclick="window.location='<?php echo base_url().'berita/form/berita/'.$value['id'].'-post';?>'" title="Berita Acara" class="btn badge badge-success badge-icon"><i class="fa fa-newspaper-o" aria-hidden="true"></i></button>
+                            <?php } ?>
                           </td>
                         </tr>
                         <?php } ?>
@@ -112,15 +118,18 @@
                       <tbody>
                         <?php foreach ($data as $key => $value){ ?>
                         <tr>
-                          <td style="vertical-align: middle;" class="text-capitalize"><?php echo $key; ?></td>
+                          <td style="vertical-align: middle;" class="text-capitalize"><?php echo ($key+1); ?></td>
                           <td style="vertical-align: middle;" class="text-capitalize"><?php echo $value['bl_uraian']; ?></td>
                           <td style="vertical-align: middle;" class="text-right text-capitalize"><?php echo $value['bl_anggaran']; ?></td>
                           <td style="vertical-align: middle;" class="text-right text-capitalize"><?php echo $value['bl_realisasi']; ?></td>
                           <td style="vertical-align: middle;" class="text-capitalize"><?php echo $value['bl_spj']; ?></td>
                           <td style="vertical-align: middle;" class="text-right text-capitalize"><?php echo $value['bl_sisa']; ?></td>
                           <td style="vertical-align: middle;" class="text-center text-capitalize">
+                            <?php if ($_SESSION['masuk']['status'] == 1 || $_SESSION['masuk']['status'] == 2){ ?>
                             <button type="button" onclick="window.location='<?php echo base_url().'temuan/form/'.$value['id'];?>'" title="Edit" class="btn badge badge-info badge-icon"><i class="fa fa-edit" aria-hidden="true"></i></button>
-                            <button type="button" onclick="window.location='<?php echo base_url().'temuan/berita/'.$value['id'].'-post';?>'" title="Berita Acara" class="btn badge badge-success badge-icon"><i class="fa fa-newspaper-o" aria-hidden="true"></i></button>
+                            <?php } if ($_SESSION['masuk']['status'] == 1 || $_SESSION['masuk']['status'] == 3){ ?>
+                            <button type="button" onclick="window.location='<?php echo base_url().'berita/form/berita/'.$value['id'].'-post';?>'" title="Berita Acara" class="btn badge badge-success badge-icon"><i class="fa fa-newspaper-o" aria-hidden="true"></i></button>
+                            <?php } ?>
                           </td>
                         </tr>
                         <?php } ?>
@@ -141,13 +150,16 @@
                       <tbody>
                         <?php foreach ($data as $key => $value){ ?>
                         <tr>
-                          <td style="vertical-align: middle;" class="text-capitalize"><?php echo $key; ?></td>
+                          <td style="vertical-align: middle;" class="text-capitalize"><?php echo ($key+1); ?></td>
                           <td style="vertical-align: middle;" class="text-capitalize"><?php echo $value['jenis']; ?></td>
                           <td style="vertical-align: middle;" class="text-capitalize"><?php echo $value['nama']; ?></td>
                           <td style="vertical-align: middle;" class="text-right text-capitalize"><?php echo $value['nilai']; ?></td>
                           <td style="vertical-align: middle;" class="text-center text-capitalize">
+                            <?php if ($_SESSION['masuk']['status'] == 1 || $_SESSION['masuk']['status'] == 2){ ?>
                             <button type="button" onclick="window.location='<?php echo base_url().'temuan/form/'.$value['id'];?>'" title="Edit" class="btn badge badge-info badge-icon"><i class="fa fa-edit" aria-hidden="true"></i></button>
-                            <button type="button" onclick="window.location='<?php echo base_url().'temuan/berita/'.$value['id'].'-post';?>'" title="Berita Acara" class="btn badge badge-success badge-icon"><i class="fa fa-newspaper-o" aria-hidden="true"></i></button>
+                            <?php } if ($_SESSION['masuk']['status'] == 1 || $_SESSION['masuk']['status'] == 3){ ?>
+                            <button type="button" onclick="window.location='<?php echo base_url().'berita/form/berita/'.$value['id'].'-post';?>'" title="Berita Acara" class="btn badge badge-success badge-icon"><i class="fa fa-newspaper-o" aria-hidden="true"></i></button>
+                            <?php } ?>
                           </td>
                         </tr>
                         <?php } ?>
@@ -171,7 +183,7 @@
                       <tbody>
                         <?php foreach ($data as $key => $value){ ?>
                         <tr>
-                          <td style="vertical-align: middle;" class="text-capitalize"><?php echo $key; ?></td>
+                          <td style="vertical-align: middle;" class="text-capitalize"><?php echo ($key+1); ?></td>
                           <td style="vertical-align: middle;" class="text-center text-capitalize"><?php echo $value['spp_tanggal']; ?></td>
                           <td style="vertical-align: middle;" class="text-capitalize"><?php echo $value['spp_up']; ?></td>
                           <td style="vertical-align: middle;" class="text-capitalize"><?php echo $value['spp_gu']; ?></td>
@@ -179,8 +191,11 @@
                           <td style="vertical-align: middle;" class="text-right text-capitalize"><?php echo $value['spp_gaji']; ?></td>
                           <td style="vertical-align: middle;" class="text-capitalize"><?php echo $value['spp_barjas']; ?></td>
                           <td style="vertical-align: middle;" class="text-center text-capitalize">
+                            <?php if ($_SESSION['masuk']['status'] == 1 || $_SESSION['masuk']['status'] == 2){ ?>
                             <button type="button" onclick="window.location='<?php echo base_url().'temuan/form/'.$value['id'];?>'" title="Edit" class="btn badge badge-info badge-icon"><i class="fa fa-edit" aria-hidden="true"></i></button>
-                            <button type="button" onclick="window.location='<?php echo base_url().'temuan/berita/'.$value['id'].'-post';?>'" title="Berita Acara" class="btn badge badge-success badge-icon"><i class="fa fa-newspaper-o" aria-hidden="true"></i></button>
+                            <?php } if ($_SESSION['masuk']['status'] == 1 || $_SESSION['masuk']['status'] == 3){ ?>
+                            <button type="button" onclick="window.location='<?php echo base_url().'berita/form/berita/'.$value['id'].'-post';?>'" title="Berita Acara" class="btn badge badge-success badge-icon"><i class="fa fa-newspaper-o" aria-hidden="true"></i></button>
+                            <?php } ?>
                           </td>
                         </tr>
                         <?php } ?>
@@ -204,7 +219,7 @@
                       <tbody>
                         <?php foreach ($data as $key => $value){ ?>
                         <tr>
-                          <td style="vertical-align: middle;" class="text-capitalize"><?php echo $key; ?></td>
+                          <td style="vertical-align: middle;" class="text-capitalize"><?php echo ($key+1); ?></td>
                           <td style="vertical-align: middle;" class="text-center text-capitalize"><?php echo $value['spm_tanggal']; ?></td>
                           <td style="vertical-align: middle;" class="text-capitalize"><?php echo $value['spm_up']; ?></td>
                           <td style="vertical-align: middle;" class="text-capitalize"><?php echo $value['spm_gu']; ?></td>
@@ -212,8 +227,11 @@
                           <td style="vertical-align: middle;" class="text-right text-capitalize"><?php echo $value['spm_gaji']; ?></td>
                           <td style="vertical-align: middle;" class="text-capitalize"><?php echo $value['spm_barjas']; ?></td>
                           <td style="vertical-align: middle;" class="text-center text-capitalize">
+                            <?php if ($_SESSION['masuk']['status'] == 1 || $_SESSION['masuk']['status'] == 2){ ?>
                             <button type="button" onclick="window.location='<?php echo base_url().'temuan/form/'.$value['id'];?>'" title="Edit" class="btn badge badge-info badge-icon"><i class="fa fa-edit" aria-hidden="true"></i></button>
-                            <button type="button" onclick="window.location='<?php echo base_url().'temuan/berita/'.$value['id'].'-post';?>'" title="Berita Acara" class="btn badge badge-success badge-icon"><i class="fa fa-newspaper-o" aria-hidden="true"></i></button>
+                            <?php } if ($_SESSION['masuk']['status'] == 1 || $_SESSION['masuk']['status'] == 3){ ?>
+                            <button type="button" onclick="window.location='<?php echo base_url().'berita/form/berita/'.$value['id'].'-post';?>'" title="Berita Acara" class="btn badge badge-success badge-icon"><i class="fa fa-newspaper-o" aria-hidden="true"></i></button>
+                            <?php } ?>
                           </td>
                         </tr>
                         <?php } ?>
@@ -234,19 +252,30 @@
                       <tbody>
                         <?php foreach ($data as $key => $value){ ?>
                         <tr>
-                          <td style="vertical-align: middle;" class="text-capitalize"><?php echo $key; ?></td>
+                          <td style="vertical-align: middle;" class="text-capitalize"><?php echo ($key+1); ?></td>
                           <td style="vertical-align: middle;" class="text-center text-capitalize"><?php echo $value['tj_tanggal']; ?></td>
                           <td style="vertical-align: middle;" class="text-right text-capitalize"><?php echo $value['no_spj']; ?></td>
                           <td style="vertical-align: middle;" class="text-right text-capitalize"><?php echo $value['jumlah']; ?></td>
                           <td style="vertical-align: middle;" class="text-center text-capitalize">
+                            <?php if ($_SESSION['masuk']['status'] == 1 || $_SESSION['masuk']['status'] == 2){ ?>
                             <button type="button" onclick="window.location='<?php echo base_url().'temuan/form/'.$value['id'];?>'" title="Edit" class="btn badge badge-info badge-icon"><i class="fa fa-edit" aria-hidden="true"></i></button>
-                            <button type="button" onclick="window.location='<?php echo base_url().'temuan/berita/'.$value['id'].'-post';?>'" title="Berita Acara" class="btn badge badge-success badge-icon"><i class="fa fa-newspaper-o" aria-hidden="true"></i></button>
+                            <?php } if ($_SESSION['masuk']['status'] == 1 || $_SESSION['masuk']['status'] == 3){ ?>
+                            <button type="button" onclick="window.location='<?php echo base_url().'berita/form/berita/'.$value['id'].'-post';?>'" title="Berita Acara" class="btn badge badge-success badge-icon"><i class="fa fa-newspaper-o" aria-hidden="true"></i></button>
+                            <?php } ?>
                           </td>
                         </tr>
                         <?php } ?>
                       </tbody>
                     </table>
                   </div>
+                </div>
+              </div>
+            </div>
+             <div class="form-footer">
+              <div class="form-group">
+                <div class="col-xs-8 col-xs-offset-4 text-right">
+                  <button type="button" class="btn btn-success btn-xs" title="Tambah Temuan" onclick="file();"><i class="fa fa-list"></i></button>
+                  <button type="button" class="btn btn-danger btn-xs" onclick="window.history.back();" title="Batal"><i class="fa fa-close"></i></button>
                 </div>
               </div>
             </div>

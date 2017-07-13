@@ -10,7 +10,7 @@
               <div class="section-body __indent">
               <?php if($type != 'post'){ ?><input type="hidden" name="id_temuan" value="<?php echo $data['id_temuan']; ?>"><?php } ?>
               
-              <?php if ($method == 'berita'){ ?>
+              <?php if ($method == 'berita'){ if($_SESSION['masuk']['status'] == 1 || $_SESSION['masuk']['status'] == 3){ ?>
                 <div class="form-group">
                   <div class="col-xs-3"><label style="vertical-align: middle;" class="form-label text-center text-capitalize">Penanggung Jawab</label></div>
                   <div class="col-xs-9">
@@ -34,9 +34,14 @@
                   <?php  $tgl = (empty($data['tgl'])) ? date('d-m-Y') : date("d-m-Y",strtotime($data['tgl'])) ; ?>
                   <div class="col-xs-9"><input style="border-radius: 50px;" type="text" class="form-control text-capitalize datepicker" name="tgl" value="<?php echo $tgl; ?>" placeholder=""></div>
                 </div>
-              <?php } ?>
+                <div class="form-group">
+                  <div class="col-xs-3"><label style="vertical-align: middle;" class="form-label text-center text-capitalize">batas</label></div>
+                  <?php  $batas = (empty($data['batas'])) ? date('d-m-Y') : date("d-m-Y",strtotime($data['batas'])) ; ?>
+                  <div class="col-xs-9"><input style="border-radius: 50px;" type="text" class="form-control text-capitalize datepicker" name="batas" value="<?php echo $batas ; ?>" placeholder=""></div>
+                </div>
+              <?php } else { redirect(''); }} ?>
 
-              <?php if ($method != 'file'){ ?>
+              <?php if ($method != 'file'){ if($_SESSION['masuk']['status'] == 1 || $_SESSION['masuk']['status'] == 3 || $_SESSION['masuk']['status'] == 4){ ?>
                 <div class="form-group">
                   <div class="col-xs-3"><label style="vertical-align: middle;" class="form-label text-center text-capitalize">Temuan Sementara</label></div>
                   <div class="col-xs-9"><input style="border-radius: 50px;" type="text" class="form-control text-capitalize" name="ts" value="<?php echo $data['ts']; ?>" placeholder=""></div>
@@ -45,9 +50,9 @@
                   <div class="col-xs-3"><label style="vertical-align: middle;" class="form-label text-center text-capitalize">Undang-undang</label></div>
                   <div class="col-xs-9"><input style="border-radius: 50px;" type="text" class="form-control text-capitalize" name="uu" value="<?php echo $data['uu']; ?>" placeholder=""></div>
                 </div>
-              <?php } ?>
+              <?php } else { redirect(''); }} ?>
 
-              <?php if ($method == 'tindak'){ ?>
+              <?php if ($method == 'tindak'){ if($_SESSION['masuk']['status'] == 1 || $_SESSION['masuk']['status'] == 4){ ?>
                 <div class="form-group">
                   <div class="col-xs-3"><label style="vertical-align: middle;" class="form-label text-center text-capitalize">Tanggal Tindak Lanjut</label></div>
                   <?php  $tanggal = (empty($data['tanggal'])) ? date('d-m-Y') : date("d-m-Y",strtotime($data['tanggal'])) ; ?>
@@ -56,11 +61,6 @@
                 <div class="form-group">
                   <div class="col-xs-3"><label style="vertical-align: middle;" class="form-label text-center text-capitalize">saran</label></div>
                   <div class="col-xs-9"><input style="border-radius: 50px;" type="text" class="form-control text-capitalize" name="saran" value="<?php echo $data['saran']; ?>" placeholder=""></div>
-                </div>
-                <div class="form-group">
-                  <div class="col-xs-3"><label style="vertical-align: middle;" class="form-label text-center text-capitalize">batas</label></div>
-                  <?php  $batas = (empty($data['batas'])) ? date('d-m-Y') : date("d-m-Y",strtotime($data['batas'])) ; ?>
-                  <div class="col-xs-9"><input style="border-radius: 50px;" type="text" class="form-control text-capitalize datepicker" name="batas" value="<?php echo $batas ; ?>" placeholder=""></div>
                 </div>
                 <div class="form-group">
                   <div class="col-xs-3"><label style="vertical-align: middle;" class="form-label text-center text-capitalize">status</label></div>
@@ -72,28 +72,31 @@
                     </select>
                   </div>
                 </div>
-              <?php } ?>
+              <?php } else { redirect(''); }} ?>
 
               
-              <?php if ($method == 'file'){ ?>
+              <?php if ($method == 'file'){ if($_SESSION['masuk']['status'] != 5){?>
                 <div class="file" rel="1">
                   <div class="form-group" id="file1">
                     <div class="col-xs-11"><input style="border-radius: 50px;" type="file" class="form-control btn" name="file[1]" placeholder=""></div>
                     <div class="col-xs-1"><button style="vertical-align: middle;" type="button" class="btn badge badge-danger badge-icon" onclick="elif(1);" title="Hapus File"><i class="fa fa-close"></i></button></div>
                   </div>
                 </div>
-              <?php } ?>
+              <?php } else { redirect(''); }} ?>
               
               </div>
             </div>
             <div class="form-footer">
               <div class="form-group">
                 <div class="col-xs-8 col-xs-offset-4 text-right">
+
+                  <?php if ($method == 'file'){ ?>
                   <button type="button" class="btn btn-success btn-xs" title="Tambah File" onclick="file();"><i class="fa fa-plus"></i></button>
+                  <?php } ?>
                   <button type="submit" class="btn btn-primary btn-xs" title="Simpan"><i class="fa fa-check"></i></button>
-                  <?php //if (!is_null($id)){ ?>
+                  <?php if ($type == 'edit'){ ?>
                   <button type="reset" onclick="window.location='http://<?php echo $_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']; ?>'" class="btn btn-warning btn-xs" title="ReSet"><i class="fa fa-undo"></i></button>
-                  <?php //} ?>
+                  <?php } ?>
                   <button type="button" class="btn btn-danger btn-xs" onclick="window.history.back();" title="Batal"><i class="fa fa-close"></i></button>
                 </div>
               </div>

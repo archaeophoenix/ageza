@@ -10,6 +10,7 @@ class Temuan extends CI_Controller {
         /*if (empty($_SESSION['param']) || is_null($_SESSION['param'])) {
             $_SESSION['param'] = ['bulan' => date('m') ,'tahun' => date('Y')];
         }*/
+        // echo "<pre>";print_r($_SESSION);die();
     }
 
     function index(){
@@ -44,15 +45,19 @@ class Temuan extends CI_Controller {
     }
 
     function form($id = null){
-        $header['class'] = $this->router->fetch_class();
-        $header['method'] = $this->router->fetch_method();
+        if($_SESSION['masuk']['status'] == 1 || $_SESSION['masuk']['status'] == 2){
+            $header['class'] = $this->router->fetch_class();
+            $header['method'] = $this->router->fetch_method();
 
-        $data['skpd'] = $this->Dml_model->read('skpd') ;
-        $data['data'] = (empty($id)) ? null : $this->data($id) ;
+            $data['skpd'] = $this->Dml_model->read('skpd') ;
+            $data['data'] = (empty($id)) ? null : $this->data($id) ;
 
-        $this->load->view('header',$header);
-        $this->load->view('temuan/form',$data);
-        $this->load->view('footer');
+            $this->load->view('header',$header);
+            $this->load->view('temuan/form',$data);
+            $this->load->view('footer');
+        } else {
+            redirect('');
+        }
     }
 
     function datas($bulan = null, $tahun = null){
