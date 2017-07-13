@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jul 11, 2017 at 06:34 
+-- Generation Time: Jul 13, 2017 at 08:55 
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 7.0.6
 
@@ -47,21 +47,23 @@ CREATE TABLE `berita` (
 --
 
 INSERT INTO `berita` (`id`, `id_temuan`, `tj`, `ketua`, `anggota`, `tgl`, `no`, `ts`, `uu`, `tanggal`, `saran`, `batas`, `status`) VALUES
-(1, 1, 'PJ', 'ket', '', '0000-00-00', 'nos', 'temsm', 'uu', '2017-06-18', 'buang', '2017-06-20', '2'),
-(2, 2, 'TJ', 'k', '', '0000-00-00', 'khkk', 'jhkhkj', 'hkjhkj', '2017-07-07', 'asdasd', '2017-07-09', '0'),
-(3, 1, 'mboh', 'sembarang', '', '0000-00-00', '331', 'satu', 'raurus', '2017-06-15', 'buang', '2017-06-16', '0'),
-(4, 1, 'mboh', 'sembarang', '', '0000-00-00', '331', 'satu', 'raurus', '2017-06-14', 'buang', '2017-06-15', '1'),
-(5, 1, 'asdlasjhdna', 'j', '', '0000-00-00', 'n', 'kjjh', 'hkjh', '2017-06-15', 'aksdjas', '2017-06-18', '0'),
-(6, 1, NULL, NULL, '', '0000-00-00', NULL, NULL, NULL, '1970-01-01', NULL, '1970-01-01', NULL),
-(7, 1, '', '', '', '0000-00-00', '', '', '', '2017-06-18', '', '2017-06-18', '0'),
-(8, 1, '', '', '', '0000-00-00', '', '', '', '2017-06-18', '', '2017-06-18', '0'),
-(9, 1, '', '', '', '0000-00-00', '', '', '', '2017-06-18', '', '2017-06-18', '0'),
-(10, 1, '', '', '', '0000-00-00', '', '', '', '2017-06-18', '', '2017-06-18', '0'),
-(11, 1, '', '', '', '0000-00-00', '', '', '', '2017-06-18', '', '2017-06-18', '0'),
-(12, 1, NULL, NULL, '', '0000-00-00', NULL, NULL, NULL, '1970-01-01', NULL, '1970-01-01', NULL),
-(13, 1, '', '', '', '0000-00-00', '', '', '', '2017-06-18', '', '2017-06-18', '0'),
-(14, 12, 'pj', 'ket', '', '0000-00-00', 'nosur', 'mboh', 'uu', '2017-07-04', 'ok', '2017-07-06', '0'),
-(15, 12, 'yp', 'yo', '', '0000-00-00', 'ok', 'ok', 'ok', '2017-07-05', 'kpo', '2017-07-08', '1');
+(1, 1, 'PJ', 'ket', '', '2017-06-18', 'nos', 'temsm', 'uu', '2017-06-18', 'buang', '2017-06-20', '2'),
+(2, 2, 'TJ', 'k', '', '2017-07-07', 'khkk', 'jhkhkj', 'hkjhkj', '2017-07-07', 'asdasd', '2017-07-09', '0'),
+(3, 1, 'mboh', 'sembarang', '', '2017-06-15', '331', 'satu', 'raurus', '2017-06-15', 'buang', '2017-06-16', '0'),
+(4, 1, 'mboh', 'sembarang', '', '2017-06-14', '331', 'satu', 'raurus', '2017-06-14', 'buang', '2017-06-15', '1'),
+(5, 1, 'asdlasjhdna', 'j', '', '2017-06-15', 'n', 'kjjh', 'hkjh', '2017-06-15', 'aksdjas', '2017-06-18', '0'),
+(6, 1, NULL, NULL, '', '1970-01-01', NULL, NULL, NULL, '1970-01-01', NULL, '1970-01-01', NULL),
+(7, 1, '', '', '', '2017-06-18', '', '', '', '2017-06-18', '', '2017-06-18', '0'),
+(8, 1, '', '', '', '2017-06-18', '', '', '', '2017-06-18', '', '2017-06-18', '0'),
+(9, 1, '', '', '', '2017-06-18', '', '', '', '2017-06-18', '', '2017-06-18', '0'),
+(10, 1, '', '', '', '2017-06-18', '', '', '', '2017-06-18', '', '2017-06-18', '0'),
+(11, 1, '', '', '', '2017-06-18', '', '', '', '2017-06-18', '', '2017-06-18', '0'),
+(12, 1, NULL, NULL, '', '1970-01-01', NULL, NULL, NULL, '1970-01-01', NULL, '1970-01-01', NULL),
+(13, 1, '', '', '', '2017-06-18', '', '', '', '2017-06-18', '', '2017-06-18', '0'),
+(14, 12, 'pj', 'ket', '', '2017-07-04', 'nosur', 'mboh', 'uu', '2017-07-04', 'ok', '2017-07-06', '0'),
+(15, 12, 'yp', 'yo', '', '2017-07-05', 'ok', 'ok', 'ok', '2017-07-05', 'kpo', '2017-07-08', '1'),
+(16, 1, 'ok deh', 'mboh', 'sembarang', '2017-07-12', 'no', 'oilah', 'uuu', NULL, NULL, NULL, NULL),
+(17, 1, 'asidjaskdkj', 'hkjbmnb', 'jhgbj', '2017-07-12', 'hgbjhbg', 'kkhjk', 'nhkh', NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -100,6 +102,18 @@ CREATE TABLE `polling` (
   `tanggal` date DEFAULT NULL,
   `nilai` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `polling`
+--
+
+INSERT INTO `polling` (`id`, `id_skpd`, `tanggal`, `nilai`) VALUES
+(1, 1, '2017-07-08', 20),
+(2, 1, '2017-07-08', 1),
+(3, 1, '2017-07-08', 20),
+(4, 2, '2017-07-08', 45),
+(5, 2, '2017-06-08', 25),
+(6, 1, '2017-06-08', 20);
 
 -- --------------------------------------------------------
 
@@ -191,6 +205,7 @@ CREATE TABLE `user` (
   `nama` varchar(50) DEFAULT NULL,
   `status` int(11) DEFAULT NULL,
   `telpon` varchar(20) DEFAULT NULL,
+  `id_skpd` int(11) NOT NULL,
   `username` varchar(50) DEFAULT NULL,
   `password` text,
   `tmstmp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
@@ -200,13 +215,13 @@ CREATE TABLE `user` (
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id`, `nama`, `status`, `telpon`, `username`, `password`, `tmstmp`) VALUES
-(1, 'cipa admin', 2, '+6281', 'cipaadmin', 'N1FkTGdwVnM1N3NuNy96ZnBXQ2pBdz09', '2017-05-11 07:45:24'),
-(2, 'admin trans haji', 2, '+628111', 'adtrah', 'TWlWVjc5QU40ak1sMGVrbHczajZnZz09', '2017-05-11 07:45:28'),
-(3, 'hakkam', 5, '+966', 'hakkam', 'cUtFb2k5enVUN3p4aTZRS2wza3VtQT09', '2017-05-14 03:19:27'),
-(4, 'haddej', 5, '+966', 'haddej', 'eXE5U3M5RDRPa005WlEya3oxMGw4Zz09', '2017-05-14 03:19:57'),
-(5, 'hanidam', 5, '+966', 'hanidam', 'akJHbmxBZ3JtcmJmNldxSFd1dnZHUT09', '2017-05-14 03:20:00'),
-(6, 'admin', 1, '+6289900', 'admin', 'ajh4Z0QyT3dhVjFJd0xtakg0NVJBUT09', '2017-07-11 02:40:34');
+INSERT INTO `user` (`id`, `nama`, `status`, `telpon`, `id_skpd`, `username`, `password`, `tmstmp`) VALUES
+(1, 'auditor', 2, '+6281', 0, 'auditor', 'cVV2S0pxRkdFeEFXWEtPRGhsYWlJQT09', '2017-07-13 05:10:45'),
+(2, 'evaluator', 3, '+628111', 0, 'evaluator', 'TjRZR0hZaHp5YmNkSUpxcmRrYWZuUT09', '2017-07-13 05:11:06'),
+(3, 'skpd', 4, '+966', 0, 'skpd', 'Y0l3MkNwZmpoL3lEc091Um82c0w2UT09', '2017-07-13 05:11:25'),
+(4, 'inspektur', 5, '+966', 0, 'inspektur', 'anpwSXkyVWtwcnFjZE4wMUZoZGowUT09', '2017-07-13 05:11:42'),
+(5, 'hanidam', 5, '+966', 0, 'hanidam', 'akJHbmxBZ3JtcmJmNldxSFd1dnZHUT09', '2017-05-14 03:20:00'),
+(6, 'admin', 1, '+6289900', 0, 'admin', 'ajh4Z0QyT3dhVjFJd0xtakg0NVJBUT09', '2017-07-11 02:40:34');
 
 --
 -- Indexes for dumped tables
@@ -256,7 +271,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `berita`
 --
 ALTER TABLE `berita`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 --
 -- AUTO_INCREMENT for table `file`
 --
@@ -266,7 +281,7 @@ ALTER TABLE `file`
 -- AUTO_INCREMENT for table `polling`
 --
 ALTER TABLE `polling`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `skpd`
 --
