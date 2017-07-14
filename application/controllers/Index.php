@@ -9,7 +9,6 @@ class Index extends CI_Controller {
     }
 
     function index(){
-        // echo "<pre>";print_r($_SESSION);die();
         if (empty($_SESSION['masuk'])) {
             $this->load->view('login');
         } else {
@@ -24,7 +23,6 @@ class Index extends CI_Controller {
             $data['sum'] = $this->Dml_model->one('polling','WHERE YEAR(tanggal) = '.date('Y').' AND MONTH(tanggal) = '.date('m'),'SUM(nilai) nilai');
             $data['polling'] = $this->Dml_model->read('polling','JOIN skpd ON id_skpd = skpd.id WHERE YEAR(tanggal) = '.date('Y').' AND MONTH(tanggal) = '.date('m').' GROUP BY id_skpd','SUM(nilai) nilai, skpd.nama skpd');
 
-            // echo'<pre>';print_r($data);die();
 
             $this->load->view('header',$header);
             $this->load->view('index',$data);

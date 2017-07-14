@@ -7,17 +7,23 @@ class Berita extends CI_Controller {
 		$this->load->library('session');
 		$this->load->helper('url_helper');
         $this->Dml_model->cancel();
-        /*
-        http://remote.com/
-        http://remoteok.io/
-        if (empty($_SESSION['param']) || is_null($_SESSION['param'])) {
-            $_SESSION['param'] = array('bulan' => date('m') ,'tahun' => date('Y')];
-        }*/
+        
+        if (empty($_SESSION['masuk'])) {
+            redirect('');
+        } else {
+            $result = $this->Dml_model->logon($_SESSION['masuk']['id']);
+            
+            if (empty($result)) {
+                redirect('');
+            } else {
+                $_SESSION['masuk'] = $result;
+            }
+        }
     }
 
     function index(){
         if (empty($_SESSION['masuk'])) {
-            $this->load->view('login');
+            redirect('');
         } else {
             redirect('berita/datas/');
         }
@@ -33,8 +39,6 @@ class Berita extends CI_Controller {
         $ids = array();
         foreach ($berita as $key => $value) {
             $ids[] = $value['id'];
-            // $berita[$value['id']] = $value;
-            // unset($berita[$key]);
         }
 
         $ids = implode(',', $ids);
@@ -64,8 +68,6 @@ class Berita extends CI_Controller {
     function submit($id = null){
         $ids = explode('-', $id);
         if(isset($_POST)){
-
-            // echo "<pre>";print_r($_POST);print_r($_FILES);
 
             if (!empty($_POST)) { echo "post";
                 $_POST['id_temuan'] = (isset($_POST['id_temuan'])) ? $_POST['id_temuan'] : $ids[0] ;
@@ -127,13 +129,7 @@ class Berita extends CI_Controller {
             redirect('berita/form/berita/'.$id);
         }
 
-        /*$header['class'] = $this->router->fetch_class();
-        echo $function;die();
-        this->router->fetch_method()*/
-
-        // print_r($ids);die();
         $header['class'] = $this->router->fetch_class();
-        // $header['method'] = $this->router->fetch_method();
         
         $data['submit'] = $id;
         $data['type'] = $ids[1];
@@ -141,7 +137,6 @@ class Berita extends CI_Controller {
         $data['method'] = $type;
         $data['status'] = array('Belum Selesai', 'Proses', 'Selesai');
         $data['skpd'] = $this->Dml_model->one('temuan', 'JOIN skpd ON skpd.id = id_skpd WHERE temuan.id = '.$ids[0], 'temuan.id, skpd.nama skpd');
-        // echo "<pre>";print_r($data);die();
         
         $this->load->view('header',$header);
         $this->load->view('berita/form',$data);
@@ -163,8 +158,6 @@ class Berita extends CI_Controller {
         $data['bulan'] = array('01'=>'Januari','02'=>'Februari','03'=>'Maret','04'=>'April','05'=>'Mei','06'=>'Juni','07'=>'Juli','08'=>'Agustus','09'=>'September','10'=>'Oktober','11'=>'November','12'=>'Desember');
 
         $footer['link'] = 'berita/datas';
-
-        // echo "<pre>";print_r($data);die();
 
         $this->load->view('header',$header);
         $this->load->view('berita/list',$data);

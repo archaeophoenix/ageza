@@ -12,14 +12,9 @@ class Login extends CI_Controller {
 		if (isset($_POST)) {
 			$result = $this->Dml_model->login();
 			if(!empty($result)){
-				// session_start();
 				$_SESSION['masuk'] = $result;
 				$_SESSION['log'] = true;
-				/*$log['id_user'] = $_SESSION['id'];
-				$log['aktivitas'] = 'Login';*/
-				// $this->data->create('log',$log);
 			}
-			// echo "<pre>";print_r($_SESSION);die();
 		}
 		redirect('');
 	}

@@ -41,8 +41,6 @@ class Skpd extends CI_Controller {
         $data['list'] = $this->data() ;
         $data['data'] = (empty($id)) ? null : $this->data($id) ;
 
-        // echo "<pre>"; print_r($data);die();
-        
         $header['class'] = $this->router->fetch_class();
         $header['method'] = $this->router->fetch_method();
         
@@ -65,24 +63,4 @@ class Skpd extends CI_Controller {
         }
         redirect('skpd/field/');
     }
-
-    function oi (){
-        $totalPage = 3;
-        $curPage = 2;
-        $start = ($curPage < 5)? 1 : $curPage - 4;
-        $end = 8 + $start;
-        $end = ($totalPage < $end) ? $totalPage : $end;
-        $diff = $start - $end + 8;
-        $start -= ($start - $diff > 0) ? $diff : 0;
-
-        if ($start > 1) echo " First ... ";
-        for($i=$start; $i<=$end; $i++) echo " {$i} ";
-        if ($end < $totalPage) echo " ... Last ";
-
-
-    	// echo'<pre>';
-        // print_r($_SERVER);
-    	// print_r($this->data());
-    }
-
 }

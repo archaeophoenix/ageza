@@ -51,17 +51,6 @@ class User extends CI_Controller {
         $data['data'] = (empty($id)) ? null : $this->data($id) ;
         $data['status'] = array('Inactive','Admin','Irjen/Auditor','Evaluator','K-SKPD','Inspektur/Sekretaris');
 
-
-        // echo "<pre>"; print_r($data); die();
-        /*extract($data);
-        foreach ($travel as $key => $value) {
-            if (!empty($id_travel)) {
-                $keys = array_keys(array_column($id_travel, 'id'), $value['id']);
-                echo (empty($keys)) ? '' : 'ok' ;
-            }
-        }*/
-        
-        // echo "<pre>";print_r($data);die();
         $this->load->view('header',$header);
         $this->load->view('user/field',$data);
         $this->load->view('footer');
@@ -84,7 +73,6 @@ class User extends CI_Controller {
                 
                 $this->Dml_model->update('user',"id = '$id'",$user);
             }
-            // die();
 
         }
         redirect('user/field/');
@@ -97,27 +85,6 @@ class User extends CI_Controller {
         $where = (isset($_POST['id'])) ? 'AND id NOT IN ('.$_POST['id'].')' : '' ;
         $data = $this->Dml_model->read('user','WHERE username LIKE "'.$_POST['username'].'" '.$where,'id');
         echo (empty($data)) ? 'has-success' : 'has-error' ;
-        // print_r($_POST);
-        // print_r($_SERVER);
-    }
-
-    function oi (){
-        $totalPage = 3;
-        $curPage = 2;
-        $start = ($curPage < 5)? 1 : $curPage - 4;
-        $end = 8 + $start;
-        $end = ($totalPage < $end) ? $totalPage : $end;
-        $diff = $start - $end + 8;
-        $start -= ($start - $diff > 0) ? $diff : 0;
-
-        if ($start > 1) echo " First ... ";
-        for($i=$start; $i<=$end; $i++) echo " {$i} ";
-        if ($end < $totalPage) echo " ... Last ";
-
-
-    	// echo'<pre>';
-        // print_r($_SERVER);
-    	// print_r($this->data());
     }
 
 }

@@ -48,8 +48,6 @@ class Polling extends CI_Controller {
 
         $footer['link'] = 'polling/field';
 
-        // echo "<pre>";print_r($data);die();
-       
         $this->load->view('header',$header);
         $this->load->view('polling/field',$data);
         $this->load->view('footer',$footer);

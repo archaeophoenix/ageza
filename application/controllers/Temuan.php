@@ -6,19 +6,26 @@ class Temuan extends CI_Controller {
 		$this->load->model('Dml_model');
 		$this->load->library('session');
 		$this->load->helper('url_helper');
-        $this->Dml_model->cancel();
-        /*if (empty($_SESSION['param']) || is_null($_SESSION['param'])) {
-            $_SESSION['param'] = ['bulan' => date('m') ,'tahun' => date('Y')];
-        }*/
-        // echo "<pre>";print_r($_SESSION);die();
+        
+        if (empty($_SESSION['masuk'])) {
+            redirect('');
+        } else {
+            $result = $this->Dml_model->logon($_SESSION['masuk']['id']);
+            
+            if (empty($result)) {
+                redirect('');
+            } else {
+                $_SESSION['masuk'] = $result;
+            }
+        }
     }
 
     function index(){
-        /*if (empty($_SESSION['masuk'])) {
-            $this->load->view('login');
+        if (empty($_SESSION['masuk'])) {
+            redirect('');
         } else {
-        }*/
-        redirect('temuan/datas/');
+            redirect('temuan/datas/');
+        }
     }
 
     private function data($id = null , $periode = null){
@@ -34,14 +41,12 @@ class Temuan extends CI_Controller {
             $_POST['spp_tanggal'] = date('Y-m-d',strtotime($_POST['spp_tanggal']));
             $_POST['spm_tanggal'] = date('Y-m-d',strtotime($_POST['spm_tanggal']));
             $_POST['tj_tanggal'] = date('Y-m-d',strtotime($_POST['tj_tanggal']));
-            // echo "<pre>"; print_r($_FILES); print_r($_POST);die();
             if(empty($id)){
                 $this->Dml_model->create('temuan', $_POST);
             } else {
                 $this->Dml_model->update('temuan',"id = '$id'", $_POST);
             }
         }
-        // redirect('makan/field/');
     }
 
     function form($id = null){
@@ -74,8 +79,6 @@ class Temuan extends CI_Controller {
         $data['bulan'] = array('01'=>'Januari','02'=>'Februari','03'=>'Maret','04'=>'April','05'=>'Mei','06'=>'Juni','07'=>'Juli','08'=>'Agustus','09'=>'September','10'=>'Oktober','11'=>'November','12'=>'Desember');
 
         $footer['link'] = 'temuan/datas';
-
-        // echo "<pre>";print_r($data);die();
 
         $this->load->view('header', $header);
         $this->load->view('temuan/list', $data);
