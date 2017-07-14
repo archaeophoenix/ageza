@@ -34,7 +34,6 @@
       <div class="sidebar-menu">
         <ul class="sidebar-nav">
         
-        <?php //if ($_SESSION['masuk']['status'] == 1){ ?>
           <li <?php echo ($class == 'skpd') ? 'class="active"' : '' ; ?>>
             <a href="<?php echo base_url(); ?>skpd">
               <div class="icon">
@@ -71,6 +70,7 @@
             </a>
           </li>
 
+        <?php if ($_SESSION['masuk']['status'] == 1){ ?>
           <li <?php echo ($class == 'user') ? 'class="active"' : '' ; ?>>
             <a href="<?php echo base_url(); ?>user">
               <div class="icon">
@@ -79,7 +79,7 @@
               <div class="title text-capitalize">User</div>
             </a>
           </li>
-        <?php //} ?>
+        <?php } ?>
 
         </ul>
       </div>

@@ -1,5 +1,6 @@
 <div class="row">
- 
+
+  <?php if($_SESSION['masuk']['status'] == 1){ ?>
   <div class="col-xs-4">
     <div class="card card-mini">
       <div class="card-header"><?php echo (empty($id)) ? 'Tambah' : 'Edit' ; ?> SKPD</div>
@@ -29,8 +30,9 @@
       </div>
     </div>
   </div>
+  <?php } ?>
 
-  <div class="col-xs-8">
+  <div class="col-xs-<?php echo ($_SESSION['masuk']['status'] == 1) ? 8 : 12 ;?>">
     <div class="card">
       <div class="card-header">
         <div class="card-title">SKPD</div>

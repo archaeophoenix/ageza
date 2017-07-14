@@ -49,7 +49,7 @@ class User extends CI_Controller {
         $id = ($_SESSION['masuk']['status'] == 1) ? $id : $_SESSION['masuk']['id'] ;
         $data['id'] = ($_SESSION['masuk']['status'] == 1) ? $id : $_SESSION['masuk']['id'] ;
         $data['data'] = (empty($id)) ? null : $this->data($id) ;
-        $data['status'] = ['Inactive','Admin','Irjen/Auditor','Evaluator','K-SKPD','Inspektur/Sekretaris'];
+        $data['status'] = array('Inactive','Admin','Irjen/Auditor','Evaluator','K-SKPD','Inspektur/Sekretaris');
 
 
         // echo "<pre>"; print_r($data); die();

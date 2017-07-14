@@ -10101,10 +10101,10 @@ if ($('.ct-chart-browser').length) {
   (function () {
     var atad = new Array();
 		$('.bulanan').each(function(i){
-			atad[i] = $(this).attr('rel');
+			atad[i] = parseInt($(this).attr('rel'));
 		});
-		console.log(atad);
     var data = {series: atad };
+		console.log(data);
 
     var sum = function sum(a, b) {
       return a + b;
@@ -10112,8 +10112,7 @@ if ($('.ct-chart-browser').length) {
 
     new Chartist.Pie('.ct-chart-browser', data, {
       labelInterpolationFnc: function labelInterpolationFnc(value) {
-        // return Math.round(value / data.series.reduce(sum) * 100) + '%';
-        return value;
+        return Math.round(value / data.series.reduce(sum) * 100) + '%';
       },
       labelPosition: 'inside',
       startAngle: 270
@@ -10136,7 +10135,7 @@ if ($('.ct-chart-os').length) {
 
     new Chartist.Pie('.ct-chart-os', data, {
       labelInterpolationFnc: function labelInterpolationFnc(value) {
-        // return Math.round(value / data.series.reduce(sum) * 100) + '%';
+        return Math.round(value / data.series.reduce(sum) * 100) + '%';
         return value;
       },
       startAngle: 270,

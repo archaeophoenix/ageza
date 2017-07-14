@@ -68,10 +68,10 @@ class Temuan extends CI_Controller {
         $header['class'] = $this->router->fetch_class();
         $header['method'] = $this->router->fetch_method();
         
-        $data['param'] = ['bulan' => $bulan, 'tahun' => $tahun];
+        $data['param'] = array('bulan' => $bulan, 'tahun' => $tahun);
         $data['tahun'] = $this->Dml_model->read('temuan','','DISTINCT(YEAR(tanggal)) tahun');
         $data['data'] = $this->data(null,'MONTH(tanggal) = '.$bulan.' AND YEAR(tanggal) = '.$tahun);
-        $data['bulan'] = ['01'=>'Januari','02'=>'Februari','03'=>'Maret','04'=>'April','05'=>'Mei','06'=>'Juni','07'=>'Juli','08'=>'Agustus','09'=>'September','10'=>'Oktober','11'=>'November','12'=>'Desember'];
+        $data['bulan'] = array('01'=>'Januari','02'=>'Februari','03'=>'Maret','04'=>'April','05'=>'Mei','06'=>'Juni','07'=>'Juli','08'=>'Agustus','09'=>'September','10'=>'Oktober','11'=>'November','12'=>'Desember');
 
         $footer['link'] = 'temuan/datas';
 

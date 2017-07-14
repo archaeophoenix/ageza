@@ -18,10 +18,6 @@ class Skpd extends CI_Controller {
                 $_SESSION['masuk'] = $result;
             }
         }
-
-        if($_SESSION['masuk']['status'] != 1){
-            redirect('');
-        }
     }
 
     function index(){
@@ -56,15 +52,16 @@ class Skpd extends CI_Controller {
     }
 
     function submit($id = null){
-        if(isset($_POST)){
-            // echo "<pre>"; print_r($_FILES); print_r($_POST);die();
-
-            if (is_null($id)) {
-                $this->Dml_model->create('skpd',$_POST);
-            } else {
-                $this->Dml_model->update('skpd',"id = '$id'",$_POST);
+        if($_SESSION['masuk']['status'] != 1){
+            redirect('');
+        } else{
+            if(isset($_POST)){
+                if (is_null($id)) {
+                    $this->Dml_model->create('skpd',$_POST);
+                } else {
+                    $this->Dml_model->update('skpd',"id = '$id'",$_POST);
+                }
             }
-
         }
         redirect('skpd/field/');
     }

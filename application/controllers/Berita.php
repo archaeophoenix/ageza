@@ -11,7 +11,7 @@ class Berita extends CI_Controller {
         http://remote.com/
         http://remoteok.io/
         if (empty($_SESSION['param']) || is_null($_SESSION['param'])) {
-            $_SESSION['param'] = ['bulan' => date('m') ,'tahun' => date('Y')];
+            $_SESSION['param'] = array('bulan' => date('m') ,'tahun' => date('Y')];
         }*/
     }
 
@@ -139,7 +139,7 @@ class Berita extends CI_Controller {
         $data['type'] = $ids[1];
         $data['data'] = ($ids[1] == 'post') ? null : $this->data($ids[0]) ;
         $data['method'] = $type;
-        $data['status'] = ['Belum Selesai', 'Proses', 'Selesai'];
+        $data['status'] = array('Belum Selesai', 'Proses', 'Selesai');
         $data['skpd'] = $this->Dml_model->one('temuan', 'JOIN skpd ON skpd.id = id_skpd WHERE temuan.id = '.$ids[0], 'temuan.id, skpd.nama skpd');
         // echo "<pre>";print_r($data);die();
         
@@ -156,11 +156,11 @@ class Berita extends CI_Controller {
         $header['class'] = $this->router->fetch_class();
         $header['method'] = $this->router->fetch_method();
 
-        $data['param'] = ['bulan' => $bulan, 'tahun' => $tahun];
-        $data['status'] = ['Belum Selesai', 'Proses', 'Selesai'];
+        $data['param'] = array('bulan' => $bulan, 'tahun' => $tahun);
+        $data['status'] = array('Belum Selesai', 'Proses', 'Selesai');
         $data['tahun'] = $this->Dml_model->read('berita','','DISTINCT(YEAR(tgl)) tahun');
         $data['data'] = $this->tindakan(null,'MONTH(berita.tgl) = '.$bulan.' AND YEAR(berita.tgl) = '.$tahun);
-        $data['bulan'] = ['01'=>'Januari','02'=>'Februari','03'=>'Maret','04'=>'April','05'=>'Mei','06'=>'Juni','07'=>'Juli','08'=>'Agustus','09'=>'September','10'=>'Oktober','11'=>'November','12'=>'Desember'];
+        $data['bulan'] = array('01'=>'Januari','02'=>'Februari','03'=>'Maret','04'=>'April','05'=>'Mei','06'=>'Juni','07'=>'Juli','08'=>'Agustus','09'=>'September','10'=>'Oktober','11'=>'November','12'=>'Desember');
 
         $footer['link'] = 'berita/datas';
 

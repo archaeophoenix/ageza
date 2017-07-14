@@ -41,7 +41,22 @@
 
   <div class="col-xs-6">
     <div class="card card-mini">
-      <div class="card-header">Polling</div>
+      <div class="card-header">
+        <div class="col-xs-6">
+          <select class="form-control select2" id="bulan" onchange="periode();">
+            <?php foreach ($bulan as $key => $value){ ?>
+              <option value="<?php echo $key; ?>" <?php echo ($key == $param['bulan']) ? 'selected="selected"' : '' ; ?>><?php echo $value; ?></option>
+            <?php } ?>
+          </select>
+        </div>
+        <div class="col-xs-6">
+          <select class="form-control select2" id="tahun" onchange="periode();">
+            <?php foreach ($tahun as $key => $value){ ?>
+              <option value="<?php echo $value['tahun']; ?>" <?php echo ($value['tahun'] == $param['tahun']) ? 'selected  ="selected"' : '' ; ?>><?php echo $value['tahun']; ?></option>
+            <?php } ?>
+          </select>
+        </div>
+      </div>
       <div class="card-body">
         <div class="row">
           <div class="col-xs-8">
@@ -49,7 +64,7 @@
           </div>
           <div class="col-xs-4">
             <ul class="chart-label">
-              <?php foreach ($bulan as $key => $value){ ?>
+              <?php foreach ($polling as $key => $value){ ?>
               <li class="ct-label ct-series-<?php echo $abjad[$key]; ?> bulanan" rel="<?php echo number_format($value['nilai'] / $sum['nilai'] * 100,2); ?>"><?php echo $value['skpd']; ?></li>
               <?php } ?>
             </ul>
