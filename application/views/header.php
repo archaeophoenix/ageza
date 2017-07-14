@@ -143,7 +143,7 @@
                 <ul class="action">
                   <?php //$direct = ($_SESSION['masuk']['status'] == 5) ? 'resto/' : 'user/' ; ?>
                   <?php //$id = ($_SESSION['masuk']['status'] == 1) ? $_SESSION['masuk']['id'] : '' ; ?>
-                  <li><a onclick="window.location='<?php //echo base_url().$direct.$id; ?>'">Profile</a></li>
+                  <!-- <li><a onclick="window.location='<?php //echo base_url().$direct.$id; ?>'">Profile</a></li> -->
                   <li><a onclick="window.location='<?php echo base_url(); ?>logout'">Logout</a></li>
                 </ul>
               </div>
