@@ -29,31 +29,74 @@ class Berita extends CI_Controller {
         }
     }
 
-    private function tindakan($id = null , $periode){
-        $condition = (empty($id)) ? 'WHERE '.$periode : "WHERE temuan.id = '$id'" ;
+    function progres($id = null){
+        
+        $header['class'] = $this->router->fetch_class();
+
+        $data['data'] = $this->tindakan($id);
+        $data['protl'] = $this->Dml_model->read('protl','WHERE id_berita = '.$id.' ORDER BY tmstmp ASC','nilai, DATE_FORMAT(tmstmp, " %e/%m/%y %H:%i:%s") waktu');
+        $data['probl'] = $this->Dml_model->read('probl','WHERE id_berita = '.$id.' ORDER BY tmstmp ASC','nilai, DATE_FORMAT(tmstmp, " %e/%m/%y %H:%i:%s") waktu');
+        $data['status'] = array('Belum Selesai', 'Proses', 'Selesai');
+        
+        $this->load->view('header',$header);
+        $this->load->view('berita/progres',$data);
+        $this->load->view('footer');
+    }
+
+    function subpro($id = null){
+        if (isset($_POST)) {
+            echo "<pre>";
+            print_r($_POST);
+
+            $data['id_berita'] = $id;
+            foreach ($_POST['nilai'] as $key => $value) {
+                $data['nilai'] = $value;
+                $this->Dml_model->create($key,$data);
+            }
+
+            $this->Dml_model->update('berita','id = '.$id,$_POST['berita']);
+        }
+        redirect('berita/datas');
+    }
+
+    private function tindakan($id = null , $periode = null){
+        $condition = (empty($id)) ? 'WHERE '.$periode : "WHERE berita.id = '$id'" ;
         $method = (empty($id)) ? 'read' : 'one' ;
 
         $atad = array();
-        $berita = $this->Dml_model->{$method}('berita','JOIN temuan ON temuan.id = id_temuan JOIN skpd ON skpd.id = id_skpd '.$condition, 'berita.id, id_temuan, skpd.nama skpd, tj, ketua, anggota, no, ts, berita.uu, DATE_FORMAT(berita.tgl,"%d-%m-%Y") tgl, DATE_FORMAT(berita.tanggal,"%d-%m-%Y") tanggal, saran, DATE_FORMAT(batas,"%d-%m-%Y") batas, status');
+        $berita = $this->Dml_model->{$method}('berita','JOIN temuan ON temuan.id = id_temuan JOIN skpd ON skpd.id = id_skpd '.$condition, 'berita.id, id_temuan, skpd.nama skpd, tj, ketua, anggota, no, ts, berita.uu, DATE_FORMAT(berita.tgl,"%d-%m-%Y") tgl, DATE_FORMAT(berita.tanggal,"%d-%m-%Y") tanggal, saran, DATE_FORMAT(batas,"%d-%m-%Y") batas, status, (SELECT SUM(nilai) FROM protl WHERE id_berita = berita.id) protl , (SELECT SUM(nilai) FROM probl WHERE id_berita = berita.id) probl ');
 
-        $ids = array();
-        foreach ($berita as $key => $value) {
-            $ids[] = $value['id'];
-        }
-
-        $ids = implode(',', $ids);
-
-        $data = $this->Dml_model->read('file','WHERE id_berita IN ('.$ids.') ORDER BY id_berita ASC');
-        foreach ($data as $key => $value) {
-            $atad['file'][$value['id_berita']][$key] = $value['file'];
-        }
-
-        foreach ($berita as $key => $value) {
-            if(array_key_exists($value['id'],$atad['file'])){
-                $berita[$key]['file'] = $atad['file'][$value['id']];
+        $ids = null;
+        if ($method == 'read') {
+            foreach ($berita as $key => $value) {
+                $ids[] = $value['id'];
             }
         }
 
+        $ids = ($method == 'read') ? implode(',', $ids) : $berita['id'] ;
+        
+        // echo "<pre>";print_r($berita);echo $ids.$method;die();
+
+        $data = $this->Dml_model->{$method}('file','WHERE id_berita IN ('.$ids.') ORDER BY tmstmp ASC','id, id_berita, file, DATE_FORMAT(tmstmp, " %e/%m/%y %H:%i:%s") waktu');
+        
+        if ($method == 'read') {
+            foreach ($data as $key => $value) {
+                $atad['file'][$value['id_berita']][$key] = $value['file'];
+                $atad['waktu'][$value['id_berita']][$key] = $value['waktu'];
+            }
+
+            foreach ($berita as $key => $value) {
+                if(array_key_exists($value['id'],$atad['file'])){
+                    $berita[$key]['file'] = $atad['file'][$value['id']];
+                    $berita[$key]['waktu'] = $atad['waktu'][$value['id']];
+                }
+            }
+        } else {
+            $berita['file'] = $data['file'];
+            $berita['waktu'] = $data['waktu'];
+        }
+
+        // echo "<pre>";print_r($data);print_r($berita);die();
         return $berita;
     }
 
@@ -68,6 +111,7 @@ class Berita extends CI_Controller {
     function submit($id = null){
         $ids = explode('-', $id);
         if(isset($_POST)){
+            // echo "<pre>";print_r($_POST);print_r($ids);die();
 
             if (!empty($_POST)) { echo "post";
                 $_POST['id_temuan'] = (isset($_POST['id_temuan'])) ? $_POST['id_temuan'] : $ids[0] ;
@@ -96,29 +140,29 @@ class Berita extends CI_Controller {
                     $upload = null;
                     $gambar = $_FILES['file'];
                     foreach ($gambar['type'] as $key => $value) {
-                        if($value == 'image/gif' || $value == 'image/svg' || $value == 'image/jpeg' || $value == 'image/png'){
+                        // if($value == 'image/gif' || $value == 'image/svg' || $value == 'image/jpeg' || $value == 'image/png'){
                             // $_POST['foto'] = $file['name'];
-                            if ($gambar['error'][$key] == 0) {
-                                $upload['name'] = $gambar['name'][$key];
-                                $upload['type'] = $gambar['type'][$key];
-                                $upload['tmp_name'] = $gambar['tmp_name'][$key];
-                                $upload['error'] = $gambar['error'][$key];
-                                $upload['size'] = $gambar['size'][$key];
-                                $file = $this->Dml_model->uploads($upload, 'assets/images/berita', uniqid());
-                                // print_r($file);
-                                
-                                $files['id_berita'] = $ids[0];
-                                $files['file'] = 'assets/images/berita/'.$file['name'];
-                                $this->Dml_model->create('file',$files);
-                            }
+                        if ($gambar['error'][$key] == 0) {
+                            $upload['name'] = $gambar['name'][$key];
+                            $upload['type'] = $gambar['type'][$key];
+                            $upload['tmp_name'] = $gambar['tmp_name'][$key];
+                            $upload['error'] = $gambar['error'][$key];
+                            $upload['size'] = $gambar['size'][$key];
+                            $file = $this->Dml_model->uploads($upload, 'assets/images/berita', uniqid());
+                            // print_r($file);
+                            
+                            $files['id_berita'] = $ids[0];
+                            $files['file'] = 'assets/images/berita/'.$file['name'];
+                            $this->Dml_model->create('file',$files);
                         }
+                        // }
                     }
                 }
             }
         }
 
-        die();
-        redirect('berita/field/');
+        // die();
+        redirect('berita/datas');
     }
 
     function form($type = 'berita', $id = null){
@@ -134,9 +178,11 @@ class Berita extends CI_Controller {
         $data['submit'] = $id;
         $data['type'] = $ids[1];
         $data['data'] = ($ids[1] == 'post') ? null : $this->data($ids[0]) ;
+
         $data['method'] = $type;
         $data['status'] = array('Belum Selesai', 'Proses', 'Selesai');
-        $data['skpd'] = $this->Dml_model->one('temuan', 'JOIN skpd ON skpd.id = id_skpd WHERE temuan.id = '.$ids[0], 'temuan.id, skpd.nama skpd');
+        $idt = ($ids[1] == 'post') ? $ids[0] : $data['data']['id_temuan'] ;
+        $data['skpd'] = $this->Dml_model->one('temuan', 'JOIN skpd ON skpd.id = id_skpd WHERE temuan.id = '.$idt, 'temuan.id, skpd.nama skpd');
         
         $this->load->view('header',$header);
         $this->load->view('berita/form',$data);

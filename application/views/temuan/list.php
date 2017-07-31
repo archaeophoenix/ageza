@@ -274,7 +274,7 @@
              <div class="form-footer">
               <div class="form-group">
                 <div class="col-xs-8 col-xs-offset-4 text-right">
-                  <button type="button" class="btn btn-success btn-xs" title="Tambah Temuan" onclick="file();"><i class="fa fa-list"></i></button>
+                  <button type="button" class="btn btn-success btn-xs" title="Tambah Temuan" onclick="window.location='<?php echo base_url(); ?>temuan/form'"><i class="fa fa-list"></i></button>
                   <button type="button" class="btn btn-danger btn-xs" onclick="window.history.back();" title="Batal"><i class="fa fa-close"></i></button>
                 </div>
               </div>

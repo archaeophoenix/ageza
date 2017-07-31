@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jul 13, 2017 at 08:55 
+-- Generation Time: Jul 31, 2017 at 06:18 
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 7.0.6
 
@@ -47,9 +47,8 @@ CREATE TABLE `berita` (
 --
 
 INSERT INTO `berita` (`id`, `id_temuan`, `tj`, `ketua`, `anggota`, `tgl`, `no`, `ts`, `uu`, `tanggal`, `saran`, `batas`, `status`) VALUES
-(1, 1, 'PJ', 'ket', '', '2017-06-18', 'nos', 'temsm', 'uu', '2017-06-18', 'buang', '2017-06-20', '2'),
-(2, 2, 'TJ', 'k', '', '2017-07-07', 'khkk', 'jhkhkj', 'hkjhkj', '2017-07-07', 'asdasd', '2017-07-09', '0'),
-(3, 1, 'mboh', 'sembarang', '', '2017-06-15', '331', 'satu', 'raurus', '2017-06-15', 'buang', '2017-06-16', '0'),
+(1, 1, 'PJ', 'ket', 'yes', '2017-06-18', 'nos', 'temsm', 'uu', '2017-06-18', 'buang', '2017-06-20', '1'),
+(2, 2, 'mboh', 'sembarang', '', '2017-06-15', '331', 'satu', 'raurus', '2017-06-15', 'buang', '2017-06-16', '0'),
 (4, 1, 'mboh', 'sembarang', '', '2017-06-14', '331', 'satu', 'raurus', '2017-06-14', 'buang', '2017-06-15', '1'),
 (5, 1, 'asdlasjhdna', 'j', '', '2017-06-15', 'n', 'kjjh', 'hkjh', '2017-06-15', 'aksdjas', '2017-06-18', '0'),
 (6, 1, NULL, NULL, '', '1970-01-01', NULL, NULL, NULL, '1970-01-01', NULL, '1970-01-01', NULL),
@@ -63,7 +62,7 @@ INSERT INTO `berita` (`id`, `id_temuan`, `tj`, `ketua`, `anggota`, `tgl`, `no`, 
 (14, 12, 'pj', 'ket', '', '2017-07-04', 'nosur', 'mboh', 'uu', '2017-07-04', 'ok', '2017-07-06', '0'),
 (15, 12, 'yp', 'yo', '', '2017-07-05', 'ok', 'ok', 'ok', '2017-07-05', 'kpo', '2017-07-08', '1'),
 (16, 1, 'ok deh', 'mboh', 'sembarang', '2017-07-12', 'no', 'oilah', 'uuu', NULL, NULL, NULL, NULL),
-(17, 1, 'asidjaskdkj', 'hkjbmnb', 'jhgbj', '2017-07-12', 'hgbjhbg', 'kkhjk', 'nhkh', NULL, NULL, NULL, NULL);
+(17, 2, 'asidjaskdkj', 'hkjbmnb', 'jhgbj', '2017-07-12', 'hgbjhbg', 'kkhjk', 'nhkh', NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -74,21 +73,22 @@ INSERT INTO `berita` (`id`, `id_temuan`, `tj`, `ketua`, `anggota`, `tgl`, `no`, 
 CREATE TABLE `file` (
   `id` int(11) NOT NULL,
   `id_berita` int(11) DEFAULT NULL,
-  `file` text
+  `file` text,
+  `tmstmp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `file`
 --
 
-INSERT INTO `file` (`id`, `id_berita`, `file`) VALUES
-(1, 1, 'assets/images/berita/5949e701e1508.jpg'),
-(2, 2, 'assets/images/berita/5949e71601962.jpg'),
-(3, 14, 'assets/images/berita/595af44a622e4.jpg'),
-(4, 14, 'assets/images/berita/595af44a6d2e8.jpg'),
-(5, 14, 'assets/images/berita/595af5036f701.jpg'),
-(6, 14, 'assets/images/berita/595af5037edf5.jpg'),
-(7, 15, 'assets/images/berita/595c62dbba2f5.png');
+INSERT INTO `file` (`id`, `id_berita`, `file`, `tmstmp`) VALUES
+(1, 1, 'assets/images/berita/5949e701e1508.jpg', '2017-07-23 09:56:29'),
+(2, 2, 'assets/images/berita/5949e71601962.jpg', '2017-07-23 09:56:30'),
+(3, 14, 'assets/images/berita/595af44a622e4.jpg', '2017-07-23 09:56:30'),
+(4, 14, 'assets/images/berita/595af44a6d2e8.jpg', '2017-07-23 09:56:20'),
+(5, 14, 'assets/images/berita/595af5036f701.jpg', '2017-07-23 09:56:30'),
+(6, 14, 'assets/images/berita/595af5037edf5.jpg', '2017-07-23 09:56:30'),
+(7, 15, 'assets/images/berita/595c62dbba2f5.png', '2017-07-23 09:56:30');
 
 -- --------------------------------------------------------
 
@@ -114,6 +114,52 @@ INSERT INTO `polling` (`id`, `id_skpd`, `tanggal`, `nilai`) VALUES
 (4, 2, '2017-07-08', 45),
 (5, 2, '2017-06-08', 25),
 (6, 1, '2017-06-08', 20);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `probl`
+--
+
+CREATE TABLE `probl` (
+  `id` int(11) NOT NULL,
+  `id_berita` int(11) NOT NULL,
+  `nilai` int(11) NOT NULL,
+  `tmstmp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `probl`
+--
+
+INSERT INTO `probl` (`id`, `id_berita`, `nilai`, `tmstmp`) VALUES
+(0, 1, 50, '2017-07-31 03:56:55'),
+(1, 2, 10, '2017-07-28 02:43:47'),
+(2, 2, 90, '2017-07-30 09:00:04'),
+(3, 1, 10, '2017-07-28 02:43:47');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `protl`
+--
+
+CREATE TABLE `protl` (
+  `id` int(11) NOT NULL,
+  `id_berita` int(11) NOT NULL,
+  `nilai` int(11) NOT NULL,
+  `tmstmp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `protl`
+--
+
+INSERT INTO `protl` (`id`, `id_berita`, `nilai`, `tmstmp`) VALUES
+(1, 2, 10, '2017-07-27 02:26:08'),
+(2, 2, 90, '2017-07-30 09:00:24'),
+(3, 1, 10, '2017-07-27 03:18:05'),
+(4, 1, 50, '2017-07-31 03:56:55');
 
 -- --------------------------------------------------------
 
@@ -182,7 +228,7 @@ CREATE TABLE `temuan` (
 
 INSERT INTO `temuan` (`id`, `id_skpd`, `uu`, `tanggal`, `pendapatan`, `btl_uraian`, `btl_anggaran`, `btl_realisasi`, `btl_spj`, `btl_sisa`, `bl_uraian`, `bl_anggaran`, `bl_realisasi`, `bl_spj`, `bl_sisa`, `jenis`, `nama`, `nilai`, `spm_tanggal`, `spm_up`, `spm_gu`, `spm_tu`, `spm_gaji`, `spm_barjas`, `spp_tanggal`, `spp_up`, `spp_gu`, `spp_tu`, `spp_gaji`, `spp_barjas`, `tj_tanggal`, `no_spj`, `jumlah`) VALUES
 (1, 1, 'uu', '2017-06-12', '1000', 'btl u', 'btl a', 'btl r', 'btl spj', 'btl s', 'bt u', 'bl A', 'bt r', 'bt spj', 'bt s', 'kegiatan', 'nama', 'nilai', '2017-06-12', 'spm u', 'spm gu', 'spm tu', 'spm ls gaji', 'spm barjas', '2017-06-12', 'spp up', 'spp gu', 'spp tu', 'spp ls gaji', 'spp barjas', '2017-06-12', 'no spj', '1000'),
-(2, 1, 'uu', '2017-06-13', '1000', 'btl u', 'btl a', 'btl r', 'btl spj', 'btl s', 'bt u', 'BT a', 'bt r', 'bt spj', 'bt s', 'kegiatan', 'nama', 'nilai', '2017-06-13', 'spm u', 'spm gu', 'spm tu', 'spm ls gaji', 'spm barjas', '2017-06-13', 'spp up', 'spp gu', 'spp tu', 'spp ls gaji', 'spp barjas', '2017-06-13', 'no spj', '1000'),
+(2, 2, 'uu', '2017-06-13', '1000', 'btl u', 'btl a', 'btl r', 'btl spj', 'btl s', 'bt u', 'BT a', 'bt r', 'bt spj', 'bt s', 'kegiatan', 'nama', 'nilai', '2017-06-13', 'spm u', 'spm gu', 'spm tu', 'spm ls gaji', 'spm barjas', '2017-06-13', 'spp up', 'spp gu', 'spp tu', 'spp ls gaji', 'spp barjas', '2017-06-13', 'no spj', '1000'),
 (3, 1, 'uu', '0000-00-00', '1000', 'btl u', 'btl a', 'btl r', 'btl spj', 'btl s', 'bt u', NULL, 'bt r', 'bt spj', 'bt s', 'kegiatan', 'nama', 'nilai', '0000-00-00', 'spm u', 'spm gu', 'spm tu', 'spm ls gaji', 'spm barjas', '0000-00-00', 'spp up', 'spp gu', 'spp tu', 'spp ls gaji', 'spp barjas', '0000-00-00', 'no spj', '1000'),
 (4, 1, 'uu', '0000-00-00', '1000', 'btl u', 'btl a', 'btl r', 'btl spj', 'btl s', 'bt u', NULL, 'bt r', 'bt spj', 'bt s', 'kegiatan', 'nama', 'nilai', '0000-00-00', 'spm u', 'spm gu', 'spm tu', 'spm ls gaji', 'spm barjas', '0000-00-00', 'spp up', 'spp gu', 'spp tu', 'spp ls gaji', 'spp barjas', '0000-00-00', 'no spj', '1000'),
 (5, 2, 'uu', '0000-00-00', '1000', 'btl u', 'btl a', 'btl r', 'btl spj', 'btl s', 'bt u', NULL, 'bt r', 'bt spj', 'bt s', 'kegiatan', 'nama', 'nilai', '0000-00-00', 'spm u', 'spm gu', 'spm tu', 'spm ls gaji', 'spm barjas', '0000-00-00', 'spp up', 'spp gu', 'spp tu', 'spp ls gaji', 'spp barjas', '0000-00-00', 'no spj', '1000'),
@@ -220,7 +266,7 @@ INSERT INTO `user` (`id`, `nama`, `status`, `telpon`, `id_skpd`, `username`, `pa
 (2, 'evaluator', 3, '+628111', 0, 'evaluator', 'TjRZR0hZaHp5YmNkSUpxcmRrYWZuUT09', '2017-07-13 05:11:06'),
 (3, 'skpd', 4, '+966', 0, 'skpd', 'Y0l3MkNwZmpoL3lEc091Um82c0w2UT09', '2017-07-13 05:11:25'),
 (4, 'inspektur', 5, '+966', 0, 'inspektur', 'anpwSXkyVWtwcnFjZE4wMUZoZGowUT09', '2017-07-13 05:11:42'),
-(5, 'hanidam', 5, '+966', 0, 'hanidam', 'akJHbmxBZ3JtcmJmNldxSFd1dnZHUT09', '2017-05-14 03:20:00'),
+(5, 'hanidam', 0, '+966', 0, 'hanidam', 'akJHbmxBZ3JtcmJmNldxSFd1dnZHUT09', '2017-07-27 23:31:26'),
 (6, 'admin', 1, '+6289900', 0, 'admin', 'ajh4Z0QyT3dhVjFJd0xtakg0NVJBUT09', '2017-07-11 02:40:34');
 
 --
@@ -243,6 +289,18 @@ ALTER TABLE `file`
 -- Indexes for table `polling`
 --
 ALTER TABLE `polling`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `probl`
+--
+ALTER TABLE `probl`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `protl`
+--
+ALTER TABLE `protl`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -282,6 +340,11 @@ ALTER TABLE `file`
 --
 ALTER TABLE `polling`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+--
+-- AUTO_INCREMENT for table `protl`
+--
+ALTER TABLE `protl`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `skpd`
 --

@@ -86,3 +86,4 @@ class Temuan extends CI_Controller {
     }
 
 }
+// SELECT berita.ketua, (SELECT persen FROM protl WHERE id_berita = berita.id ORDER by tmstmp DESC LIMIT 1) persen FROM `berita` 

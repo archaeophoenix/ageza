@@ -38,6 +38,21 @@ function bind(id,param){
 	$('#'+id).val(val);
 }
 
+function persen(param){
+	var total = 0;
+	var persen = parseInt($('#'+param).val());
+	var nilai = $('input[name|="nilai['+param+']"]').val();
+	nilai = (nilai == '') ? 0 : parseInt(nilai) ;
+	total = nilai + persen;
+	if (total > 100) {
+		$('.'+param).attr('class','col-xs-6 '+param+' has-error');
+		$('button[title|="Simpan"]').attr('disabled','disabled');
+	} else {
+		$('.'+param).attr('class','col-xs-6 '+param+' has-success');
+		$('button[title|="Simpan"]').removeAttr('disabled');
+	}
+}
+
 function valid(param, id = null){
 	var base = $('#base').val();
 	var username = $('#'+param).val();

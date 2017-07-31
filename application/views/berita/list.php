@@ -75,15 +75,17 @@
                   </div>
 
                   <div role="tabpanel" class="tab-pane table-responsive" id="btl" style="width: 100%;">
-                    <table style="width: 100%;" class="datatable card-table table-striped table-bordered table-hover table">
+                    <table style="width: 100%;" class="datatable2 card-table table-striped table-bordered table-hover table">
                       <thead>
                         <tr>
                           <th width="5%" style="vertical-align: middle;" class="text-capitalize text-center">#</th>
-                          <th width="20%" style="vertical-align: middle;" class="text-capitalize text-center">SKPD</th>
+                          <th width="30%" style="vertical-align: middle;" class="text-capitalize text-center">SKPD</th>
                           <th width="10%" style="vertical-align: middle;" class="text-capitalize text-center">Undang-Undang</th>
                           <th width="10%" style="vertical-align: middle;" class="text-capitalize text-center">Tanggal</th>
                           <th width="10%" style="vertical-align: middle;" class="text-capitalize text-center">Temuan</th>
                           <th width="10%" style="vertical-align: middle;" class="text-capitalize text-center">Saran</th>
+                          <th width="10%" style="vertical-align: middle;" class="text-capitalize text-center">Batas</th>
+                          <th width="10%" style="vertical-align: middle;" class="text-capitalize text-center">Progres</th>
                           <th width="10%" style="vertical-align: middle;" class="text-capitalize text-center">Status</th>
                           <th width="5%" style="vertical-align: middle;" class="text-capitalize text-center"><i class="fa fa-cogs" title="Opsi"></i></th>
                         </tr>
@@ -92,11 +94,13 @@
                         <?php foreach ($data as $key => $value){ if (!empty($value['tanggal'])) { ?>
                         <tr>
                           <td width="5%" style="vertical-align: middle;" class="text-capitalize"><?php echo ($key+1); ?></td>
-                          <td width="20%" style="vertical-align: middle;" class="text-capitalize"><?php echo $value['skpd']; ?></td>
+                          <td width="30%" style="vertical-align: middle;" class="text-capitalize"><?php echo $value['skpd']; ?></td>
                           <td width="10%" style="vertical-align: middle;" class="text-capitalize"><?php echo $value['uu']; ?></td>
                           <td width="10%" style="vertical-align: middle;" class="text-capitalize"><?php echo $value['tanggal']; ?></td>
                           <td width="10%" style="vertical-align: middle;" class="text-capitalize"><?php echo $value['ts']; ?></td>
                           <td width="10%" style="vertical-align: middle;" class="text-capitalize"><?php echo $value['saran']; ?></td>
+                          <td width="10%" style="vertical-align: middle;" class="text-capitalize"><?php echo $value['batas']; ?></td>
+                          <td width="10%" style="vertical-align: middle;" class="text-capitalize"><?php echo (empty($value['probl'])) ? '' : $value['probl'].' %' ; ?></td>
                           <td width="10%" style="vertical-align: middle;" class="text-capitalize"><?php echo $status[$value['status']]; ?></td>
                           <td width="5%" style="vertical-align: middle;" class="text-capitalize">
                           <?php if ($_SESSION['masuk']['status'] == 1 || $_SESSION['masuk']['status'] == 4){ ?>
@@ -104,6 +108,7 @@
                           <?php } if ($_SESSION['masuk']['status'] != 5){ ?>
                             <button type="button" onclick="window.location='<?php echo base_url().'berita/form/file/'.$value['id'].'-edit';?>'" title="File" class="btn badge badge-info badge-icon"><i class="fa fa-file-text" aria-hidden="true"></i></button>
                           <?php } ?>
+                            <button type="button" onclick="window.location='<?php echo base_url().'berita/progres/'.$value['id'];?>'" title="Progres" class="btn badge badge-success badge-icon"><i class="fa fa-line-chart" aria-hidden="true"></i></button>
                           </td>
                         </tr>
                         <?php }} ?>
@@ -116,8 +121,10 @@
                         <tr>
                           <th width="5%" style="vertical-align: middle;" class="text-capitalize text-center">#</th>
                           <th width="45%" style="vertical-align: middle;" class="text-capitalize text-center">SKPD</th>
-                          <th width="25%" style="vertical-align: middle;" class="text-capitalize text-center">Tanggal</th>
-                          <th width="25%" style="vertical-align: middle;" class="text-capitalize text-center">Status</th>
+                          <th width="20%" style="vertical-align: middle;" class="text-capitalize text-center">Tanggal</th>
+                          <th width="20%" style="vertical-align: middle;" class="text-capitalize text-center">Batas</th>  
+                          <th width="10%" style="vertical-align: middle;" class="text-capitalize text-center">Progres</th>
+                          <th width="10%" style="vertical-align: middle;" class="text-capitalize text-center">Status</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -125,12 +132,15 @@
                         <tr>
                           <td width="5%" style="vertical-align: middle;" class="text-capitalize"><?php echo ($key+1); ?></td>
                           <td width="45%" style="vertical-align: middle;" class="text-capitalize"><?php echo $value['skpd']; ?></td>
-                          <td width="25%" style="vertical-align: middle;" class="text-capitalize"><?php echo $value['tgl']; ?></td>
-                          <td width="25%" style="vertical-align: middle;" class="text-capitalize">
+                          <td width="20%" style="vertical-align: middle;" class="text-capitalize"><?php echo $value['tgl']; ?></td>
+                          <td width="20%" style="vertical-align: middle;" class="text-capitalize"><?php echo $value['batas']; ?></td> 
+                          <td width="10%" style="vertical-align: middle;" class="text-capitalize"><?php echo (empty($value['protl'])) ? '' : $value['protl'].' %' ; ?></td>
+                          <td width="10%" style="vertical-align: middle;" class="text-capitalize">
+                            <button type="button" onclick="window.location='<?php echo base_url().'berita/progres/'.$value['id'];?>'" title="Progres" class="btn badge badge-success badge-icon"><i class="fa fa-line-chart" aria-hidden="true"></i></button>
                             <a data-toggle="modal" style="cursor: pointer;" data-target="#myModal" onclick="files('file<?php echo $key; ?>');"><span class="badge badge-info badge-icon"><i class="fa fa-file" aria-hidden="true"></i><span>File</span></span></a>
                             <div style="display: none;" id="file<?php echo $key; ?>">
                             <?php foreach ($value['file'] as $k => $val) { ?>
-                              <div class="col-xs-3"><a target="_blank" href="<?php echo base_url().$val; ?>"><span class="badge badge-info badge-icon"><i class="fa fa-file" aria-hidden="true"></i><span>File</span></span></a></div>
+                              <div class="col-xs-3"><a target="_blank" href="<?php echo base_url().$val; ?>"><span class="badge badge-info badge-icon"><i class="fa fa-file" aria-hidden="true"></i><span>File <?php echo $value['waktu'][$k] ?></span></span></a></div>
                             <?php } ?>
                             </div>
                           </td>

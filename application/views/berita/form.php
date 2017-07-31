@@ -66,10 +66,10 @@
                   <div class="col-xs-3"><label style="vertical-align: middle;" class="form-label text-center text-capitalize">status</label></div>
                   <div class="col-xs-9">
                   <select name="status" class="select2 form-control">
-                      <?php foreach ($status as $key => $value){ ?>
-                        <option value="<?php echo $key; ?>" <?php echo ($data['status'] == $key) ? 'selected="selected"' : '' ; ?>><?php echo $value; ?></option>
-                      <?php } ?>
-                    </select>
+                    <?php foreach ($status as $key => $value){ ?>
+                      <option value="<?php echo $key; ?>" <?php echo ($data['status'] == $key) ? 'selected="selected"' : '' ; ?>><?php echo $value; ?></option>
+                    <?php } ?>
+                  </select>
                   </div>
                 </div>
               <?php } else { redirect(''); }} ?>

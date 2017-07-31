@@ -85,17 +85,17 @@
                 <th class="text-center text-capitalize">username</th>
                 <!-- <th class="text-center text-capitalize">SKPD</th> -->
                 <th class="text-center text-capitalize">status</th>
-                <th class="text-center text-capitalize">opsi</th>
+                <th class="text-center text-capitalize" style="">opsi</th>
               </tr>
             </thead>
             <tbody>
             <?php foreach ($list as $key => $value){ ?>
               <tr>
-                <td style="vertical-align: middle;" id="no<?php echo $key;?>"><?php echo $key+1; ?></td>
-                <td style="vertical-align: middle;" class="text-capitalize"><?php echo $value['nama']; ?></td>
-                <td style="vertical-align: middle;" class="text-capitalize"><?php echo $value['username']; ?></td>
+                <td style="<?php echo ($value['status'] == 0 ) ? 'color: #E74C3C;' : '' ; ?> <?php echo ($value['status'] == 1 ) ? 'color: #20A3B9;' : '' ; ?> vertical-align: middle;" id="no<?php echo $key;?>"><?php echo $key+1; ?></td>
+                <td style="<?php echo ($value['status'] == 0 ) ? 'color: #E74C3C;' : '' ; ?> <?php echo ($value['status'] == 1 ) ? 'color: #20A3B9;' : '' ; ?> vertical-align: middle;" class="text-capitalize"><?php echo $value['nama']; ?></td>
+                <td style="<?php echo ($value['status'] == 0 ) ? 'color: #E74C3C;' : '' ; ?> <?php echo ($value['status'] == 1 ) ? 'color: #20A3B9;' : '' ; ?> vertical-align: middle;" class="text-capitalize"><?php echo $value['username']; ?></td>
                 <!-- <td style="vertical-align: middle;" class="text-capitalize"><?php echo $value['skpd']; ?></td> -->
-                <td style="vertical-align: middle;" class="text-capitalize"><?php echo $status[$value['status']]; ?></td>
+                <td style="<?php echo ($value['status'] == 0 ) ? 'color: #E74C3C;' : '' ; ?> <?php echo ($value['status'] == 1 ) ? 'color: #20A3B9;' : '' ; ?> vertical-align: middle;" class="text-capitalize"><?php echo $status[$value['status']]; ?></td>
                 <td style="vertical-align: middle;">
                   <?php if (is_null($id)){ ?>
                   <p class="text-center">
