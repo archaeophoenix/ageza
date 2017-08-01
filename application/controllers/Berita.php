@@ -45,8 +45,7 @@ class Berita extends CI_Controller {
 
     function subpro($id = null){
         if (isset($_POST)) {
-            echo "<pre>";
-            print_r($_POST);
+            // echo "<pre>"; print_r($_POST); die();
 
             $data['id_berita'] = $id;
             foreach ($_POST['nilai'] as $key => $value) {
@@ -66,34 +65,42 @@ class Berita extends CI_Controller {
         $atad = array();
         $berita = $this->Dml_model->{$method}('berita','JOIN temuan ON temuan.id = id_temuan JOIN skpd ON skpd.id = id_skpd '.$condition, 'berita.id, id_temuan, skpd.nama skpd, tj, ketua, anggota, no, ts, berita.uu, DATE_FORMAT(berita.tgl,"%d-%m-%Y") tgl, DATE_FORMAT(berita.tanggal,"%d-%m-%Y") tanggal, saran, DATE_FORMAT(batas,"%d-%m-%Y") batas, status, (SELECT SUM(nilai) FROM protl WHERE id_berita = berita.id) protl , (SELECT SUM(nilai) FROM probl WHERE id_berita = berita.id) probl ');
 
-        $ids = null;
+        $ids = null ;
+        $data = null ;
         if ($method == 'read') {
             foreach ($berita as $key => $value) {
                 $ids[] = $value['id'];
             }
         }
 
-        $ids = ($method == 'read') ? implode(',', $ids) : $berita['id'] ;
+        if ($method == 'read') {
+            $ids = (empty($ids)) ? '' : implode(',', $ids) ;
+        } else {
+            $ids = $berita['id'] ;
+        }
         
         // echo "<pre>";print_r($berita);echo $ids.$method;die();
 
-        $data = $this->Dml_model->{$method}('file','WHERE id_berita IN ('.$ids.') ORDER BY tmstmp ASC','id, id_berita, file, DATE_FORMAT(tmstmp, " %e/%m/%y %H:%i:%s") waktu');
+        if (!empty($ids)) {
+            
+            $data = (empty($ids)) ? null : $this->Dml_model->{$method}('file','WHERE id_berita IN ('.$ids.') ORDER BY tmstmp ASC','id, id_berita, file, DATE_FORMAT(tmstmp, " %e/%m/%y %H:%i:%s") waktu');
         
-        if ($method == 'read') {
-            foreach ($data as $key => $value) {
-                $atad['file'][$value['id_berita']][$key] = $value['file'];
-                $atad['waktu'][$value['id_berita']][$key] = $value['waktu'];
-            }
-
-            foreach ($berita as $key => $value) {
-                if(array_key_exists($value['id'],$atad['file'])){
-                    $berita[$key]['file'] = $atad['file'][$value['id']];
-                    $berita[$key]['waktu'] = $atad['waktu'][$value['id']];
+            if ($method == 'read') {
+                foreach ($data as $key => $value) {
+                    $atad['file'][$value['id_berita']][$key] = $value['file'];
+                    $atad['waktu'][$value['id_berita']][$key] = $value['waktu'];
                 }
+
+                foreach ($berita as $key => $value) {
+                    if(array_key_exists($value['id'],$atad['file'])){
+                        $berita[$key]['file'] = $atad['file'][$value['id']];
+                        $berita[$key]['waktu'] = $atad['waktu'][$value['id']];
+                    }
+                }
+            } else {
+                $berita['file'] = $data['file'];
+                $berita['waktu'] = $data['waktu'];
             }
-        } else {
-            $berita['file'] = $data['file'];
-            $berita['waktu'] = $data['waktu'];
         }
 
         // echo "<pre>";print_r($data);print_r($berita);die();
@@ -113,7 +120,7 @@ class Berita extends CI_Controller {
         if(isset($_POST)){
             // echo "<pre>";print_r($_POST);print_r($ids);die();
 
-            if (!empty($_POST)) { echo "post";
+            if (!empty($_POST)) { //echo "post";
                 $_POST['id_temuan'] = (isset($_POST['id_temuan'])) ? $_POST['id_temuan'] : $ids[0] ;
                 
                 if (isset($_POST['tgl'])) {
@@ -136,7 +143,7 @@ class Berita extends CI_Controller {
             }
 
             if ($ids[1] == 'edit') {
-                if (!empty($_FILES['file']['name'])) { echo "file";
+                if (!empty($_FILES['file']['name'])) { //echo "file";
                     $upload = null;
                     $gambar = $_FILES['file'];
                     foreach ($gambar['type'] as $key => $value) {

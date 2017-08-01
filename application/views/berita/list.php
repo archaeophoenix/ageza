@@ -62,11 +62,16 @@
                           <td width="10%" style="vertical-align: middle;" class="text-capitalize"><?php echo $value['no']; ?></td>
                           <td width="10%" style="vertical-align: middle;" class="text-capitalize"><?php echo $value['batas']; ?></td>
                           <td width="5%" style="vertical-align: middle;" class="text-capitalize">
-                          <?php if ($_SESSION['masuk']['status'] == 1 || $_SESSION['masuk']['status'] == 3){ ?>
-                            <button type="button" onclick="window.location='<?php echo base_url().'berita/form/berita/'.$value['id'].'-edit';?>'" title="Edit" class="btn badge badge-primary badge-icon"><i class="fa fa-edit" aria-hidden="true"></i></button>
-                          <?php } if ($_SESSION['masuk']['status'] == 1 || $_SESSION['masuk']['status'] == 4){ ?>
-                            <button type="button" onclick="window.location='<?php echo base_url().'berita/form/tindak/'.$value['id'].'-edit';?>'" title="Tindak Lanjut" class="btn badge badge-success badge-icon"><i class="fa fa-newspaper-o" aria-hidden="true"></i></button>
-                          <?php } ?>
+                            <div style="width: 10%;" class="btn-group">
+                              <button type="button" class="btn btn-xs btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></button>
+                              <ul class="dropdown-menu pull-right" role="menu">
+                              <?php if ($_SESSION['masuk']['status'] == 1 || $_SESSION['masuk']['status'] == 3){ ?>
+                                <li><a style="cursor:pointer;" onclick="window.location='<?php echo base_url().'berita/form/berita/'.$value['id'].'-edit';?>'" title="Edit"><i class="fa fa-edit" aria-hidden="true"></i> Edit</a></li>
+                              <?php } if ($_SESSION['masuk']['status'] == 1 || $_SESSION['masuk']['status'] == 4){ ?>
+                                <li><a style="cursor:pointer;" onclick="window.location='<?php echo base_url().'berita/form/tindak/'.$value['id'].'-edit';?>'" title="Tindak Lanjut"><i class="fa fa-newspaper-o" aria-hidden="true"></i> Tindak Lanjut</a></li>
+                              <?php } ?>
+                              </ul>
+                            </div>
                           </td>
                         </tr>
                         <?php } ?>
@@ -103,12 +108,17 @@
                           <td width="10%" style="vertical-align: middle;" class="text-capitalize"><?php echo (empty($value['probl'])) ? '' : $value['probl'].' %' ; ?></td>
                           <td width="10%" style="vertical-align: middle;" class="text-capitalize"><?php echo $status[$value['status']]; ?></td>
                           <td width="5%" style="vertical-align: middle;" class="text-capitalize">
-                          <?php if ($_SESSION['masuk']['status'] == 1 || $_SESSION['masuk']['status'] == 4){ ?>
-                            <button type="button" onclick="window.location='<?php echo base_url().'berita/form/tindak/'.$value['id'].'-edit';?>'" title="Edit" class="btn badge badge-primary badge-icon"><i class="fa fa-edit" aria-hidden="true"></i></button>
-                          <?php } if ($_SESSION['masuk']['status'] != 5){ ?>
-                            <button type="button" onclick="window.location='<?php echo base_url().'berita/form/file/'.$value['id'].'-edit';?>'" title="File" class="btn badge badge-info badge-icon"><i class="fa fa-file-text" aria-hidden="true"></i></button>
-                          <?php } ?>
-                            <button type="button" onclick="window.location='<?php echo base_url().'berita/progres/'.$value['id'];?>'" title="Progres" class="btn badge badge-success badge-icon"><i class="fa fa-line-chart" aria-hidden="true"></i></button>
+                            <div style="width: 10%;" class="btn-group">
+                              <button type="button" class="btn btn-xs btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></button>
+                              <ul class="dropdown-menu pull-right" role="menu">
+                              <?php if ($_SESSION['masuk']['status'] == 1 || $_SESSION['masuk']['status'] == 4){ ?>
+                                <li><a style="cursor:pointer;" onclick="window.location='<?php echo base_url().'berita/form/tindak/'.$value['id'].'-edit';?>'" title="Edit"><i class="fa fa-edit" aria-hidden="true"></i> Edit</a></li>
+                              <?php } if ($_SESSION['masuk']['status'] != 5){ ?>
+                                <li><a style="cursor:pointer;" onclick="window.location='<?php echo base_url().'berita/form/file/'.$value['id'].'-edit';?>'" title="File"><i class="fa fa-file-text" aria-hidden="true"></i> File</a></li>
+                              <?php } ?>
+                                <li><a style="cursor:pointer;" onclick="window.location='<?php echo base_url().'berita/progres/'.$value['id'];?>'" title="Progres"><i class="fa fa-line-chart" aria-hidden="true"></i> Progres</a></li>
+                              </ul>
+                            </div>
                           </td>
                         </tr>
                         <?php }} ?>
@@ -136,13 +146,20 @@
                           <td width="20%" style="vertical-align: middle;" class="text-capitalize"><?php echo $value['batas']; ?></td> 
                           <td width="10%" style="vertical-align: middle;" class="text-capitalize"><?php echo (empty($value['protl'])) ? '' : $value['protl'].' %' ; ?></td>
                           <td width="10%" style="vertical-align: middle;" class="text-capitalize">
-                            <button type="button" onclick="window.location='<?php echo base_url().'berita/progres/'.$value['id'];?>'" title="Progres" class="btn badge badge-success badge-icon"><i class="fa fa-line-chart" aria-hidden="true"></i></button>
-                            <a data-toggle="modal" style="cursor: pointer;" data-target="#myModal" onclick="files('file<?php echo $key; ?>');"><span class="badge badge-info badge-icon"><i class="fa fa-file" aria-hidden="true"></i><span>File</span></span></a>
-                            <div style="display: none;" id="file<?php echo $key; ?>">
-                            <?php foreach ($value['file'] as $k => $val) { ?>
-                              <div class="col-xs-3"><a target="_blank" href="<?php echo base_url().$val; ?>"><span class="badge badge-info badge-icon"><i class="fa fa-file" aria-hidden="true"></i><span>File <?php echo $value['waktu'][$k] ?></span></span></a></div>
-                            <?php } ?>
+                            <div style="width: 10%;" class="btn-group">
+                              <button type="button" class="btn btn-xs btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></button>
+                              <ul class="dropdown-menu pull-right" role="menu">
+                                <li><a style="cursor: pointer;" onclick="window.location='<?php echo base_url().'berita/progres/'.$value['id'];?>'" title="Progres"><i class="fa fa-line-chart" aria-hidden="true"></i> Progres</a></li>
+                                <li><a  data-toggle="modal" style="cursor: pointer;" data-target="#myModal" onclick="files('file<?php echo $key; ?>');"><i class="fa fa-file" aria-hidden="true"></i> File</a></li>
+                              </ul>
                             </div>
+
+                            <div style="display: none;" id="file<?php echo $key; ?>">
+                            <?php if (isset($value['files'])) {foreach ($value['file'] as $k => $val) { ?>
+                              <div class="col-xs-3"><a target="_blank" href="<?php echo base_url().$val; ?>"><span class="badge badge-info badge-icon"><i class="fa fa-file" aria-hidden="true"></i><span>File <?php echo $value['waktu'][$k] ?></span></span></a></div>
+                            <?php }} ?>
+                            </div>
+
                           </td>
                         </tr>
                         <?php }} ?>

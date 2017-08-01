@@ -57,11 +57,16 @@
                           <td style="vertical-align: middle;" class="text-center text-capitalize"><?php echo $value['tanggal']; ?></td>
                           <td style="vertical-align: middle;" class="text-right text-capitalize"><?php echo $value['pendapatan']; ?></td>
                           <td style="vertical-align: middle;" class="text-center text-capitalize">
-                            <?php if ($_SESSION['masuk']['status'] == 1 || $_SESSION['masuk']['status'] == 2){ ?>
-                            <button type="button" onclick="window.location='<?php echo base_url().'temuan/form/'.$value['id'];?>'" title="Edit" class="btn badge badge-info badge-icon"><i class="fa fa-edit" aria-hidden="true"></i></button>
-                            <?php } if ($_SESSION['masuk']['status'] == 1 || $_SESSION['masuk']['status'] == 3){ ?>
-                            <button type="button" onclick="window.location='<?php echo base_url().'berita/form/berita/'.$value['id'].'-post';?>'" title="Berita Acara" class="btn badge badge-success badge-icon"><i class="fa fa-newspaper-o" aria-hidden="true"></i></button>
-                            <?php } ?>
+                            <div style="width: 10%;" class="btn-group">
+                              <button type="button" class="btn btn-xs btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></button>
+                              <ul class="dropdown-menu pull-right" role="menu">
+                                <?php if ($_SESSION['masuk']['status'] == 1 || $_SESSION['masuk']['status'] == 2){ ?>
+                                <li><a style="cursor: pointer;" onclick="window.location='<?php echo base_url().'temuan/form/'.$value['id'];?>'" title="Edit"><i class="fa fa-edit" aria-hidden="true"></i> Edit</a></li>
+                                <?php } if ($_SESSION['masuk']['status'] == 1 || $_SESSION['masuk']['status'] == 3){ ?>
+                                <li><a style="cursor: pointer;" onclick="window.location='<?php echo base_url().'berita/form/berita/'.$value['id'].'-post';?>'" title="Berita Acara"><i class="fa fa-newspaper-o" aria-hidden="true"></i> Berita Acara</a></li>
+                                <?php } ?>
+                              </ul>
+                            </div>
                           </td>
                         </tr>
                         <?php } ?>
@@ -91,11 +96,16 @@
                           <td style="vertical-align: middle;" class="text-capitalize"><?php echo $value['btl_spj']; ?></td>
                           <td style="vertical-align: middle;" class="text-right text-capitalize"><?php echo $value['btl_sisa']; ?></td>
                           <td style="vertical-align: middle;" class="text-center text-capitalize">
-                            <?php if ($_SESSION['masuk']['status'] == 1 || $_SESSION['masuk']['status'] == 2){ ?>
-                            <button type="button" onclick="window.location='<?php echo base_url().'temuan/form/'.$value['id'];?>'" title="Edit" class="btn badge badge-info badge-icon"><i class="fa fa-edit" aria-hidden="true"></i></button>
-                            <?php } if ($_SESSION['masuk']['status'] == 1 || $_SESSION['masuk']['status'] == 3){ ?>
-                            <button type="button" onclick="window.location='<?php echo base_url().'berita/form/berita/'.$value['id'].'-post';?>'" title="Berita Acara" class="btn badge badge-success badge-icon"><i class="fa fa-newspaper-o" aria-hidden="true"></i></button>
-                            <?php } ?>
+                            <div style="width: 10%;" class="btn-group">
+                              <button type="button" class="btn btn-xs btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></button>
+                              <ul class="dropdown-menu pull-right" role="menu">
+                                <?php if ($_SESSION['masuk']['status'] == 1 || $_SESSION['masuk']['status'] == 2){ ?>
+                                <li><a style="cursor: pointer;" onclick="window.location='<?php echo base_url().'temuan/form/'.$value['id'];?>'" title="Edit"><i class="fa fa-edit" aria-hidden="true"></i> Edit</a></li>
+                                <?php } if ($_SESSION['masuk']['status'] == 1 || $_SESSION['masuk']['status'] == 3){ ?>
+                                <li><a style="cursor: pointer;" onclick="window.location='<?php echo base_url().'berita/form/berita/'.$value['id'].'-post';?>'" title="Berita Acara"><i class="fa fa-newspaper-o" aria-hidden="true"></i> Berita Acara</a></li>
+                                <?php } ?>
+                              </ul>
+                            </div>
                           </td>
                         </tr>
                         <?php } ?>
@@ -125,11 +135,16 @@
                           <td style="vertical-align: middle;" class="text-capitalize"><?php echo $value['bl_spj']; ?></td>
                           <td style="vertical-align: middle;" class="text-right text-capitalize"><?php echo $value['bl_sisa']; ?></td>
                           <td style="vertical-align: middle;" class="text-center text-capitalize">
-                            <?php if ($_SESSION['masuk']['status'] == 1 || $_SESSION['masuk']['status'] == 2){ ?>
-                            <button type="button" onclick="window.location='<?php echo base_url().'temuan/form/'.$value['id'];?>'" title="Edit" class="btn badge badge-info badge-icon"><i class="fa fa-edit" aria-hidden="true"></i></button>
-                            <?php } if ($_SESSION['masuk']['status'] == 1 || $_SESSION['masuk']['status'] == 3){ ?>
-                            <button type="button" onclick="window.location='<?php echo base_url().'berita/form/berita/'.$value['id'].'-post';?>'" title="Berita Acara" class="btn badge badge-success badge-icon"><i class="fa fa-newspaper-o" aria-hidden="true"></i></button>
-                            <?php } ?>
+                            <div style="width: 10%;" class="btn-group">
+                              <button type="button" class="btn btn-xs btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></button>
+                              <ul class="dropdown-menu pull-right" role="menu">
+                                <?php if ($_SESSION['masuk']['status'] == 1 || $_SESSION['masuk']['status'] == 2){ ?>
+                                <li><a style="cursor: pointer;" onclick="window.location='<?php echo base_url().'temuan/form/'.$value['id'];?>'" title="Edit"><i class="fa fa-edit" aria-hidden="true"></i> Edit</a></li>
+                                <?php } if ($_SESSION['masuk']['status'] == 1 || $_SESSION['masuk']['status'] == 3){ ?>
+                                <li><a style="cursor: pointer;" onclick="window.location='<?php echo base_url().'berita/form/berita/'.$value['id'].'-post';?>'" title="Berita Acara"><i class="fa fa-newspaper-o" aria-hidden="true"></i> Berita Acara</a></li>
+                                <?php } ?>
+                              </ul>
+                            </div>
                           </td>
                         </tr>
                         <?php } ?>
@@ -155,11 +170,16 @@
                           <td style="vertical-align: middle;" class="text-capitalize"><?php echo $value['nama']; ?></td>
                           <td style="vertical-align: middle;" class="text-right text-capitalize"><?php echo $value['nilai']; ?></td>
                           <td style="vertical-align: middle;" class="text-center text-capitalize">
-                            <?php if ($_SESSION['masuk']['status'] == 1 || $_SESSION['masuk']['status'] == 2){ ?>
-                            <button type="button" onclick="window.location='<?php echo base_url().'temuan/form/'.$value['id'];?>'" title="Edit" class="btn badge badge-info badge-icon"><i class="fa fa-edit" aria-hidden="true"></i></button>
-                            <?php } if ($_SESSION['masuk']['status'] == 1 || $_SESSION['masuk']['status'] == 3){ ?>
-                            <button type="button" onclick="window.location='<?php echo base_url().'berita/form/berita/'.$value['id'].'-post';?>'" title="Berita Acara" class="btn badge badge-success badge-icon"><i class="fa fa-newspaper-o" aria-hidden="true"></i></button>
-                            <?php } ?>
+                            <div style="width: 10%;" class="btn-group">
+                              <button type="button" class="btn btn-xs btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></button>
+                              <ul class="dropdown-menu pull-right" role="menu">
+                                <?php if ($_SESSION['masuk']['status'] == 1 || $_SESSION['masuk']['status'] == 2){ ?>
+                                <li><a style="cursor: pointer;" onclick="window.location='<?php echo base_url().'temuan/form/'.$value['id'];?>'" title="Edit"><i class="fa fa-edit" aria-hidden="true"></i> Edit</a></li>
+                                <?php } if ($_SESSION['masuk']['status'] == 1 || $_SESSION['masuk']['status'] == 3){ ?>
+                                <li><a style="cursor: pointer;" onclick="window.location='<?php echo base_url().'berita/form/berita/'.$value['id'].'-post';?>'" title="Berita Acara"><i class="fa fa-newspaper-o" aria-hidden="true"></i> Berita Acara</a></li>
+                                <?php } ?>
+                              </ul>
+                            </div>
                           </td>
                         </tr>
                         <?php } ?>
@@ -191,11 +211,16 @@
                           <td style="vertical-align: middle;" class="text-right text-capitalize"><?php echo $value['spp_gaji']; ?></td>
                           <td style="vertical-align: middle;" class="text-capitalize"><?php echo $value['spp_barjas']; ?></td>
                           <td style="vertical-align: middle;" class="text-center text-capitalize">
-                            <?php if ($_SESSION['masuk']['status'] == 1 || $_SESSION['masuk']['status'] == 2){ ?>
-                            <button type="button" onclick="window.location='<?php echo base_url().'temuan/form/'.$value['id'];?>'" title="Edit" class="btn badge badge-info badge-icon"><i class="fa fa-edit" aria-hidden="true"></i></button>
-                            <?php } if ($_SESSION['masuk']['status'] == 1 || $_SESSION['masuk']['status'] == 3){ ?>
-                            <button type="button" onclick="window.location='<?php echo base_url().'berita/form/berita/'.$value['id'].'-post';?>'" title="Berita Acara" class="btn badge badge-success badge-icon"><i class="fa fa-newspaper-o" aria-hidden="true"></i></button>
-                            <?php } ?>
+                            <div style="width: 10%;" class="btn-group">
+                              <button type="button" class="btn btn-xs btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></button>
+                              <ul class="dropdown-menu pull-right" role="menu">
+                                <?php if ($_SESSION['masuk']['status'] == 1 || $_SESSION['masuk']['status'] == 2){ ?>
+                                <li><a style="cursor: pointer;" onclick="window.location='<?php echo base_url().'temuan/form/'.$value['id'];?>'" title="Edit"><i class="fa fa-edit" aria-hidden="true"></i> Edit</a></li>
+                                <?php } if ($_SESSION['masuk']['status'] == 1 || $_SESSION['masuk']['status'] == 3){ ?>
+                                <li><a style="cursor: pointer;" onclick="window.location='<?php echo base_url().'berita/form/berita/'.$value['id'].'-post';?>'" title="Berita Acara"><i class="fa fa-newspaper-o" aria-hidden="true"></i> Berita Acara</a></li>
+                                <?php } ?>
+                              </ul>
+                            </div>
                           </td>
                         </tr>
                         <?php } ?>
@@ -227,11 +252,16 @@
                           <td style="vertical-align: middle;" class="text-right text-capitalize"><?php echo $value['spm_gaji']; ?></td>
                           <td style="vertical-align: middle;" class="text-capitalize"><?php echo $value['spm_barjas']; ?></td>
                           <td style="vertical-align: middle;" class="text-center text-capitalize">
-                            <?php if ($_SESSION['masuk']['status'] == 1 || $_SESSION['masuk']['status'] == 2){ ?>
-                            <button type="button" onclick="window.location='<?php echo base_url().'temuan/form/'.$value['id'];?>'" title="Edit" class="btn badge badge-info badge-icon"><i class="fa fa-edit" aria-hidden="true"></i></button>
-                            <?php } if ($_SESSION['masuk']['status'] == 1 || $_SESSION['masuk']['status'] == 3){ ?>
-                            <button type="button" onclick="window.location='<?php echo base_url().'berita/form/berita/'.$value['id'].'-post';?>'" title="Berita Acara" class="btn badge badge-success badge-icon"><i class="fa fa-newspaper-o" aria-hidden="true"></i></button>
-                            <?php } ?>
+                            <div style="width: 10%;" class="btn-group">
+                              <button type="button" class="btn btn-xs btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></button>
+                              <ul class="dropdown-menu pull-right" role="menu">
+                                <?php if ($_SESSION['masuk']['status'] == 1 || $_SESSION['masuk']['status'] == 2){ ?>
+                                <li><a style="cursor: pointer;" onclick="window.location='<?php echo base_url().'temuan/form/'.$value['id'];?>'" title="Edit"><i class="fa fa-edit" aria-hidden="true"></i> Edit</a></li>
+                                <?php } if ($_SESSION['masuk']['status'] == 1 || $_SESSION['masuk']['status'] == 3){ ?>
+                                <li><a style="cursor: pointer;" onclick="window.location='<?php echo base_url().'berita/form/berita/'.$value['id'].'-post';?>'" title="Berita Acara"><i class="fa fa-newspaper-o" aria-hidden="true"></i> Berita Acara</a></li>
+                                <?php } ?>
+                              </ul>
+                            </div>
                           </td>
                         </tr>
                         <?php } ?>
@@ -257,11 +287,16 @@
                           <td style="vertical-align: middle;" class="text-right text-capitalize"><?php echo $value['no_spj']; ?></td>
                           <td style="vertical-align: middle;" class="text-right text-capitalize"><?php echo $value['jumlah']; ?></td>
                           <td style="vertical-align: middle;" class="text-center text-capitalize">
-                            <?php if ($_SESSION['masuk']['status'] == 1 || $_SESSION['masuk']['status'] == 2){ ?>
-                            <button type="button" onclick="window.location='<?php echo base_url().'temuan/form/'.$value['id'];?>'" title="Edit" class="btn badge badge-info badge-icon"><i class="fa fa-edit" aria-hidden="true"></i></button>
-                            <?php } if ($_SESSION['masuk']['status'] == 1 || $_SESSION['masuk']['status'] == 3){ ?>
-                            <button type="button" onclick="window.location='<?php echo base_url().'berita/form/berita/'.$value['id'].'-post';?>'" title="Berita Acara" class="btn badge badge-success badge-icon"><i class="fa fa-newspaper-o" aria-hidden="true"></i></button>
-                            <?php } ?>
+                            <div style="width: 10%;" class="btn-group">
+                              <button type="button" class="btn btn-xs btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></button>
+                              <ul class="dropdown-menu pull-right" role="menu">
+                                <?php if ($_SESSION['masuk']['status'] == 1 || $_SESSION['masuk']['status'] == 2){ ?>
+                                <li><a style="cursor: pointer;" onclick="window.location='<?php echo base_url().'temuan/form/'.$value['id'];?>'" title="Edit"><i class="fa fa-edit" aria-hidden="true"></i> Edit</a></li>
+                                <?php } if ($_SESSION['masuk']['status'] == 1 || $_SESSION['masuk']['status'] == 3){ ?>
+                                <li><a style="cursor: pointer;" onclick="window.location='<?php echo base_url().'berita/form/berita/'.$value['id'].'-post';?>'" title="Berita Acara"><i class="fa fa-newspaper-o" aria-hidden="true"></i> Berita Acara</a></li>
+                                <?php } ?>
+                              </ul>
+                            </div>
                           </td>
                         </tr>
                         <?php } ?>
