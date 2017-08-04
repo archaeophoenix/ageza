@@ -75,7 +75,7 @@ class User extends CI_Controller {
             }
 
         }
-        redirect('user/field/');
+        redirect('');
     }
 
     function username(){

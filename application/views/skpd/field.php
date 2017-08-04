@@ -54,9 +54,18 @@
                 <td style="vertical-align: middle;" class="text-capitalize"><?php echo $value['nama']; ?></td>
                 <td style="vertical-align: middle;">
                   <?php if (is_null($id)){ ?>
-                  <p class="text-center">
-                    <button type="button" onclick="window.location='<?php echo base_url().'skpd/field/'.$value['id'];?>'" title="Edit" class="btn badge badge-info badge-icon"><i class="fa fa-edit" aria-hidden="true"></i></button>
-                  </p>
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-xs btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></button>
+                    <ul class="dropdown-menu pull-right" role="menu">
+                      <?php if($_SESSION['masuk']['status'] == 1){ ?>
+                      <li><a style="cursor: pointer;" onclick="window.location='<?php echo base_url().'skpd/field/'.$value['id'];?>'" title="Edit"><i class="fa fa-edit" aria-hidden="true"></i> Edit</a></li>
+                      <?php } ?>
+                      
+                      <li><a style="cursor: pointer;" onclick="window.location='<?php echo base_url().'temuan/datas/'.date('m').'/'.date('Y').'/'.$value['id'];?>'" title="Temuan"><i class="fa fa-list-alt" aria-hidden="true"></i> Temuan</a></li>
+
+                      <li><a style="cursor: pointer;" onclick="window.location='<?php echo base_url().'berita/datas/'.date('m').'/'.date('Y').'/'.$value['id'];?>'" title="Berita"><i class="fa fa-file-text-o" aria-hidden="true"></i> Berita</a></li>
+                    </ul>
+                  </div>
                   <?php } ?>
                 </td>
               </tr>

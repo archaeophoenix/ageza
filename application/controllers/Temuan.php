@@ -32,7 +32,7 @@ class Temuan extends CI_Controller {
         $condition = (empty($id)) ? 'WHERE '.$periode : "WHERE temuan.id = '$id'" ;
         $method = (empty($id)) ? 'read' : 'one' ;
 
-        return $this->Dml_model->{$method}('temuan','JOIN skpd ON skpd.id = id_skpd '.$condition, 'temuan.id, id_skpd, skpd.nama skpd, uu, tanggal, pendapatan, btl_uraian, btl_anggaran, btl_realisasi, btl_spj, btl_sisa, bl_uraian, bl_anggaran, bl_realisasi, bl_spj, bl_sisa, jenis, temuan.nama, nilai, spp_tanggal, spp_up, spp_gu, spp_tu, spp_gaji, spp_barjas, spm_tanggal, spm_up, spm_gu, spm_tu, spm_gaji, spm_barjas, tj_tanggal, no_spj, jumlah');
+        return $this->Dml_model->{$method}('temuan','JOIN skpd ON skpd.id = id_skpd '.$condition, 'temuan.id, id_skpd, skpd.nama skpd, uu, code, tanggal, pendapatan, btl_uraian, btl_anggaran, btl_realisasi, btl_spj, btl_sisa, bl_uraian, bl_anggaran, bl_realisasi, bl_spj, bl_sisa, jenis, temuan.nama, nilai, spp_tanggal, spp_up, spp_gu, spp_tu, spp_gaji, spp_barjas, spm_tanggal, spm_up, spm_gu, spm_tu, spm_gaji, spm_barjas, tj_tanggal, no_spj, jumlah');
     }
 
     function submit($id = null){
@@ -42,11 +42,13 @@ class Temuan extends CI_Controller {
             $_POST['spm_tanggal'] = date('Y-m-d',strtotime($_POST['spm_tanggal']));
             $_POST['tj_tanggal'] = date('Y-m-d',strtotime($_POST['tj_tanggal']));
             if(empty($id)){
+                $_POST['code'] = uniqid();
                 $this->Dml_model->create('temuan', $_POST);
             } else {
                 $this->Dml_model->update('temuan',"id = '$id'", $_POST);
             }
         }
+        redirect('')
     }
 
     function form($id = null){
@@ -65,17 +67,19 @@ class Temuan extends CI_Controller {
         }
     }
 
-    function datas($bulan = null, $tahun = null){
+    function datas($bulan = null, $tahun = null, $id = null){
         if(empty($bulan) || empty($tahun)){
-            redirect('temuan/datas/'.date('m').'/'.date('Y').'/');
+            $skpd = $this->Dml_model->one('skpd','ORDER BY id ASC LIMIT 1');
+            redirect('temuan/datas/'.date('m').'/'.date('Y').'/'.$skpd['id']);
         }
         
         $header['class'] = $this->router->fetch_class();
         $header['method'] = $this->router->fetch_method();
-        
-        $data['param'] = array('bulan' => $bulan, 'tahun' => $tahun);
+
+        $data['skpd'] = $this->Dml_model->read('skpd');
+        $data['param'] = array('bulan' => $bulan, 'tahun' => $tahun, 'id' => $id);
         $data['tahun'] = $this->Dml_model->read('temuan','','DISTINCT(YEAR(tanggal)) tahun');
-        $data['data'] = $this->data(null,'MONTH(tanggal) = '.$bulan.' AND YEAR(tanggal) = '.$tahun);
+        $data['data'] = $this->data(null,'id_skpd = '.$id.' AND MONTH(tanggal) = '.$bulan.' AND YEAR(tanggal) = '.$tahun);
         $data['bulan'] = array('01'=>'Januari','02'=>'Februari','03'=>'Maret','04'=>'April','05'=>'Mei','06'=>'Juni','07'=>'Juli','08'=>'Agustus','09'=>'September','10'=>'Oktober','11'=>'November','12'=>'Desember');
 
         $footer['link'] = 'temuan/datas';

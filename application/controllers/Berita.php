@@ -55,7 +55,7 @@ class Berita extends CI_Controller {
 
             $this->Dml_model->update('berita','id = '.$id,$_POST['berita']);
         }
-        redirect('berita/datas');
+        redirect('');
     }
 
     private function tindakan($id = null , $periode = null){
@@ -63,7 +63,7 @@ class Berita extends CI_Controller {
         $method = (empty($id)) ? 'read' : 'one' ;
 
         $atad = array();
-        $berita = $this->Dml_model->{$method}('berita','JOIN temuan ON temuan.id = id_temuan JOIN skpd ON skpd.id = id_skpd '.$condition, 'berita.id, id_temuan, skpd.nama skpd, tj, ketua, anggota, no, ts, berita.uu, DATE_FORMAT(berita.tgl,"%d-%m-%Y") tgl, DATE_FORMAT(berita.tanggal,"%d-%m-%Y") tanggal, saran, DATE_FORMAT(batas,"%d-%m-%Y") batas, status, (SELECT SUM(nilai) FROM protl WHERE id_berita = berita.id) protl , (SELECT SUM(nilai) FROM probl WHERE id_berita = berita.id) probl ');
+        $berita = $this->Dml_model->{$method}('berita','JOIN temuan ON temuan.id = id_temuan JOIN skpd ON skpd.id = id_skpd '.$condition.' ORDER BY berita.tgl, berita.tanggal ASC', 'berita.id, id_temuan, skpd.nama skpd, tj, ketua, anggota, no, ts, berita.uu, berita.code, DATE_FORMAT(berita.tgl,"%d-%m-%Y") tgl, DATE_FORMAT(berita.tanggal,"%d-%m-%Y") tanggal, saran, DATE_FORMAT(batas,"%d-%m-%Y") batas, status, (SELECT SUM(nilai) FROM protl WHERE id_berita = berita.id) protl , (SELECT SUM(nilai) FROM probl WHERE id_berita = berita.id) probl ');
 
         $ids = null ;
         $data = null ;
@@ -86,20 +86,24 @@ class Berita extends CI_Controller {
             $data = (empty($ids)) ? null : $this->Dml_model->{$method}('file','WHERE id_berita IN ('.$ids.') ORDER BY tmstmp ASC','id, id_berita, file, DATE_FORMAT(tmstmp, " %e/%m/%y %H:%i:%s") waktu');
         
             if ($method == 'read') {
-                foreach ($data as $key => $value) {
-                    $atad['file'][$value['id_berita']][$key] = $value['file'];
-                    $atad['waktu'][$value['id_berita']][$key] = $value['waktu'];
-                }
+                if (!empty($data)) {
+                    foreach ($data as $key => $value) {
+                        $atad['file'][$value['id_berita']][$key] = $value['file'];
+                        $atad['waktu'][$value['id_berita']][$key] = $value['waktu'];
+                    }
 
-                foreach ($berita as $key => $value) {
-                    if(array_key_exists($value['id'],$atad['file'])){
-                        $berita[$key]['file'] = $atad['file'][$value['id']];
-                        $berita[$key]['waktu'] = $atad['waktu'][$value['id']];
+                    foreach ($berita as $key => $value) {
+                        if(array_key_exists($value['id'],$atad['file'])){
+                            $berita[$key]['file'] = $atad['file'][$value['id']];
+                            $berita[$key]['waktu'] = $atad['waktu'][$value['id']];
+                        }
                     }
                 }
             } else {
-                $berita['file'] = $data['file'];
-                $berita['waktu'] = $data['waktu'];
+                if (!empty($data)) {
+                    $berita['file'] = $data['file'];
+                    $berita['waktu'] = $data['waktu'];
+                }
             }
         }
 
@@ -136,6 +140,7 @@ class Berita extends CI_Controller {
                 }
 
                 if($ids[1] == 'post'){
+                    $_POST['code'] = uniqid();
                     $id_berita = $this->Dml_model->create('berita',$_POST);
                 } else {
                     $this->Dml_model->update('berita',"id = '".$ids[0]."'",$_POST);
@@ -169,7 +174,7 @@ class Berita extends CI_Controller {
         }
 
         // die();
-        redirect('berita/datas');
+        redirect('');
     }
 
     function form($type = 'berita', $id = null){
@@ -196,18 +201,20 @@ class Berita extends CI_Controller {
         $this->load->view('footer');
     }
 
-   function datas($bulan = null, $tahun = null){
+   function datas($bulan = null, $tahun = null, $id = null){
         if(empty($bulan) || empty($tahun)){
-            redirect('berita/datas/'.date('m').'/'.date('Y').'/');
+            $skpd = $this->Dml_model->one('skpd','ORDER BY id ASC LIMIT 1');
+            redirect('berita/datas/'.date('m').'/'.date('Y').'/'.$skpd['id']);
         }
 
         $header['class'] = $this->router->fetch_class();
         $header['method'] = $this->router->fetch_method();
 
-        $data['param'] = array('bulan' => $bulan, 'tahun' => $tahun);
+        $data['skpd'] = $this->Dml_model->read('skpd');
         $data['status'] = array('Belum Selesai', 'Proses', 'Selesai');
+        $data['param'] = array('bulan' => $bulan, 'tahun' => $tahun, 'id' => $id);
         $data['tahun'] = $this->Dml_model->read('berita','','DISTINCT(YEAR(tgl)) tahun');
-        $data['data'] = $this->tindakan(null,'MONTH(berita.tgl) = '.$bulan.' AND YEAR(berita.tgl) = '.$tahun);
+        $data['data'] = $this->tindakan(null,'id_skpd = '.$id.' AND MONTH(berita.tgl) = '.$bulan.' AND YEAR(berita.tgl) = '.$tahun);
         $data['bulan'] = array('01'=>'Januari','02'=>'Februari','03'=>'Maret','04'=>'April','05'=>'Mei','06'=>'Juni','07'=>'Juli','08'=>'Agustus','09'=>'September','10'=>'Oktober','11'=>'November','12'=>'Desember');
 
         $footer['link'] = 'berita/datas';

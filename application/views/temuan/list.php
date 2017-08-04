@@ -3,16 +3,22 @@
   <div class="col-xs-12">
     <div class="card card-mini">
       <div class="card-header">
-        <div class="col-xs-2">List Temuan Sementara</div>
         <div class="col-xs-2">
-          <select class="form-control select2" id="bulan" onchange="periode();">
+          <select class="form-control select2" id="skpd" onchange="periode('skpd');">
+            <?php foreach ($skpd as $key => $value){ ?>
+              <option value="<?php echo $value['id']; ?>" <?php echo ($value['id'] == $param['id']) ? 'selected="selected"' : '' ; ?>><?php echo $value['nama']; ?></option>
+            <?php } ?>
+          </select>
+        </div>
+        <div class="col-xs-2">
+          <select class="form-control select2" id="bulan" onchange="periode('skpd');">
             <?php foreach ($bulan as $key => $value){ ?>
               <option value="<?php echo $key; ?>" <?php echo ($key == $param['bulan']) ? 'selected="selected"' : '' ; ?>><?php echo $value; ?></option>
             <?php } ?>
           </select>
         </div>
         <div class="col-xs-2">
-          <select class="form-control select2" id="tahun" onchange="periode();">
+          <select class="form-control select2" id="tahun" onchange="periode('skpd');">
             <?php foreach ($tahun as $key => $value){ ?>
               <option value="<?php echo $value['tahun']; ?>" <?php echo ($value['tahun'] == $param['tahun']) ? 'selected  ="selected"' : '' ; ?>><?php echo $value['tahun']; ?></option>
             <?php } ?>
@@ -37,7 +43,7 @@
                 <!-- Tab panes -->
                 <div class="tab-content">
                   <div role="tabpanel" class="tab-pane table-responsive active" id="ra" style="width: 100%;">
-                    <table style="width: 100%;" class="datatable2 card-table table-striped table-hover table">
+                    <table style="width: 100%;" class="datatable card-table table-striped table-hover table">
                       <thead>
                         <tr>
                           <th style="vertical-align: middle;" class="text-capitalize text-center">#</th>

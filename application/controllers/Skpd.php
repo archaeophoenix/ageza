@@ -61,6 +61,6 @@ class Skpd extends CI_Controller {
                 }
             }
         }
-        redirect('skpd/field/');
+        redirect('');
     }
 }

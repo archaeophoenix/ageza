@@ -3,16 +3,22 @@
   <div class="col-xs-12">
     <div class="card card-mini">
       <div class="card-header">
-        <div class="col-xs-2">List Temuan Tindak Lanjut</div>
         <div class="col-xs-2">
-          <select class="form-control select2" id="bulan" onchange="periode();">
+          <select class="form-control select2" id="skpd" onchange="periode('skpd');">
+            <?php foreach ($skpd as $key => $value){ ?>
+              <option value="<?php echo $value['id']; ?>" <?php echo ($value['id'] == $param['id']) ? 'selected="selected"' : '' ; ?>><?php echo $value['nama']; ?></option>
+            <?php } ?>
+          </select>
+        </div>
+        <div class="col-xs-2">
+          <select class="form-control select2" id="bulan" onchange="periode('skpd');">
             <?php foreach ($bulan as $key => $value){ ?>
               <option value="<?php echo $key; ?>" <?php echo ($key == $param['bulan']) ? 'selected="selected"' : '' ; ?>><?php echo $value; ?></option>
             <?php } ?>
           </select>
         </div>
         <div class="col-xs-2">
-          <select class="form-control select2" id="tahun" onchange="periode();">
+          <select class="form-control select2" id="tahun" onchange="periode('skpd');">
             <?php foreach ($tahun as $key => $value){ ?>
               <option value="<?php echo $value['tahun']; ?>" <?php echo ($value['tahun'] == $param['tahun']) ? 'selected  ="selected"' : '' ; ?>><?php echo $value['tahun']; ?></option>
             <?php } ?>
@@ -31,109 +37,119 @@
                 </ul>
 
                 <div class="tab-content">
-                  <div role="tabpanel" class="tab-pane table-responsive active" id="ra" style="width: 100%;">
-                    <table style="width: 100%;" class="datatable2 card-table table-striped table-bordered table-hover table">
-                      <thead>
-                        <tr>
-                          <th width="5%" style="vertical-align: middle;" class="text-capitalize text-center">#</th>
-                          <th width="20%" style="vertical-align: middle;" class="text-capitalize text-center">SKPD</th>
-                          <th width="10%" style="vertical-align: middle;" class="text-capitalize text-center">Penanggung Jawab</th>
-                          <th width="10%" style="vertical-align: middle;" class="text-capitalize text-center">Ketua</th>
-                          <th width="10%" style="vertical-align: middle;" class="text-capitalize text-center">Anggota</th>
-                          <th width="10%" style="vertical-align: middle;" class="text-capitalize text-center">Temuan</th>
-                          <th width="10%" style="vertical-align: middle;" class="text-capitalize text-center">Undang-Undang</th>
-                          <th width="10%" style="vertical-align: middle;" class="text-capitalize text-center">Tanggal</th>
-                          <th width="10%" style="vertical-align: middle;" class="text-capitalize text-center">No Surat</th>
-                          <th width="10%" style="vertical-align: middle;" class="text-capitalize text-center">Batas</th>
-                          <th width="5%" style="vertical-align: middle;" class="text-capitalize text-center"><i class="fa fa-cogs" title="Opsi"></i></th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <?php foreach ($data as $key => $value){ ?>
-                        <tr>
-                          <td width="5%" style="vertical-align: middle;" class="text-capitalize"><?php echo ($key+1); ?></td>
-                          <td width="20%" style="vertical-align: middle;" class="text-capitalize"><?php echo $value['skpd']; ?></td>
-                          <td width="10%" style="vertical-align: middle;" class="text-capitalize"><?php echo $value['tj']; ?></td>
-                          <td width="10%" style="vertical-align: middle;" class="text-capitalize"><?php echo $value['ketua']; ?></td>
-                          <td width="10%" style="vertical-align: middle;" class="text-capitalize"><?php echo $value['anggota']; ?></td>
-                          <td width="10%" style="vertical-align: middle;" class="text-capitalize"><?php echo $value['ts']; ?></td>
-                          <td width="10%" style="vertical-align: middle;" class="text-capitalize"><?php echo $value['uu']; ?></td>
-                          <td width="10%" style="vertical-align: middle;" class="text-capitalize"><?php echo $value['tgl']; ?></td>
-                          <td width="10%" style="vertical-align: middle;" class="text-capitalize"><?php echo $value['no']; ?></td>
-                          <td width="10%" style="vertical-align: middle;" class="text-capitalize"><?php echo $value['batas']; ?></td>
-                          <td width="5%" style="vertical-align: middle;" class="text-capitalize">
-                            <div style="width: 10%;" class="btn-group">
-                              <button type="button" class="btn btn-xs btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></button>
-                              <ul class="dropdown-menu pull-right" role="menu">
-                              <?php if ($_SESSION['masuk']['status'] == 1 || $_SESSION['masuk']['status'] == 3){ ?>
-                                <li><a style="cursor:pointer;" onclick="window.location='<?php echo base_url().'berita/form/berita/'.$value['id'].'-edit';?>'" title="Edit"><i class="fa fa-edit" aria-hidden="true"></i> Edit</a></li>
-                              <?php } if ($_SESSION['masuk']['status'] == 1 || $_SESSION['masuk']['status'] == 4){ ?>
-                                <li><a style="cursor:pointer;" onclick="window.location='<?php echo base_url().'berita/form/tindak/'.$value['id'].'-edit';?>'" title="Tindak Lanjut"><i class="fa fa-newspaper-o" aria-hidden="true"></i> Tindak Lanjut</a></li>
-                              <?php } ?>
-                              </ul>
-                            </div>
-                          </td>
-                        </tr>
-                        <?php } ?>
-                      </tbody>
-                    </table>
+                  <div role="tabpanel" class="tab-pane table-responsive active" id="ra" style="max-width: auto; overflow-x: scroll;">
+                    <div style="width: 150%;">
+                      <table style="width: 100%;" class="datatable card-table table-striped table-bordered table-hover table">
+                        <thead>
+                          <tr>
+                            <th width="5%" style="vertical-align: middle;" class="text-capitalize text-center">#</th>
+                            <th width="15%" style="vertical-align: middle;" class="text-capitalize text-center">SKPD</th>
+                            <th width="5%" style="vertical-align: middle;" class="text-capitalize text-center">Code</th>
+                            <th width="10%" style="vertical-align: middle;" class="text-capitalize text-center">Penanggung Jawab</th>
+                            <th width="10%" style="vertical-align: middle;" class="text-capitalize text-center">Ketua</th>
+                            <th width="10%" style="vertical-align: middle;" class="text-capitalize text-center">Anggota</th>
+                            <th width="10%" style="vertical-align: middle;" class="text-capitalize text-center">Temuan</th>
+                            <th width="5%" style="vertical-align: middle;" class="text-capitalize text-center">Undang-Undang</th>
+                            <th width="10%" style="vertical-align: middle;" class="text-capitalize text-center">Tanggal</th>
+                            <th width="5%" style="vertical-align: middle;" class="text-capitalize text-center">No Surat</th>
+                            <th width="10%" style="vertical-align: middle;" class="text-capitalize text-center">Batas</th>
+                            <th width="5%" style="vertical-align: middle;" class="text-capitalize text-center"><i class="fa fa-cogs" title="Opsi"></i></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <?php foreach ($data as $key => $value){ ?>
+                          <tr>
+                            <td width="5%" style="vertical-align: middle;" class="text-capitalize"><?php echo ($key+1); ?></td>
+                            <td width="15%" style="vertical-align: middle;" class="text-capitalize"><?php echo $value['skpd']; ?></td>
+                            <td width="5%" style="vertical-align: middle;" class="text-capitalize"><?php echo $value['code']; ?></td>
+                            <td width="10%" style="vertical-align: middle;" class="text-capitalize"><?php echo $value['tj']; ?></td>
+                            <td width="10%" style="vertical-align: middle;" class="text-capitalize"><?php echo $value['ketua']; ?></td>
+                            <td width="10%" style="vertical-align: middle;" class="text-capitalize"><?php echo $value['anggota']; ?></td>
+                            <td width="10%" style="vertical-align: middle;" class="text-capitalize"><?php echo $value['ts']; ?></td>
+                            <td width="5%" style="vertical-align: middle;" class="text-capitalize"><?php echo $value['uu']; ?></td>
+                            <td width="10%" style="vertical-align: middle;" class="text-capitalize"><?php echo $value['tgl']; ?></td>
+                            <td width="5%" style="vertical-align: middle;" class="text-capitalize"><?php echo $value['no']; ?></td>
+                            <td width="10%" style="vertical-align: middle;" class="text-capitalize"><?php echo $value['batas']; ?></td>
+                            <td width="5%" style="vertical-align: middle;" class="text-capitalize">
+                              <div class="btn-group">
+                                <button type="button" class="btn btn-xs btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></button>
+                                <ul class="dropdown-menu pull-right" role="menu">
+                                <?php if ($_SESSION['masuk']['status'] == 1 || $_SESSION['masuk']['status'] == 3){ ?>
+                                  <li><a style="cursor:pointer;" onclick="window.location='<?php echo base_url().'berita/form/berita/'.$value['id'].'-edit';?>'" title="Edit"><i class="fa fa-edit" aria-hidden="true"></i> Edit</a></li>
+                                <?php } if ($_SESSION['masuk']['status'] == 1 || $_SESSION['masuk']['status'] == 4){ ?>
+                                  <li><a style="cursor:pointer;" onclick="window.location='<?php echo base_url().'berita/form/tindak/'.$value['id'].'-edit';?>'" title="Tindak Lanjut"><i class="fa fa-newspaper-o" aria-hidden="true"></i> Tindak Lanjut</a></li>
+                                <?php } ?>
+                                </ul>
+                              </div>
+                            </td>
+                          </tr>
+                          <?php } ?>
+                        </tbody>
+                      </table>
+                    </div>
                   </div>
 
-                  <div role="tabpanel" class="tab-pane table-responsive" id="btl" style="width: 100%;">
-                    <table style="width: 100%;" class="datatable2 card-table table-striped table-bordered table-hover table">
-                      <thead>
-                        <tr>
-                          <th width="5%" style="vertical-align: middle;" class="text-capitalize text-center">#</th>
-                          <th width="30%" style="vertical-align: middle;" class="text-capitalize text-center">SKPD</th>
-                          <th width="10%" style="vertical-align: middle;" class="text-capitalize text-center">Undang-Undang</th>
-                          <th width="10%" style="vertical-align: middle;" class="text-capitalize text-center">Tanggal</th>
-                          <th width="10%" style="vertical-align: middle;" class="text-capitalize text-center">Temuan</th>
-                          <th width="10%" style="vertical-align: middle;" class="text-capitalize text-center">Saran</th>
-                          <th width="10%" style="vertical-align: middle;" class="text-capitalize text-center">Batas</th>
-                          <th width="10%" style="vertical-align: middle;" class="text-capitalize text-center">Progres</th>
-                          <th width="10%" style="vertical-align: middle;" class="text-capitalize text-center">Status</th>
-                          <th width="5%" style="vertical-align: middle;" class="text-capitalize text-center"><i class="fa fa-cogs" title="Opsi"></i></th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <?php foreach ($data as $key => $value){ if (!empty($value['tanggal'])) { ?>
-                        <tr>
-                          <td width="5%" style="vertical-align: middle;" class="text-capitalize"><?php echo ($key+1); ?></td>
-                          <td width="30%" style="vertical-align: middle;" class="text-capitalize"><?php echo $value['skpd']; ?></td>
-                          <td width="10%" style="vertical-align: middle;" class="text-capitalize"><?php echo $value['uu']; ?></td>
-                          <td width="10%" style="vertical-align: middle;" class="text-capitalize"><?php echo $value['tanggal']; ?></td>
-                          <td width="10%" style="vertical-align: middle;" class="text-capitalize"><?php echo $value['ts']; ?></td>
-                          <td width="10%" style="vertical-align: middle;" class="text-capitalize"><?php echo $value['saran']; ?></td>
-                          <td width="10%" style="vertical-align: middle;" class="text-capitalize"><?php echo $value['batas']; ?></td>
-                          <td width="10%" style="vertical-align: middle;" class="text-capitalize"><?php echo (empty($value['probl'])) ? '' : $value['probl'].' %' ; ?></td>
-                          <td width="10%" style="vertical-align: middle;" class="text-capitalize"><?php echo $status[$value['status']]; ?></td>
-                          <td width="5%" style="vertical-align: middle;" class="text-capitalize">
-                            <div style="width: 10%;" class="btn-group">
-                              <button type="button" class="btn btn-xs btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></button>
-                              <ul class="dropdown-menu pull-right" role="menu">
-                              <?php if ($_SESSION['masuk']['status'] == 1 || $_SESSION['masuk']['status'] == 4){ ?>
-                                <li><a style="cursor:pointer;" onclick="window.location='<?php echo base_url().'berita/form/tindak/'.$value['id'].'-edit';?>'" title="Edit"><i class="fa fa-edit" aria-hidden="true"></i> Edit</a></li>
-                              <?php } if ($_SESSION['masuk']['status'] != 5){ ?>
-                                <li><a style="cursor:pointer;" onclick="window.location='<?php echo base_url().'berita/form/file/'.$value['id'].'-edit';?>'" title="File"><i class="fa fa-file-text" aria-hidden="true"></i> File</a></li>
-                              <?php } ?>
-                                <li><a style="cursor:pointer;" onclick="window.location='<?php echo base_url().'berita/progres/'.$value['id'];?>'" title="Progres"><i class="fa fa-line-chart" aria-hidden="true"></i> Progres</a></li>
-                              </ul>
-                            </div>
-                          </td>
-                        </tr>
-                        <?php }} ?>
-                      </tbody>
-                    </table>
+                  <div role="tabpanel" class="tab-pane table-responsive" id="btl" style="max-width: auto; overflow-x: scroll;">
+                    <div style="width: 150%;">
+                      <table style="width: 100%;" class="datatable card-table table-striped table-bordered table-hover table">
+                        <thead>
+                          <tr>
+                            <th width="5%" style="vertical-align: middle;" class="text-capitalize text-center">#</th>
+                            <th width="20%" style="vertical-align: middle;" class="text-capitalize text-center">SKPD</th>
+                            <th width="5%" style="vertical-align: middle;" class="text-capitalize text-center">Code</th>
+                            <th width="10%" style="vertical-align: middle;" class="text-capitalize text-center">Undang-Undang</th>
+                            <th width="10%" style="vertical-align: middle;" class="text-capitalize text-center">Tanggal</th>
+                            <th width="10%" style="vertical-align: middle;" class="text-capitalize text-center">Temuan</th>
+                            <th width="10%" style="vertical-align: middle;" class="text-capitalize text-center">Saran</th>
+                            <th width="10%" style="vertical-align: middle;" class="text-capitalize text-center">Batas</th>
+                            <th width="5%" style="vertical-align: middle;" class="text-capitalize text-center">Progres</th>
+                            <th width="10%" style="vertical-align: middle;" class="text-capitalize text-center">Status</th>
+                            <th width="5%" style="vertical-align: middle;" class="text-capitalize text-center"><i class="fa fa-cogs" title="Opsi"></i></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <?php foreach ($data as $key => $value){ if (!empty($value['tanggal'])) { ?>
+                          <tr>
+                            <td width="5%" style="vertical-align: middle;" class="text-capitalize"><?php echo ($key+1); ?></td>
+                            <td width="20%" style="vertical-align: middle;" class="text-capitalize"><?php echo $value['skpd']; ?></td>
+                            <td width="5%" style="vertical-align: middle;" class="text-capitalize"><?php echo $value['code']; ?></td>
+                            <td width="10%" style="vertical-align: middle;" class="text-capitalize"><?php echo $value['uu']; ?></td>
+                            <td width="10%" style="vertical-align: middle;" class="text-capitalize"><?php echo $value['tanggal']; ?></td>
+                            <td width="10%" style="vertical-align: middle;" class="text-capitalize"><?php echo $value['ts']; ?></td>
+                            <td width="10%" style="vertical-align: middle;" class="text-capitalize"><?php echo $value['saran']; ?></td>
+                            <td width="10%" style="vertical-align: middle;" class="text-capitalize"><?php echo $value['batas']; ?></td>
+                            <td width="5%" style="vertical-align: middle;" class="text-capitalize"><?php echo (empty($value['probl'])) ? '' : $value['probl'].' %' ; ?></td>
+                            <td width="10%" style="vertical-align: middle;" class="text-capitalize"><?php echo $status[$value['status']]; ?></td>
+                            <td width="5%" style="vertical-align: middle;" class="text-capitalize">
+                              <div class="btn-group">
+                                <button type="button" class="btn btn-xs btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></button>
+                                <ul class="dropdown-menu pull-right" role="menu">
+                                <?php if ($_SESSION['masuk']['status'] == 1 || $_SESSION['masuk']['status'] == 4){ ?>
+                                  <li><a style="cursor:pointer;" onclick="window.location='<?php echo base_url().'berita/form/tindak/'.$value['id'].'-edit';?>'" title="Edit"><i class="fa fa-edit" aria-hidden="true"></i> Edit</a></li>
+                                <?php } if ($_SESSION['masuk']['status'] != 5){ ?>
+                                  <li><a style="cursor:pointer;" onclick="window.location='<?php echo base_url().'berita/form/file/'.$value['id'].'-edit';?>'" title="Upload File"><i class="fa fa-file-text" aria-hidden="true"></i> Upload File</a></li>
+                                <?php } ?>
+                                  <li><a style="cursor:pointer;" onclick="window.location='<?php echo base_url().'berita/progres/'.$value['id'];?>'" title="Progres"><i class="fa fa-line-chart" aria-hidden="true"></i> Progres</a></li>
+                                </ul>
+                              </div>
+                            </td>
+                          </tr>
+                          <?php }} ?>
+                        </tbody>
+                      </table>
+                    </div>
                   </div>
+
                   <div role="tabpanel" class="tab-pane table-responsive" id="bl" style="width: 100%;">
                     <table style="width: 100%;" class="datatable card-table table-striped table-bordered table-hover table">
                       <thead>
                         <tr>
                           <th width="5%" style="vertical-align: middle;" class="text-capitalize text-center">#</th>
-                          <th width="45%" style="vertical-align: middle;" class="text-capitalize text-center">SKPD</th>
+                          <th width="35%" style="vertical-align: middle;" class="text-capitalize text-center">SKPD</th>
+                          <th width="5%" style="vertical-align: middle;" class="text-capitalize text-center">Code</th>
                           <th width="20%" style="vertical-align: middle;" class="text-capitalize text-center">Tanggal</th>
                           <th width="20%" style="vertical-align: middle;" class="text-capitalize text-center">Batas</th>  
-                          <th width="10%" style="vertical-align: middle;" class="text-capitalize text-center">Progres</th>
+                          <th width="5%" style="vertical-align: middle;" class="text-capitalize text-center">Progres</th>
                           <th width="10%" style="vertical-align: middle;" class="text-capitalize text-center">Status</th>
                         </tr>
                       </thead>
@@ -141,12 +157,13 @@
                         <?php foreach ($data as $key => $value){ if(!empty($value['file'])) { ?>
                         <tr>
                           <td width="5%" style="vertical-align: middle;" class="text-capitalize"><?php echo ($key+1); ?></td>
-                          <td width="45%" style="vertical-align: middle;" class="text-capitalize"><?php echo $value['skpd']; ?></td>
+                          <td width="35%" style="vertical-align: middle;" class="text-capitalize"><?php echo $value['skpd']; ?></td>
+                          <td width="5%" style="vertical-align: middle;" class="text-capitalize"><?php echo $value['code']; ?></td>
                           <td width="20%" style="vertical-align: middle;" class="text-capitalize"><?php echo $value['tgl']; ?></td>
                           <td width="20%" style="vertical-align: middle;" class="text-capitalize"><?php echo $value['batas']; ?></td> 
-                          <td width="10%" style="vertical-align: middle;" class="text-capitalize"><?php echo (empty($value['protl'])) ? '' : $value['protl'].' %' ; ?></td>
+                          <td width="5%" style="vertical-align: middle;" class="text-capitalize"><?php echo (empty($value['protl'])) ? '' : $value['protl'].' %' ; ?></td>
                           <td width="10%" style="vertical-align: middle;" class="text-capitalize">
-                            <div style="width: 10%;" class="btn-group">
+                            <div class="btn-group">
                               <button type="button" class="btn btn-xs btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></button>
                               <ul class="dropdown-menu pull-right" role="menu">
                                 <li><a style="cursor: pointer;" onclick="window.location='<?php echo base_url().'berita/progres/'.$value['id'];?>'" title="Progres"><i class="fa fa-line-chart" aria-hidden="true"></i> Progres</a></li>

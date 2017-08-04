@@ -91,13 +91,16 @@ function printpage(lru = null){
 	window.location.href = 'http://' + lru ;
 }
 
-function periode(){
+function periode(detail = null){
+	var det = null;
 	var url = $("#base").val();
 	var link = $("#link").val();
 	var bulan = $("#bulan").val();
 	var tahun = $("#tahun").val();
-
-	window.location = url+''+link+'/'+bulan+'/'+tahun; //Relative or absolute path to response.php file
+	if(detail){
+		det = '/'+$('#'+detail).val();
+	}
+	window.location = url+''+link+'/'+bulan+'/'+tahun+det; //Relative or absolute path to response.php file
 }
 
 function file(){

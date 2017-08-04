@@ -58,7 +58,7 @@ class Polling extends CI_Controller {
             $_POST['tanggal '] = date('Y-m-d');
             $this->Dml_model->create('polling',$_POST);
         }
-        redirect('polling/field/');
+        redirect('');
     }
 
 }
