@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jul 31, 2017 at 06:18 
+-- Generation Time: Aug 04, 2017 at 08:51 
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 7.0.6
 
@@ -36,6 +36,7 @@ CREATE TABLE `berita` (
   `no` varchar(50) DEFAULT NULL,
   `ts` varchar(50) DEFAULT NULL,
   `uu` varchar(50) DEFAULT NULL,
+  `code` text,
   `tanggal` date DEFAULT NULL,
   `saran` varchar(50) DEFAULT NULL,
   `batas` date DEFAULT NULL,
@@ -46,23 +47,23 @@ CREATE TABLE `berita` (
 -- Dumping data for table `berita`
 --
 
-INSERT INTO `berita` (`id`, `id_temuan`, `tj`, `ketua`, `anggota`, `tgl`, `no`, `ts`, `uu`, `tanggal`, `saran`, `batas`, `status`) VALUES
-(1, 1, 'PJ', 'ket', 'yes', '2017-06-18', 'nos', 'temsm', 'uu', '2017-06-18', 'buang', '2017-06-20', '1'),
-(2, 2, 'mboh', 'sembarang', '', '2017-06-15', '331', 'satu', 'raurus', '2017-06-15', 'buang', '2017-06-16', '0'),
-(4, 1, 'mboh', 'sembarang', '', '2017-06-14', '331', 'satu', 'raurus', '2017-06-14', 'buang', '2017-06-15', '1'),
-(5, 1, 'asdlasjhdna', 'j', '', '2017-06-15', 'n', 'kjjh', 'hkjh', '2017-06-15', 'aksdjas', '2017-06-18', '0'),
-(6, 1, NULL, NULL, '', '1970-01-01', NULL, NULL, NULL, '1970-01-01', NULL, '1970-01-01', NULL),
-(7, 1, '', '', '', '2017-06-18', '', '', '', '2017-06-18', '', '2017-06-18', '0'),
-(8, 1, '', '', '', '2017-06-18', '', '', '', '2017-06-18', '', '2017-06-18', '0'),
-(9, 1, '', '', '', '2017-06-18', '', '', '', '2017-06-18', '', '2017-06-18', '0'),
-(10, 1, '', '', '', '2017-06-18', '', '', '', '2017-06-18', '', '2017-06-18', '0'),
-(11, 1, '', '', '', '2017-06-18', '', '', '', '2017-06-18', '', '2017-06-18', '0'),
-(12, 1, NULL, NULL, '', '1970-01-01', NULL, NULL, NULL, '1970-01-01', NULL, '1970-01-01', NULL),
-(13, 1, '', '', '', '2017-06-18', '', '', '', '2017-06-18', '', '2017-06-18', '0'),
-(14, 12, 'pj', 'ket', '', '2017-07-04', 'nosur', 'mboh', 'uu', '2017-07-04', 'ok', '2017-07-06', '0'),
-(15, 12, 'yp', 'yo', '', '2017-07-05', 'ok', 'ok', 'ok', '2017-07-05', 'kpo', '2017-07-08', '1'),
-(16, 1, 'ok deh', 'mboh', 'sembarang', '2017-07-12', 'no', 'oilah', 'uuu', NULL, NULL, NULL, NULL),
-(17, 2, 'asidjaskdkj', 'hkjbmnb', 'jhgbj', '2017-07-12', 'hgbjhbg', 'kkhjk', 'nhkh', NULL, NULL, NULL, NULL);
+INSERT INTO `berita` (`id`, `id_temuan`, `tj`, `ketua`, `anggota`, `tgl`, `no`, `ts`, `uu`, `code`, `tanggal`, `saran`, `batas`, `status`) VALUES
+(1, 1, 'PJ', 'ket', 'yes', '2017-06-18', 'nos', 'temsm', 'uu', NULL, '2017-06-18', 'buang', '2017-08-20', '1'),
+(2, 2, 'mboh', 'sembarang', '', '2017-06-15', '331', 'satu', 'raurus', NULL, '2017-06-15', 'buang', '2017-08-16', '0'),
+(4, 1, 'mboh', 'sembarang', '', '2017-06-14', '331', 'satu', 'raurus', NULL, '2017-08-14', 'buang', '2017-06-15', '1'),
+(5, 1, 'asdlasjhdna', 'j', '', '2017-06-15', 'n', 'kjjh', 'hkjh', NULL, '2017-06-15', 'aksdjas', '2017-06-18', '0'),
+(6, 1, NULL, NULL, '', '1970-01-01', NULL, NULL, NULL, NULL, '1970-01-01', NULL, '1970-01-01', NULL),
+(7, 1, '', '', '', '2017-06-18', '', '', '', NULL, '2017-06-18', '', '2017-06-18', '0'),
+(8, 1, '', '', '', '2017-06-18', '', '', '', NULL, '2017-06-18', '', '2017-06-18', '0'),
+(9, 1, '', '', '', '2017-06-18', '', '', '', NULL, '2017-06-18', '', '2017-06-18', '0'),
+(10, 1, '', '', '', '2017-06-18', '', '', '', NULL, '2017-06-18', '', '2017-06-18', '0'),
+(11, 1, '', '', '', '2017-06-18', '', '', '', NULL, '2017-06-18', '', '2017-06-18', '0'),
+(12, 1, NULL, NULL, '', '1970-01-01', NULL, NULL, NULL, NULL, '1970-01-01', NULL, '1970-01-01', NULL),
+(13, 1, '', '', '', '2017-06-18', '', '', '', NULL, '2017-06-18', '', '2017-06-18', '0'),
+(14, 12, 'pj', 'ket', '', '2017-07-04', 'nosur', 'mboh', 'uu', NULL, '2017-07-04', 'ok', '2017-08-06', '0'),
+(15, 12, 'yp', 'yo', '', '2017-07-05', 'ok', 'ok', 'ok', NULL, '2017-07-05', 'kpo', '2017-08-01', '1'),
+(16, 1, 'ok deh', 'mboh', 'sembarang', '2017-07-12', 'no', 'oilah', 'uuu', NULL, '2017-08-04', '', NULL, '0'),
+(17, 2, 'asidjaskdkj', 'hkjbmnb', 'jhgbj', '2017-07-12', 'hgbjhbg', 'kkhjk', 'nhkh', NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -108,12 +109,12 @@ CREATE TABLE `polling` (
 --
 
 INSERT INTO `polling` (`id`, `id_skpd`, `tanggal`, `nilai`) VALUES
-(1, 1, '2017-07-08', 20),
-(2, 1, '2017-07-08', 1),
-(3, 1, '2017-07-08', 20),
-(4, 2, '2017-07-08', 45),
-(5, 2, '2017-06-08', 25),
-(6, 1, '2017-06-08', 20);
+(1, 1, '2017-08-03', 20),
+(2, 1, '2017-08-03', 1),
+(3, 1, '2017-08-03', 20),
+(4, 2, '2017-08-03', 45),
+(5, 2, '2017-08-03', 25),
+(6, 1, '2017-08-03', 20);
 
 -- --------------------------------------------------------
 
@@ -190,6 +191,7 @@ CREATE TABLE `temuan` (
   `id` int(11) NOT NULL,
   `id_skpd` int(11) DEFAULT NULL,
   `uu` varchar(100) DEFAULT NULL,
+  `code` text,
   `tanggal` date DEFAULT NULL,
   `pendapatan` varchar(50) DEFAULT NULL,
   `btl_uraian` text,
@@ -226,19 +228,19 @@ CREATE TABLE `temuan` (
 -- Dumping data for table `temuan`
 --
 
-INSERT INTO `temuan` (`id`, `id_skpd`, `uu`, `tanggal`, `pendapatan`, `btl_uraian`, `btl_anggaran`, `btl_realisasi`, `btl_spj`, `btl_sisa`, `bl_uraian`, `bl_anggaran`, `bl_realisasi`, `bl_spj`, `bl_sisa`, `jenis`, `nama`, `nilai`, `spm_tanggal`, `spm_up`, `spm_gu`, `spm_tu`, `spm_gaji`, `spm_barjas`, `spp_tanggal`, `spp_up`, `spp_gu`, `spp_tu`, `spp_gaji`, `spp_barjas`, `tj_tanggal`, `no_spj`, `jumlah`) VALUES
-(1, 1, 'uu', '2017-06-12', '1000', 'btl u', 'btl a', 'btl r', 'btl spj', 'btl s', 'bt u', 'bl A', 'bt r', 'bt spj', 'bt s', 'kegiatan', 'nama', 'nilai', '2017-06-12', 'spm u', 'spm gu', 'spm tu', 'spm ls gaji', 'spm barjas', '2017-06-12', 'spp up', 'spp gu', 'spp tu', 'spp ls gaji', 'spp barjas', '2017-06-12', 'no spj', '1000'),
-(2, 2, 'uu', '2017-06-13', '1000', 'btl u', 'btl a', 'btl r', 'btl spj', 'btl s', 'bt u', 'BT a', 'bt r', 'bt spj', 'bt s', 'kegiatan', 'nama', 'nilai', '2017-06-13', 'spm u', 'spm gu', 'spm tu', 'spm ls gaji', 'spm barjas', '2017-06-13', 'spp up', 'spp gu', 'spp tu', 'spp ls gaji', 'spp barjas', '2017-06-13', 'no spj', '1000'),
-(3, 1, 'uu', '0000-00-00', '1000', 'btl u', 'btl a', 'btl r', 'btl spj', 'btl s', 'bt u', NULL, 'bt r', 'bt spj', 'bt s', 'kegiatan', 'nama', 'nilai', '0000-00-00', 'spm u', 'spm gu', 'spm tu', 'spm ls gaji', 'spm barjas', '0000-00-00', 'spp up', 'spp gu', 'spp tu', 'spp ls gaji', 'spp barjas', '0000-00-00', 'no spj', '1000'),
-(4, 1, 'uu', '0000-00-00', '1000', 'btl u', 'btl a', 'btl r', 'btl spj', 'btl s', 'bt u', NULL, 'bt r', 'bt spj', 'bt s', 'kegiatan', 'nama', 'nilai', '0000-00-00', 'spm u', 'spm gu', 'spm tu', 'spm ls gaji', 'spm barjas', '0000-00-00', 'spp up', 'spp gu', 'spp tu', 'spp ls gaji', 'spp barjas', '0000-00-00', 'no spj', '1000'),
-(5, 2, 'uu', '0000-00-00', '1000', 'btl u', 'btl a', 'btl r', 'btl spj', 'btl s', 'bt u', NULL, 'bt r', 'bt spj', 'bt s', 'kegiatan', 'nama', 'nilai', '0000-00-00', 'spm u', 'spm gu', 'spm tu', 'spm ls gaji', 'spm barjas', '0000-00-00', 'spp up', 'spp gu', 'spp tu', 'spp ls gaji', 'spp barjas', '0000-00-00', 'no spj', '1000'),
-(6, 1, 'uu', '0000-00-00', '1000', 'btl u', 'btl a', 'btl r', 'btl spj', 'btl s', 'bt u', NULL, 'bt r', 'bt spj', 'bt s', 'kegiatan', 'nama', 'nilai', '0000-00-00', 'spm u', 'spm gu', 'spm tu', 'spm ls gaji', 'spm barjas', '0000-00-00', 'spp up', 'spp gu', 'spp tu', 'spp ls gaji', 'spp barjas', '0000-00-00', 'no spj', '1000'),
-(7, 2, 'uu', '2017-06-12', '1000', 'btl u', 'btl a', 'btl r', 'btl spj', 'btl s', 'bt u', NULL, 'bt r', 'bt spj', 'bt s', 'kegiatan', 'nama', 'nilai', '2017-06-12', 'spm u', 'spm gu', 'spm tu', 'spm ls gaji', 'spm barjas', '2017-06-12', 'spp up', 'spp gu', 'spp tu', 'spp ls gaji', 'spp barjas', '2017-06-12', 'no spj', '1000'),
-(8, 1, 'uu', '0000-00-00', '1000', 'btl u', 'btl a', 'btl r', 'btl spj', 'btl s', 'bt u', NULL, 'bt r', 'bt spj', 'bt s', 'kegiatan', 'nama', 'nilai', '0000-00-00', 'spm u', 'spm gu', 'spm tu', 'spm ls gaji', 'spm barjas', '0000-00-00', 'spp up', 'spp gu', 'spp tu', 'spp ls gaji', 'spp barjas', '0000-00-00', 'no spj', '1000'),
-(9, 1, 'uu', '0000-00-00', '1000', 'btl u', 'btl a', 'btl r', 'btl spj', 'btl s', 'bt u', NULL, 'bt r', 'bt spj', 'bt s', 'kegiatan', 'nama', 'nilai', '0000-00-00', 'spm u', 'spm gu', 'spm tu', 'spm ls gaji', 'spm barjas', '0000-00-00', 'spp up', 'spp gu', 'spp tu', 'spp ls gaji', 'spp barjas', '0000-00-00', 'no spj', '1000'),
-(10, 1, 'uu', '0000-00-00', '1000', 'btl u', 'btl a', 'btl r', 'btl spj', 'btl s', 'bt u', NULL, 'bt r', 'bt spj', 'bt s', 'kegiatan', 'nama', 'nilai', '0000-00-00', 'spm u', 'spm gu', 'spm tu', 'spm ls gaji', 'spm barjas', '0000-00-00', 'spp up', 'spp gu', 'spp tu', 'spp ls gaji', 'spp barjas', '0000-00-00', 'no spj', '1000'),
-(11, 1, 'uu', '0000-00-00', '1000', 'btl u', 'btl a', 'btl r', 'btl spj', 'btl s', 'bt u', NULL, 'bt r', 'bt spj', 'bt s', 'kegiatan', 'nama', 'nilai', '0000-00-00', 'spm u', 'spm gu', 'spm tu', 'spm ls gaji', 'spm barjas', '0000-00-00', 'spp up', 'spp gu', 'spp tu', 'spp ls gaji', 'spp barjas', '0000-00-00', 'no spj', '1000'),
-(12, 2, 'ashakHDKJ', '2017-06-12', 'JG1JHHH1', 'KASDLKJ', 'lskjdla', 'jalksdj', 'klsjdal', 'laksdjlaskdj', 'aksjdlaksjd', 'kaskdfaksf', 'akshdflahd', 'kasfdhaklsdh', 'akd9pwpuerqn,mq', 'n,mzidhaw9jadaw', 'slknalc9dawrjhad', 'nakjshfas,', '2017-06-12', 'alsdjalisavln', 'laksja9shfb', 'zkchaldjlqd', 'laksdjaishgab', 'kasjdabfj', '2017-06-12', 'kzjiaj', 'lasdja.ngm,ha', 'asdjlasdabd,', 'licalsdlkd', 'ldjjsclna,msnd', '2017-06-12', 'ajsdnlaksd', 'haldhasld');
+INSERT INTO `temuan` (`id`, `id_skpd`, `uu`, `code`, `tanggal`, `pendapatan`, `btl_uraian`, `btl_anggaran`, `btl_realisasi`, `btl_spj`, `btl_sisa`, `bl_uraian`, `bl_anggaran`, `bl_realisasi`, `bl_spj`, `bl_sisa`, `jenis`, `nama`, `nilai`, `spm_tanggal`, `spm_up`, `spm_gu`, `spm_tu`, `spm_gaji`, `spm_barjas`, `spp_tanggal`, `spp_up`, `spp_gu`, `spp_tu`, `spp_gaji`, `spp_barjas`, `tj_tanggal`, `no_spj`, `jumlah`) VALUES
+(1, 1, 'uu', NULL, '2017-06-12', '1000', 'btl u', 'btl a', 'btl r', 'btl spj', 'btl s', 'bt u', 'bl A', 'bt r', 'bt spj', 'bt s', 'kegiatan', 'nama', 'nilai', '2017-06-12', 'spm u', 'spm gu', 'spm tu', 'spm ls gaji', 'spm barjas', '2017-06-12', 'spp up', 'spp gu', 'spp tu', 'spp ls gaji', 'spp barjas', '2017-06-12', 'no spj', '1000'),
+(2, 2, 'uu', NULL, '2017-06-13', '1000', 'btl u', 'btl a', 'btl r', 'btl spj', 'btl s', 'bt u', 'BT a', 'bt r', 'bt spj', 'bt s', 'kegiatan', 'nama', 'nilai', '2017-06-13', 'spm u', 'spm gu', 'spm tu', 'spm ls gaji', 'spm barjas', '2017-06-13', 'spp up', 'spp gu', 'spp tu', 'spp ls gaji', 'spp barjas', '2017-06-13', 'no spj', '1000'),
+(3, 1, 'uu', NULL, '0000-00-00', '1000', 'btl u', 'btl a', 'btl r', 'btl spj', 'btl s', 'bt u', NULL, 'bt r', 'bt spj', 'bt s', 'kegiatan', 'nama', 'nilai', '0000-00-00', 'spm u', 'spm gu', 'spm tu', 'spm ls gaji', 'spm barjas', '0000-00-00', 'spp up', 'spp gu', 'spp tu', 'spp ls gaji', 'spp barjas', '0000-00-00', 'no spj', '1000'),
+(4, 1, 'uu', NULL, '0000-00-00', '1000', 'btl u', 'btl a', 'btl r', 'btl spj', 'btl s', 'bt u', NULL, 'bt r', 'bt spj', 'bt s', 'kegiatan', 'nama', 'nilai', '0000-00-00', 'spm u', 'spm gu', 'spm tu', 'spm ls gaji', 'spm barjas', '0000-00-00', 'spp up', 'spp gu', 'spp tu', 'spp ls gaji', 'spp barjas', '0000-00-00', 'no spj', '1000'),
+(5, 2, 'uu', NULL, '0000-00-00', '1000', 'btl u', 'btl a', 'btl r', 'btl spj', 'btl s', 'bt u', NULL, 'bt r', 'bt spj', 'bt s', 'kegiatan', 'nama', 'nilai', '0000-00-00', 'spm u', 'spm gu', 'spm tu', 'spm ls gaji', 'spm barjas', '0000-00-00', 'spp up', 'spp gu', 'spp tu', 'spp ls gaji', 'spp barjas', '0000-00-00', 'no spj', '1000'),
+(6, 1, 'uu', NULL, '0000-00-00', '1000', 'btl u', 'btl a', 'btl r', 'btl spj', 'btl s', 'bt u', NULL, 'bt r', 'bt spj', 'bt s', 'kegiatan', 'nama', 'nilai', '0000-00-00', 'spm u', 'spm gu', 'spm tu', 'spm ls gaji', 'spm barjas', '0000-00-00', 'spp up', 'spp gu', 'spp tu', 'spp ls gaji', 'spp barjas', '0000-00-00', 'no spj', '1000'),
+(7, 2, 'uu', NULL, '2017-06-12', '1000', 'btl u', 'btl a', 'btl r', 'btl spj', 'btl s', 'bt u', NULL, 'bt r', 'bt spj', 'bt s', 'kegiatan', 'nama', 'nilai', '2017-06-12', 'spm u', 'spm gu', 'spm tu', 'spm ls gaji', 'spm barjas', '2017-06-12', 'spp up', 'spp gu', 'spp tu', 'spp ls gaji', 'spp barjas', '2017-06-12', 'no spj', '1000'),
+(8, 1, 'uu', NULL, '0000-00-00', '1000', 'btl u', 'btl a', 'btl r', 'btl spj', 'btl s', 'bt u', NULL, 'bt r', 'bt spj', 'bt s', 'kegiatan', 'nama', 'nilai', '0000-00-00', 'spm u', 'spm gu', 'spm tu', 'spm ls gaji', 'spm barjas', '0000-00-00', 'spp up', 'spp gu', 'spp tu', 'spp ls gaji', 'spp barjas', '0000-00-00', 'no spj', '1000'),
+(9, 1, 'uu', NULL, '0000-00-00', '1000', 'btl u', 'btl a', 'btl r', 'btl spj', 'btl s', 'bt u', NULL, 'bt r', 'bt spj', 'bt s', 'kegiatan', 'nama', 'nilai', '0000-00-00', 'spm u', 'spm gu', 'spm tu', 'spm ls gaji', 'spm barjas', '0000-00-00', 'spp up', 'spp gu', 'spp tu', 'spp ls gaji', 'spp barjas', '0000-00-00', 'no spj', '1000'),
+(10, 1, 'uu', NULL, '0000-00-00', '1000', 'btl u', 'btl a', 'btl r', 'btl spj', 'btl s', 'bt u', NULL, 'bt r', 'bt spj', 'bt s', 'kegiatan', 'nama', 'nilai', '0000-00-00', 'spm u', 'spm gu', 'spm tu', 'spm ls gaji', 'spm barjas', '0000-00-00', 'spp up', 'spp gu', 'spp tu', 'spp ls gaji', 'spp barjas', '0000-00-00', 'no spj', '1000'),
+(11, 1, 'uu', NULL, '0000-00-00', '1000', 'btl u', 'btl a', 'btl r', 'btl spj', 'btl s', 'bt u', NULL, 'bt r', 'bt spj', 'bt s', 'kegiatan', 'nama', 'nilai', '0000-00-00', 'spm u', 'spm gu', 'spm tu', 'spm ls gaji', 'spm barjas', '0000-00-00', 'spp up', 'spp gu', 'spp tu', 'spp ls gaji', 'spp barjas', '0000-00-00', 'no spj', '1000'),
+(12, 2, 'ashakHDKJ', NULL, '2017-06-12', 'JG1JHHH1', 'KASDLKJ', 'lskjdla', 'jalksdj', 'klsjdal', 'laksdjlaskdj', 'aksjdlaksjd', 'kaskdfaksf', 'akshdflahd', 'kasfdhaklsdh', 'akd9pwpuerqn,mq', 'n,mzidhaw9jadaw', 'slknalc9dawrjhad', 'nakjshfas,', '2017-06-12', 'alsdjalisavln', 'laksja9shfb', 'zkchaldjlqd', 'laksdjaishgab', 'kasjdabfj', '2017-06-12', 'kzjiaj', 'lasdja.ngm,ha', 'asdjlasdabd,', 'licalsdlkd', 'ldjjsclna,msnd', '2017-06-12', 'ajsdnlaksd', 'haldhasld');
 
 -- --------------------------------------------------------
 
