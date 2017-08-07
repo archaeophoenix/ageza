@@ -83,14 +83,20 @@ class Berita extends CI_Controller {
 
         if (!empty($ids)) {
             
-            $data = (empty($ids)) ? null : $this->Dml_model->{$method}('file','WHERE id_berita IN ('.$ids.') ORDER BY tmstmp ASC','id, id_berita, file, DATE_FORMAT(tmstmp, " %e/%m/%y %H:%i:%s") waktu');
+            $data = (empty($ids)) ? null : $this->Dml_model->read('file','WHERE id_berita IN ('.$ids.') ORDER BY tmstmp ASC','id, id_berita, file, DATE_FORMAT(tmstmp, " %e/%m/%y %H:%i:%s") waktu');
+        
+            foreach ($data as $key => $value) {
+                if ($method == 'read') {
+                    $atad['file'][$value['id_berita']][$key] = $value['file'];
+                    $atad['waktu'][$value['id_berita']][$key] = $value['waktu'];
+                } else {
+                    $atad['file'][$key] = $value['file'];
+                    $atad['waktu'][$key] = $value['waktu'];
+                }
+            }
         
             if ($method == 'read') {
                 if (!empty($data)) {
-                    foreach ($data as $key => $value) {
-                        $atad['file'][$value['id_berita']][$key] = $value['file'];
-                        $atad['waktu'][$value['id_berita']][$key] = $value['waktu'];
-                    }
 
                     foreach ($berita as $key => $value) {
                         if(array_key_exists($value['id'],$atad['file'])){
@@ -101,13 +107,12 @@ class Berita extends CI_Controller {
                 }
             } else {
                 if (!empty($data)) {
-                    $berita['file'] = $data['file'];
-                    $berita['waktu'] = $data['waktu'];
+                    $berita['file'] = $atad['file'];
+                    $berita['waktu'] = $atad['waktu'];
                 }
             }
         }
 
-        // echo "<pre>";print_r($data);print_r($berita);die();
         return $berita;
     }
 
@@ -195,6 +200,12 @@ class Berita extends CI_Controller {
         $data['status'] = array('Belum Selesai', 'Proses', 'Selesai');
         $idt = ($ids[1] == 'post') ? $ids[0] : $data['data']['id_temuan'] ;
         $data['skpd'] = $this->Dml_model->one('temuan', 'JOIN skpd ON skpd.id = id_skpd WHERE temuan.id = '.$idt, 'temuan.id, skpd.nama skpd');
+
+        if ($type == 'file') {
+            $data['files'] = $this->tindakan($ids[0]);
+        }
+
+        // echo "<pre>";print_r($data);die();
         
         $this->load->view('header',$header);
         $this->load->view('berita/form',$data);
@@ -203,9 +214,11 @@ class Berita extends CI_Controller {
 
    function datas($bulan = null, $tahun = null, $id = null){
         if(empty($bulan) || empty($tahun)){
-            $skpd = $this->Dml_model->one('skpd','ORDER BY id ASC LIMIT 1');
+            $skpd = ($_SESSION['masuk']['status'] != 4) ? $this->Dml_model->one('skpd','ORDER BY id ASC LIMIT 1') : '' ;
             redirect('berita/datas/'.date('m').'/'.date('Y').'/'.$skpd['id']);
         }
+
+        $status = ($_SESSION['masuk']['status'] == 4) ? $_SESSION['masuk']['id_skpd'] : $id ;
 
         $header['class'] = $this->router->fetch_class();
         $header['method'] = $this->router->fetch_method();
@@ -214,7 +227,7 @@ class Berita extends CI_Controller {
         $data['status'] = array('Belum Selesai', 'Proses', 'Selesai');
         $data['param'] = array('bulan' => $bulan, 'tahun' => $tahun, 'id' => $id);
         $data['tahun'] = $this->Dml_model->read('berita','','DISTINCT(YEAR(tgl)) tahun');
-        $data['data'] = $this->tindakan(null,'id_skpd = '.$id.' AND MONTH(berita.tgl) = '.$bulan.' AND YEAR(berita.tgl) = '.$tahun);
+        $data['data'] = $this->tindakan(null,'id_skpd = '.$status.' AND MONTH(berita.tgl) = '.$bulan.' AND YEAR(berita.tgl) = '.$tahun);
         $data['bulan'] = array('01'=>'Januari','02'=>'Februari','03'=>'Maret','04'=>'April','05'=>'Mei','06'=>'Juni','07'=>'Juli','08'=>'Agustus','09'=>'September','10'=>'Oktober','11'=>'November','12'=>'Desember');
 
         $footer['link'] = 'berita/datas';

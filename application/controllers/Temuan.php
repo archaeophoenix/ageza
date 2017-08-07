@@ -48,7 +48,7 @@ class Temuan extends CI_Controller {
                 $this->Dml_model->update('temuan',"id = '$id'", $_POST);
             }
         }
-        redirect('')
+        redirect('');
     }
 
     function form($id = null){
@@ -69,9 +69,11 @@ class Temuan extends CI_Controller {
 
     function datas($bulan = null, $tahun = null, $id = null){
         if(empty($bulan) || empty($tahun)){
-            $skpd = $this->Dml_model->one('skpd','ORDER BY id ASC LIMIT 1');
+            $skpd = ($_SESSION['masuk']['status'] != 4) ? $this->Dml_model->one('skpd','ORDER BY id ASC LIMIT 1') : '' ;
             redirect('temuan/datas/'.date('m').'/'.date('Y').'/'.$skpd['id']);
         }
+
+        $status = ($_SESSION['masuk']['status'] == 4) ? $_SESSION['masuk']['id_skpd'] : $id ;
         
         $header['class'] = $this->router->fetch_class();
         $header['method'] = $this->router->fetch_method();
@@ -79,7 +81,7 @@ class Temuan extends CI_Controller {
         $data['skpd'] = $this->Dml_model->read('skpd');
         $data['param'] = array('bulan' => $bulan, 'tahun' => $tahun, 'id' => $id);
         $data['tahun'] = $this->Dml_model->read('temuan','','DISTINCT(YEAR(tanggal)) tahun');
-        $data['data'] = $this->data(null,'id_skpd = '.$id.' AND MONTH(tanggal) = '.$bulan.' AND YEAR(tanggal) = '.$tahun);
+        $data['data'] = $this->data(null,'id_skpd = '.$status.' AND MONTH(tanggal) = '.$bulan.' AND YEAR(tanggal) = '.$tahun);
         $data['bulan'] = array('01'=>'Januari','02'=>'Februari','03'=>'Maret','04'=>'April','05'=>'Mei','06'=>'Juni','07'=>'Juli','08'=>'Agustus','09'=>'September','10'=>'Oktober','11'=>'November','12'=>'Desember');
 
         $footer['link'] = 'temuan/datas';

@@ -26,7 +26,23 @@ $(function() {
       }
     );
 
+    if($('.skpd')){
+    	$('#skpd').removeAttr('disabled');
+    }
+
 });
+
+function dpks(param){
+	var nilai = $('.'+param).val();
+	console.log(nilai);
+	if (nilai == 4) {
+		$('#'+param).removeAttr('disabled');
+	} else {
+		$('#'+param).select2('val','0');
+		$('#'+param+' option[val=0]').attr('selected','selected');
+		$('#'+param).attr('disabled','disabled');
+	}
+}
 
 function files(id){
 	var file = $('#'+id).html();
@@ -92,7 +108,7 @@ function printpage(lru = null){
 }
 
 function periode(detail = null){
-	var det = null;
+	var det = '';
 	var url = $("#base").val();
 	var link = $("#link").val();
 	var bulan = $("#bulan").val();

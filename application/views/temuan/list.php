@@ -3,6 +3,7 @@
   <div class="col-xs-12">
     <div class="card card-mini">
       <div class="card-header">
+        <?php if ($_SESSION['masuk']['status'] != 4){ ?>
         <div class="col-xs-2">
           <select class="form-control select2" id="skpd" onchange="periode('skpd');">
             <?php foreach ($skpd as $key => $value){ ?>
@@ -10,15 +11,16 @@
             <?php } ?>
           </select>
         </div>
+        <?php } ?>
         <div class="col-xs-2">
-          <select class="form-control select2" id="bulan" onchange="periode('skpd');">
+          <select class="form-control select2" id="bulan" onchange="periode(<?php echo ($_SESSION['masuk']['status'] == 4) ? '' : "'skpd'" ; ?>);">
             <?php foreach ($bulan as $key => $value){ ?>
               <option value="<?php echo $key; ?>" <?php echo ($key == $param['bulan']) ? 'selected="selected"' : '' ; ?>><?php echo $value; ?></option>
             <?php } ?>
           </select>
         </div>
         <div class="col-xs-2">
-          <select class="form-control select2" id="tahun" onchange="periode('skpd');">
+          <select class="form-control select2" id="tahun" onchange="periode(<?php echo ($_SESSION['masuk']['status'] == 4) ? '' : "'skpd'" ; ?>);">
             <?php foreach ($tahun as $key => $value){ ?>
               <option value="<?php echo $value['tahun']; ?>" <?php echo ($value['tahun'] == $param['tahun']) ? 'selected  ="selected"' : '' ; ?>><?php echo $value['tahun']; ?></option>
             <?php } ?>

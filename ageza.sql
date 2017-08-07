@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Aug 04, 2017 at 08:51 
+-- Generation Time: Aug 07, 2017 at 06:10 
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 7.0.6
 
@@ -40,6 +40,7 @@ CREATE TABLE `berita` (
   `tanggal` date DEFAULT NULL,
   `saran` varchar(50) DEFAULT NULL,
   `batas` date DEFAULT NULL,
+  `keterangan` text,
   `status` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -47,23 +48,23 @@ CREATE TABLE `berita` (
 -- Dumping data for table `berita`
 --
 
-INSERT INTO `berita` (`id`, `id_temuan`, `tj`, `ketua`, `anggota`, `tgl`, `no`, `ts`, `uu`, `code`, `tanggal`, `saran`, `batas`, `status`) VALUES
-(1, 1, 'PJ', 'ket', 'yes', '2017-06-18', 'nos', 'temsm', 'uu', NULL, '2017-06-18', 'buang', '2017-08-20', '1'),
-(2, 2, 'mboh', 'sembarang', '', '2017-06-15', '331', 'satu', 'raurus', NULL, '2017-06-15', 'buang', '2017-08-16', '0'),
-(4, 1, 'mboh', 'sembarang', '', '2017-06-14', '331', 'satu', 'raurus', NULL, '2017-08-14', 'buang', '2017-06-15', '1'),
-(5, 1, 'asdlasjhdna', 'j', '', '2017-06-15', 'n', 'kjjh', 'hkjh', NULL, '2017-06-15', 'aksdjas', '2017-06-18', '0'),
-(6, 1, NULL, NULL, '', '1970-01-01', NULL, NULL, NULL, NULL, '1970-01-01', NULL, '1970-01-01', NULL),
-(7, 1, '', '', '', '2017-06-18', '', '', '', NULL, '2017-06-18', '', '2017-06-18', '0'),
-(8, 1, '', '', '', '2017-06-18', '', '', '', NULL, '2017-06-18', '', '2017-06-18', '0'),
-(9, 1, '', '', '', '2017-06-18', '', '', '', NULL, '2017-06-18', '', '2017-06-18', '0'),
-(10, 1, '', '', '', '2017-06-18', '', '', '', NULL, '2017-06-18', '', '2017-06-18', '0'),
-(11, 1, '', '', '', '2017-06-18', '', '', '', NULL, '2017-06-18', '', '2017-06-18', '0'),
-(12, 1, NULL, NULL, '', '1970-01-01', NULL, NULL, NULL, NULL, '1970-01-01', NULL, '1970-01-01', NULL),
-(13, 1, '', '', '', '2017-06-18', '', '', '', NULL, '2017-06-18', '', '2017-06-18', '0'),
-(14, 12, 'pj', 'ket', '', '2017-07-04', 'nosur', 'mboh', 'uu', NULL, '2017-07-04', 'ok', '2017-08-06', '0'),
-(15, 12, 'yp', 'yo', '', '2017-07-05', 'ok', 'ok', 'ok', NULL, '2017-07-05', 'kpo', '2017-08-01', '1'),
-(16, 1, 'ok deh', 'mboh', 'sembarang', '2017-07-12', 'no', 'oilah', 'uuu', NULL, '2017-08-04', '', NULL, '0'),
-(17, 2, 'asidjaskdkj', 'hkjbmnb', 'jhgbj', '2017-07-12', 'hgbjhbg', 'kkhjk', 'nhkh', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `berita` (`id`, `id_temuan`, `tj`, `ketua`, `anggota`, `tgl`, `no`, `ts`, `uu`, `code`, `tanggal`, `saran`, `batas`, `keterangan`, `status`) VALUES
+(1, 1, 'PJ', 'ket', 'yes', '2017-06-18', 'nos', 'temsm', 'uu', NULL, '2017-06-18', 'buang', '2017-08-20', NULL, '1'),
+(2, 2, 'mboh', 'sembarang', '', '2017-06-15', '331', 'satu', 'raurus', NULL, '2017-06-15', 'buang', '2017-08-16', NULL, '0'),
+(4, 1, 'mboh', 'sembarang', '', '2017-06-14', '331', 'satu', 'raurus', NULL, '2017-08-14', 'buang', '2017-06-15', NULL, '1'),
+(5, 1, 'asdlasjhdna', 'j', '', '2017-06-15', 'n', 'kjjh', 'hkjh', NULL, '2017-06-15', 'aksdjas', '2017-06-18', NULL, '0'),
+(6, 1, NULL, NULL, '', '1970-01-01', NULL, NULL, NULL, NULL, '1970-01-01', NULL, '1970-01-01', NULL, NULL),
+(7, 1, '', '', '', '2017-06-18', '', '', '', NULL, '2017-06-18', '', '2017-06-18', NULL, '0'),
+(8, 1, '', '', '', '2017-06-18', '', '', '', NULL, '2017-06-18', '', '2017-06-18', NULL, '0'),
+(9, 1, '', '', '', '2017-06-18', '', '', '', NULL, '2017-06-18', '', '2017-06-18', NULL, '0'),
+(10, 1, '', '', '', '2017-06-18', '', '', '', NULL, '2017-06-18', '', '2017-06-18', NULL, '0'),
+(11, 1, '', '', '', '2017-06-18', '', '', '', NULL, '2017-06-18', '', '2017-06-18', NULL, '0'),
+(12, 1, NULL, NULL, '', '1970-01-01', NULL, NULL, NULL, NULL, '1970-01-01', NULL, '1970-01-01', NULL, NULL),
+(13, 1, '', '', '', '2017-06-18', '', '', '', NULL, '2017-06-18', '', '2017-06-18', NULL, '0'),
+(14, 12, 'pj', 'ket', '', '2017-07-04', 'nosur', 'mboh', 'uu', 'he', '2017-07-04', 'ok', '2017-08-06', 'mbohkah', '0'),
+(15, 12, 'yp', 'yo', '', '2017-07-05', 'ok', 'ok', 'ok', 'o', '2017-07-05', 'kpo', '2017-08-01', NULL, '1'),
+(16, 1, 'ok deh', 'mboh', 'sembarang', '2017-07-12', 'no', 'oilah', 'uuu', NULL, '2017-08-04', '', NULL, NULL, '0'),
+(17, 2, 'asidjaskdkj', 'hkjbmnb', 'jhgbj', '2017-07-12', 'hgbjhbg', 'kkhjk', 'nhkh', NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -179,7 +180,8 @@ CREATE TABLE `skpd` (
 
 INSERT INTO `skpd` (`id`, `nama`) VALUES
 (1, 'SMA 1 Lamongan'),
-(2, 'Rumah Sakit Lamongan');
+(2, 'Rumah Sakit Lamongan'),
+(3, 'satuan polisi pamong praja');
 
 -- --------------------------------------------------------
 
@@ -266,7 +268,7 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`id`, `nama`, `status`, `telpon`, `id_skpd`, `username`, `password`, `tmstmp`) VALUES
 (1, 'auditor', 2, '+6281', 0, 'auditor', 'cVV2S0pxRkdFeEFXWEtPRGhsYWlJQT09', '2017-07-13 05:10:45'),
 (2, 'evaluator', 3, '+628111', 0, 'evaluator', 'TjRZR0hZaHp5YmNkSUpxcmRrYWZuUT09', '2017-07-13 05:11:06'),
-(3, 'skpd', 4, '+966', 0, 'skpd', 'Y0l3MkNwZmpoL3lEc091Um82c0w2UT09', '2017-07-13 05:11:25'),
+(3, 'skpd', 4, '+966', 2, 'skpd', 'Y0l3MkNwZmpoL3lEc091Um82c0w2UT09', '2017-08-06 02:16:16'),
 (4, 'inspektur', 5, '+966', 0, 'inspektur', 'anpwSXkyVWtwcnFjZE4wMUZoZGowUT09', '2017-07-13 05:11:42'),
 (5, 'hanidam', 0, '+966', 0, 'hanidam', 'akJHbmxBZ3JtcmJmNldxSFd1dnZHUT09', '2017-07-27 23:31:26'),
 (6, 'admin', 1, '+6289900', 0, 'admin', 'ajh4Z0QyT3dhVjFJd0xtakg0NVJBUT09', '2017-07-11 02:40:34');
@@ -351,7 +353,7 @@ ALTER TABLE `protl`
 -- AUTO_INCREMENT for table `skpd`
 --
 ALTER TABLE `skpd`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `temuan`
 --

@@ -1,6 +1,6 @@
 <div class="row">
   
-  <div class="col-xs-12">
+  <div class="col-xs-<?php echo ($method == 'file') ? 6 : 12 ; ?>">
     <div class="card">
       <div class="card-header text-capitalize"><?php echo $method; ?> Acara <?php echo $skpd['skpd'];?></div>
       <div class="card-body">
@@ -39,9 +39,7 @@
                   <?php  $batas = (empty($data['batas'])) ? date('d-m-Y') : date("d-m-Y",strtotime($data['batas'])) ; ?>
                   <div class="col-xs-9"><input style="border-radius: 50px;" type="text" class="form-control text-capitalize datepicker" name="batas" value="<?php echo $batas ; ?>" placeholder=""></div>
                 </div>
-              <?php } else { redirect(''); }} ?>
 
-              <?php if ($method != 'file'){ if($_SESSION['masuk']['status'] == 1 || $_SESSION['masuk']['status'] == 3 || $_SESSION['masuk']['status'] == 4){ ?>
                 <div class="form-group">
                   <div class="col-xs-3"><label style="vertical-align: middle;" class="form-label text-center text-capitalize">Temuan Sementara</label></div>
                   <div class="col-xs-9"><input style="border-radius: 50px;" type="text" class="form-control text-capitalize" name="ts" value="<?php echo $data['ts']; ?>" placeholder=""></div>
@@ -50,9 +48,7 @@
                   <div class="col-xs-3"><label style="vertical-align: middle;" class="form-label text-center text-capitalize">Undang-undang</label></div>
                   <div class="col-xs-9"><input style="border-radius: 50px;" type="text" class="form-control text-capitalize" name="uu" value="<?php echo $data['uu']; ?>" placeholder=""></div>
                 </div>
-              <?php } else { redirect(''); }} ?>
 
-              <?php if ($method == 'tindak'){ if($_SESSION['masuk']['status'] == 1 || $_SESSION['masuk']['status'] == 4){ ?>
                 <div class="form-group">
                   <div class="col-xs-3"><label style="vertical-align: middle;" class="form-label text-center text-capitalize">Tanggal Tindak Lanjut</label></div>
                   <?php  $tanggal = (empty($data['tanggal'])) ? date('d-m-Y') : date("d-m-Y",strtotime($data['tanggal'])) ; ?>
@@ -61,6 +57,16 @@
                 <div class="form-group">
                   <div class="col-xs-3"><label style="vertical-align: middle;" class="form-label text-center text-capitalize">saran</label></div>
                   <div class="col-xs-9"><input style="border-radius: 50px;" type="text" class="form-control text-capitalize" name="saran" value="<?php echo $data['saran']; ?>" placeholder=""></div>
+                </div>
+              <?php } else { redirect(''); }} ?>
+
+              
+              <?php if ($method == 'file'){ if($_SESSION['masuk']['status'] != 5){?>
+                <div class="file" rel="1">
+                  <div class="form-group" id="file1">
+                    <div class="col-xs-11"><input style="border-radius: 50px;" type="file" class="form-control btn" name="file[1]" placeholder=""></div>
+                    <div class="col-xs-1"><button style="vertical-align: middle;" type="button" class="btn badge badge-danger badge-icon" onclick="elif(1);" title="Hapus File"><i class="fa fa-close"></i></button></div>
+                  </div>
                 </div>
                 <div class="form-group">
                   <div class="col-xs-3"><label style="vertical-align: middle;" class="form-label text-center text-capitalize">status</label></div>
@@ -72,15 +78,9 @@
                   </select>
                   </div>
                 </div>
-              <?php } else { redirect(''); }} ?>
-
-              
-              <?php if ($method == 'file'){ if($_SESSION['masuk']['status'] != 5){?>
-                <div class="file" rel="1">
-                  <div class="form-group" id="file1">
-                    <div class="col-xs-11"><input style="border-radius: 50px;" type="file" class="form-control btn" name="file[1]" placeholder=""></div>
-                    <div class="col-xs-1"><button style="vertical-align: middle;" type="button" class="btn badge badge-danger badge-icon" onclick="elif(1);" title="Hapus File"><i class="fa fa-close"></i></button></div>
-                  </div>
+                <div class="form-group">
+                  <div class="col-xs-3"><label style="vertical-align: middle;" class="form-label text-center text-capitalize">Keterangan</label></div>
+                  <div class="col-xs-9"><textarea style="border-radius: 25px;" name="name" cols="2" rows="3" class="form-control text-capitalize"><?php echo $data['keterangan']; ?></textarea></div>
                 </div>
               <?php } else { redirect(''); }} ?>
               
@@ -103,9 +103,36 @@
             </div>
           </form>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <?php if ($method == 'file'){ if($_SESSION['masuk']['status'] != 5){?>
+  <div class="col-xs-6">
+    <div class="card">
+    <div class="card-header text-capitalize">Berkas <?php echo $skpd['skpd'];?></div>
+      <div class="card-body">
+        <div class="row">
+          <div class="table-responsive">
+            <table class="datatable card-table table table-striped primary" cellspacing="0" width="100%">
+              <thead>
+                <tr>
+                  <th>File</th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php if (array_key_exists('file', $files)){foreach ($files['file'] as $k => $value) { ?>
+                <tr>
+                  <td><a target="_blank" href="<?php echo base_url().$value; ?>"><span class="badge badge-info badge-icon"><i class="fa fa-file" aria-hidden="true"></i><span>File <?php echo $files['waktu'][$k] ?></span></span></a></td>
+                </tr>
+                <?php }} ?>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>
   </div>
-  
+  <?php } else { redirect(''); }} ?>
+
 </div>

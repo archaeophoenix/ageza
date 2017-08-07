@@ -36,7 +36,7 @@ class User extends CI_Controller {
         $method = (empty($id)) ? 'read' : 'one' ;
         $condition = (empty($id)) ? null : 'WHERE user.id = '.$id ;
 
-        return $this->Dml_model->{$method}('user' ,'LEFT JOIN skpd ON skpd.id = id_skpd '.$condition,'user.id, user.nama, status, telpon, skpd.nama skpd, username');
+        return $this->Dml_model->{$method}('user' ,'LEFT JOIN skpd ON skpd.id = id_skpd '.$condition,'user.id, skpd.id id_skpd, user.nama, status, telpon, skpd.nama skpd, username');
     }
 
     function field($id = null){
@@ -58,6 +58,7 @@ class User extends CI_Controller {
 
     function submit($id = null){
         if(isset($_POST)){
+            // echo "<pre>";print_r($_POST);die();
             extract($_POST);
 
             if (is_null($id)) {

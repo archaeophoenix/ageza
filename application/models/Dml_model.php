@@ -7,11 +7,11 @@ class Dml_model extends CI_Model {
     }
 
     function login(){
-        return $this->one('user','WHERE status != 0 AND username = "'.$_POST['username'].'" AND password = "'.$this->dencrypt('encrypt',$_POST['password']).'"' ,'id, nama, status, telpon, username');
+        return $this->one('user','LEFT JOIN skpd ON skpd.id = id_skpd WHERE status != 0 AND username = "'.$_POST['username'].'" AND password = "'.$this->dencrypt('encrypt',$_POST['password']).'"' ,'user.id, skpd.id id_skpd, user.nama, status, telpon, skpd.nama skpd, username');
     }
 
     function logon($id){
-        return $this->one('user',"WHERE user.id = '$id'" ,'id, nama, status, telpon, username');
+        return $this->one('user',"LEFT JOIN skpd ON skpd.id = id_skpd WHERE user.id = '$id'" ,'user.id, skpd.id id_skpd, user.nama, status, telpon, skpd.nama skpd, username');
     }
 
     function dencrypt($action, $string) {

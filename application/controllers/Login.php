@@ -16,6 +16,7 @@ class Login extends CI_Controller {
 				$_SESSION['log'] = true;
 			}
 		}
+		// echo "<pre>";print_r($_SESSION['masuk']);die();
 		redirect('');
 	}
 

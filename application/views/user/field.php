@@ -21,24 +21,24 @@
               <?php if($_SESSION['masuk']['status'] == 1){ ?>
               <div class="form-group">
                 <div class="col-xs-12">
-                  <select class="form-control select2" name="user[status]">
-                    <?php foreach ($status as $key => $value){ ?>
+                  <select class="form-control select2 skpd" name="user[status]" onchange="dpks('skpd');">
+                      <?php foreach ($status as $key => $value){ ?>
                       <option value="<?php echo $key; ?>" <?php echo ($data['status'] == $key) ? 'selected="selected"' : '' ; ?>><?php echo $value; ?></option>
                       <?php } ?>
                   </select>
                 </div>
               </div>
 
-             <!--  <div class="form-group">
+              <div class="form-group ">
                 <div class="col-xs-12">
-                  <select class="form-control select2" name="user[id_skpd]">
-                    <option value="">&nbsp;</option>
-                    <?php foreach ($skpd as $key => $value){ ?>
+                  <select class="form-control select2" id="skpd" name="user[id_skpd]" disabled="disabled">
+                      <option value="0">&nbsp;</option>
+                      <?php foreach ($skpd as $key => $value){ ?>
                       <option value="<?php echo $value['id']; ?>" <?php echo ($data['id_skpd'] == $value['id']) ? 'selected="selected"' : '' ; ?>><?php echo $value['nama']; ?></option>
                       <?php } ?>
                   </select>
                 </div>
-              </div> -->
+              </div>
               <?php } ?>
               
               <div class="form-group">
@@ -83,7 +83,7 @@
                 <th class="text-center">#</th>
                 <th class="text-center text-capitalize">nama</th>
                 <th class="text-center text-capitalize">username</th>
-                <!-- <th class="text-center text-capitalize">SKPD</th> -->
+                <th class="text-center text-capitalize">SKPD</th>
                 <th class="text-center text-capitalize">status</th>
                 <th class="text-center text-capitalize" style="">opsi</th>
               </tr>
@@ -94,7 +94,7 @@
                 <td style="<?php echo ($value['status'] == 0 ) ? 'color: #E74C3C;' : '' ; ?> <?php echo ($value['status'] == 1 ) ? 'color: #20A3B9;' : '' ; ?> vertical-align: middle;" id="no<?php echo $key;?>"><?php echo $key+1; ?></td>
                 <td style="<?php echo ($value['status'] == 0 ) ? 'color: #E74C3C;' : '' ; ?> <?php echo ($value['status'] == 1 ) ? 'color: #20A3B9;' : '' ; ?> vertical-align: middle;" class="text-capitalize"><?php echo $value['nama']; ?></td>
                 <td style="<?php echo ($value['status'] == 0 ) ? 'color: #E74C3C;' : '' ; ?> <?php echo ($value['status'] == 1 ) ? 'color: #20A3B9;' : '' ; ?> vertical-align: middle;" class="text-capitalize"><?php echo $value['username']; ?></td>
-                <!-- <td style="vertical-align: middle;" class="text-capitalize"><?php echo $value['skpd']; ?></td> -->
+                <td style="vertical-align: middle;" class="text-capitalize"><?php echo $value['skpd']; ?></td>
                 <td style="<?php echo ($value['status'] == 0 ) ? 'color: #E74C3C;' : '' ; ?> <?php echo ($value['status'] == 1 ) ? 'color: #20A3B9;' : '' ; ?> vertical-align: middle;" class="text-capitalize"><?php echo $status[$value['status']]; ?></td>
                 <td style="vertical-align: middle;">
                   <?php if (is_null($id)){ ?>
