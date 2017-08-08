@@ -79,7 +79,7 @@
                                 <?php if ($_SESSION['masuk']['status'] == 1 || $_SESSION['masuk']['status'] == 3){ ?>
                                   <li><a style="cursor:pointer;" onclick="window.location='<?php echo base_url().'berita/form/berita/'.$value['id'].'-edit';?>'" title="Edit"><i class="fa fa-edit" aria-hidden="true"></i> Edit</a></li>
                                 <?php } if ($_SESSION['masuk']['status'] == 1 || $_SESSION['masuk']['status'] == 4){ ?>
-                                  <li><a style="cursor:pointer;" onclick="window.location='<?php echo base_url().'berita/form/tindak/'.$value['id'].'-edit';?>'" title="Tindak Lanjut"><i class="fa fa-newspaper-o" aria-hidden="true"></i> Tindak Lanjut</a></li>
+                                  <!-- <li><a style="cursor:pointer;" onclick="window.location='<?php echo base_url().'berita/form/tindak/'.$value['id'].'-edit';?>'" title="Tindak Lanjut"><i class="fa fa-newspaper-o" aria-hidden="true"></i> Tindak Lanjut</a></li> -->
                                 <?php } ?>
                                 </ul>
                               </div>
@@ -127,7 +127,8 @@
                                 <button type="button" class="btn btn-xs btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></button>
                                 <ul class="dropdown-menu pull-right" role="menu">
                                 <?php if ($_SESSION['masuk']['status'] == 1 || $_SESSION['masuk']['status'] == 4){ ?>
-                                  <li><a style="cursor:pointer;" onclick="window.location='<?php echo base_url().'berita/form/tindak/'.$value['id'].'-edit';?>'" title="Edit"><i class="fa fa-edit" aria-hidden="true"></i> Edit</a></li>
+                                  <!-- <li><a style="cursor:pointer;" onclick="window.location='<?php echo base_url().'berita/form/tindak/'.$value['id'].'-edit';?>'" title="Edit"><i class="fa fa-edit" aria-hidden="true"></i> Edit</a></li> -->
+                                  <li><a style="cursor:pointer;" onclick="window.location='<?php echo base_url().'berita/form/berita/'.$value['id'].'-edit';?>'" title="Edit"><i class="fa fa-edit" aria-hidden="true"></i> Edit</a></li>
                                 <?php } if ($_SESSION['masuk']['status'] != 5){ ?>
                                   <li><a style="cursor:pointer;" onclick="window.location='<?php echo base_url().'berita/form/file/'.$value['id'].'-edit';?>'" title="Upload File"><i class="fa fa-file-text" aria-hidden="true"></i> Upload File</a></li>
                                 <?php } ?>

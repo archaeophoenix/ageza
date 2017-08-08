@@ -68,10 +68,12 @@ class Skpd extends CI_Controller {
                     $upload['tmp_name'] = $gambar['tmp_name'][$key];
                     $upload['error'] = $gambar['error'][$key];
                     $upload['size'] = $gambar['size'][$key];
-                    $file = $this->Dml_model->uploads($upload, 'assets/'.$id, date('d-m-y H:i:s'));
+                    $name = date('d-m-y H:i:s').' '.uniqid();
+                    $file[] = $this->Dml_model->uploads($upload, 'assets/'.$id, $name);
                 }
             }
         }
+        redirect('');
     }
 
     function field($id = null){
@@ -79,6 +81,7 @@ class Skpd extends CI_Controller {
         $data['id'] = $id;
         $data['list'] = $this->data() ;
         $data['data'] = (empty($id)) ? null : $this->data($id) ;
+        $data['type'] = ['Kantor / Dinas', 'Puskesmas', 'Sekolah'] ;
 
         $header['class'] = $this->router->fetch_class();
         $header['method'] = $this->router->fetch_method();

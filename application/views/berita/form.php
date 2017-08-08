@@ -80,7 +80,7 @@
                 </div>
                 <div class="form-group">
                   <div class="col-xs-3"><label style="vertical-align: middle;" class="form-label text-center text-capitalize">Keterangan</label></div>
-                  <div class="col-xs-9"><textarea style="border-radius: 25px;" name="name" cols="2" rows="3" class="form-control text-capitalize"><?php echo $data['keterangan']; ?></textarea></div>
+                  <div class="col-xs-9"><textarea style="border-radius: 25px;" name="keterangan" cols="2" rows="3" class="form-control text-capitalize"><?php echo $data['keterangan']; ?></textarea></div>
                 </div>
               <?php } else { redirect(''); }} ?>
               

@@ -45,8 +45,14 @@ function dpks(param){
 }
 
 function files(id){
-	var file = $('#'+id).html();
+	var file = $('#files'+id).html();
+	var detail = $('#btl'+id).html();
 	$('#files').html(file);
+	$('#btl').html(detail);
+	/*$('.detail').each(function(){
+		console.log($(this).attr('rel'));
+		console.log($(this).attr('id'));
+	});*/
 }
 
 function bind(id,param){

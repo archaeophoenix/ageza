@@ -63,7 +63,7 @@ class Berita extends CI_Controller {
         $method = (empty($id)) ? 'read' : 'one' ;
 
         $atad = array();
-        $berita = $this->Dml_model->{$method}('berita','JOIN temuan ON temuan.id = id_temuan JOIN skpd ON skpd.id = id_skpd '.$condition.' ORDER BY berita.tgl, berita.tanggal ASC', 'berita.id, id_temuan, skpd.nama skpd, tj, ketua, anggota, no, ts, berita.uu, berita.code, DATE_FORMAT(berita.tgl,"%d-%m-%Y") tgl, DATE_FORMAT(berita.tanggal,"%d-%m-%Y") tanggal, saran, DATE_FORMAT(batas,"%d-%m-%Y") batas, status, (SELECT SUM(nilai) FROM protl WHERE id_berita = berita.id) protl , (SELECT SUM(nilai) FROM probl WHERE id_berita = berita.id) probl ');
+        $berita = $this->Dml_model->{$method}('berita','JOIN temuan ON temuan.id = id_temuan JOIN skpd ON skpd.id = id_skpd '.$condition.' ORDER BY berita.tgl, berita.tanggal ASC', 'berita.id, id_temuan, skpd.nama skpd, tj, ketua, anggota, no, ts, berita.uu, berita.code, DATE_FORMAT(berita.tgl,"%d-%m-%Y") tgl, DATE_FORMAT(berita.tanggal,"%d-%m-%Y") tanggal, saran, DATE_FORMAT(batas,"%d-%m-%Y") batas, status, (SELECT SUM(nilai) FROM protl WHERE id_berita = berita.id) protl , (SELECT SUM(nilai) FROM probl WHERE id_berita = berita.id) probl, keterangan');
 
         $ids = null ;
         $data = null ;
@@ -232,8 +232,10 @@ class Berita extends CI_Controller {
 
         $footer['link'] = 'berita/datas';
 
+        // echo "<pre>";print_r($data);die();
+
         $this->load->view('header',$header);
-        $this->load->view('berita/list',$data);
+        $this->load->view('berita/lists',$data);
         $this->load->view('footer',$footer);
     }
 
