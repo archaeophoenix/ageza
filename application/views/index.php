@@ -127,7 +127,7 @@
     </div>
   </div>
 
-  <div class="col-xs-12">
+  <!-- <div class="col-xs-12">
     <div class="card card-mini">
       <div class="card-header">&nbsp;</div>
       <div class="card-body">
@@ -198,6 +198,6 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 
 </div>
