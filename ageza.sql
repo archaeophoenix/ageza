@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Aug 07, 2017 at 06:10 
+-- Generation Time: Aug 22, 2017 at 04:23 
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 7.0.6
 
@@ -63,8 +63,9 @@ INSERT INTO `berita` (`id`, `id_temuan`, `tj`, `ketua`, `anggota`, `tgl`, `no`, 
 (13, 1, '', '', '', '2017-06-18', '', '', '', NULL, '2017-06-18', '', '2017-06-18', NULL, '0'),
 (14, 12, 'pj', 'ket', '', '2017-07-04', 'nosur', 'mboh', 'uu', 'he', '2017-07-04', 'ok', '2017-08-06', 'mbohkah', '0'),
 (15, 12, 'yp', 'yo', '', '2017-07-05', 'ok', 'ok', 'ok', 'o', '2017-07-05', 'kpo', '2017-08-01', NULL, '1'),
-(16, 1, 'ok deh', 'mboh', 'sembarang', '2017-07-12', 'no', 'oilah', 'uuu', NULL, '2017-08-04', '', NULL, NULL, '0'),
-(17, 2, 'asidjaskdkj', 'hkjbmnb', 'jhgbj', '2017-07-12', 'hgbjhbg', 'kkhjk', 'nhkh', NULL, NULL, NULL, NULL, NULL, NULL);
+(16, 1, 'ok deh', 'mboh', 'sembarang', '2017-07-12', 'no', 'oilah', 'uuu', NULL, '2017-08-04', '', NULL, 'ok', '0'),
+(17, 2, 'asidjaskdkj', 'hkjbmnb', 'jhgbj', '2017-07-12', 'hgbjhbg', 'kkhjk', 'nhkh', NULL, NULL, NULL, NULL, NULL, NULL),
+(18, 13, 'bapak penanggung jawab', 'ibu ketua', 'mas/ mbak anggota', '2017-08-13', '10', 'belum detail', '1000', '59904b48f0adc', '2017-08-14', 'segera detailkan', '2017-08-20', 'file hari ini', '0');
 
 -- --------------------------------------------------------
 
@@ -90,7 +91,9 @@ INSERT INTO `file` (`id`, `id_berita`, `file`, `tmstmp`) VALUES
 (4, 14, 'assets/images/berita/595af44a6d2e8.jpg', '2017-07-23 09:56:20'),
 (5, 14, 'assets/images/berita/595af5036f701.jpg', '2017-07-23 09:56:30'),
 (6, 14, 'assets/images/berita/595af5037edf5.jpg', '2017-07-23 09:56:30'),
-(7, 15, 'assets/images/berita/595c62dbba2f5.png', '2017-07-23 09:56:30');
+(7, 15, 'assets/images/berita/595c62dbba2f5.png', '2017-07-23 09:56:30'),
+(8, 16, 'assets/images/berita/59885893efd4e.jpg', '2017-08-07 12:09:55'),
+(9, 18, 'assets/images/berita/59904b65137a7.jpg', '2017-08-13 12:51:49');
 
 -- --------------------------------------------------------
 
@@ -115,7 +118,8 @@ INSERT INTO `polling` (`id`, `id_skpd`, `tanggal`, `nilai`) VALUES
 (3, 1, '2017-08-03', 20),
 (4, 2, '2017-08-03', 45),
 (5, 2, '2017-08-03', 25),
-(6, 1, '2017-08-03', 20);
+(6, 1, '2017-08-03', 20),
+(7, 3, '2017-08-13', 6);
 
 -- --------------------------------------------------------
 
@@ -135,10 +139,12 @@ CREATE TABLE `probl` (
 --
 
 INSERT INTO `probl` (`id`, `id_berita`, `nilai`, `tmstmp`) VALUES
-(0, 1, 50, '2017-07-31 03:56:55'),
-(1, 2, 10, '2017-07-28 02:43:47'),
-(2, 2, 90, '2017-07-30 09:00:04'),
-(3, 1, 10, '2017-07-28 02:43:47');
+(1, 2, 10, '2017-07-27 19:43:47'),
+(2, 2, 90, '2017-07-30 02:00:04'),
+(3, 1, 10, '2017-07-27 19:43:47'),
+(5, 1, 50, '2017-07-30 20:56:55'),
+(9, 16, 10, '2017-08-07 12:08:02'),
+(10, 18, 10, '2017-08-13 12:52:09');
 
 -- --------------------------------------------------------
 
@@ -161,7 +167,9 @@ INSERT INTO `protl` (`id`, `id_berita`, `nilai`, `tmstmp`) VALUES
 (1, 2, 10, '2017-07-27 02:26:08'),
 (2, 2, 90, '2017-07-30 09:00:24'),
 (3, 1, 10, '2017-07-27 03:18:05'),
-(4, 1, 50, '2017-07-31 03:56:55');
+(4, 1, 50, '2017-07-31 03:56:55'),
+(5, 16, 10, '2017-08-07 12:08:02'),
+(6, 18, 10, '2017-08-13 12:52:09');
 
 -- --------------------------------------------------------
 
@@ -171,17 +179,19 @@ INSERT INTO `protl` (`id`, `id_berita`, `nilai`, `tmstmp`) VALUES
 
 CREATE TABLE `skpd` (
   `id` int(11) NOT NULL,
-  `nama` varchar(50) DEFAULT NULL
+  `nama` varchar(50) DEFAULT NULL,
+  `type` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `skpd`
 --
 
-INSERT INTO `skpd` (`id`, `nama`) VALUES
-(1, 'SMA 1 Lamongan'),
-(2, 'Rumah Sakit Lamongan'),
-(3, 'satuan polisi pamong praja');
+INSERT INTO `skpd` (`id`, `nama`, `type`) VALUES
+(1, 'SMA 1 Lamongan', 2),
+(2, 'Rumah Sakit Lamongan', 1),
+(3, 'satuan polisi pamong praja', NULL),
+(4, 'puskesmas lamongrejo', 1);
 
 -- --------------------------------------------------------
 
@@ -242,7 +252,8 @@ INSERT INTO `temuan` (`id`, `id_skpd`, `uu`, `code`, `tanggal`, `pendapatan`, `b
 (9, 1, 'uu', NULL, '0000-00-00', '1000', 'btl u', 'btl a', 'btl r', 'btl spj', 'btl s', 'bt u', NULL, 'bt r', 'bt spj', 'bt s', 'kegiatan', 'nama', 'nilai', '0000-00-00', 'spm u', 'spm gu', 'spm tu', 'spm ls gaji', 'spm barjas', '0000-00-00', 'spp up', 'spp gu', 'spp tu', 'spp ls gaji', 'spp barjas', '0000-00-00', 'no spj', '1000'),
 (10, 1, 'uu', NULL, '0000-00-00', '1000', 'btl u', 'btl a', 'btl r', 'btl spj', 'btl s', 'bt u', NULL, 'bt r', 'bt spj', 'bt s', 'kegiatan', 'nama', 'nilai', '0000-00-00', 'spm u', 'spm gu', 'spm tu', 'spm ls gaji', 'spm barjas', '0000-00-00', 'spp up', 'spp gu', 'spp tu', 'spp ls gaji', 'spp barjas', '0000-00-00', 'no spj', '1000'),
 (11, 1, 'uu', NULL, '0000-00-00', '1000', 'btl u', 'btl a', 'btl r', 'btl spj', 'btl s', 'bt u', NULL, 'bt r', 'bt spj', 'bt s', 'kegiatan', 'nama', 'nilai', '0000-00-00', 'spm u', 'spm gu', 'spm tu', 'spm ls gaji', 'spm barjas', '0000-00-00', 'spp up', 'spp gu', 'spp tu', 'spp ls gaji', 'spp barjas', '0000-00-00', 'no spj', '1000'),
-(12, 2, 'ashakHDKJ', NULL, '2017-06-12', 'JG1JHHH1', 'KASDLKJ', 'lskjdla', 'jalksdj', 'klsjdal', 'laksdjlaskdj', 'aksjdlaksjd', 'kaskdfaksf', 'akshdflahd', 'kasfdhaklsdh', 'akd9pwpuerqn,mq', 'n,mzidhaw9jadaw', 'slknalc9dawrjhad', 'nakjshfas,', '2017-06-12', 'alsdjalisavln', 'laksja9shfb', 'zkchaldjlqd', 'laksdjaishgab', 'kasjdabfj', '2017-06-12', 'kzjiaj', 'lasdja.ngm,ha', 'asdjlasdabd,', 'licalsdlkd', 'ldjjsclna,msnd', '2017-06-12', 'ajsdnlaksd', 'haldhasld');
+(12, 2, 'ashakHDKJ', NULL, '2017-06-12', 'JG1JHHH1', 'KASDLKJ', 'lskjdla', 'jalksdj', 'klsjdal', 'laksdjlaskdj', 'aksjdlaksjd', 'kaskdfaksf', 'akshdflahd', 'kasfdhaklsdh', 'akd9pwpuerqn,mq', 'n,mzidhaw9jadaw', 'slknalc9dawrjhad', 'nakjshfas,', '2017-06-12', 'alsdjalisavln', 'laksja9shfb', 'zkchaldjlqd', 'laksdjaishgab', 'kasjdabfj', '2017-06-12', 'kzjiaj', 'lasdja.ngm,ha', 'asdjlasdabd,', 'licalsdlkd', 'ldjjsclna,msnd', '2017-06-12', 'ajsdnlaksd', 'haldhasld'),
+(13, 1, 'uu', '59904afcf0a3d', '2017-08-13', '10000', 'belanja', '10000', '10000', '?', '?', 'belanja', '10000', '10000', '?', '?', 'belanja', 'belanja', '10000', '2017-08-13', 'sMP UP', 'SPM GU', 'SPM TU', '5000', '5000', '2017-08-13', 'spp up', 'spp gu', 'spp tu', '5000', '5000', '2017-08-13', '1', '4');
 
 -- --------------------------------------------------------
 
@@ -271,7 +282,8 @@ INSERT INTO `user` (`id`, `nama`, `status`, `telpon`, `id_skpd`, `username`, `pa
 (3, 'skpd', 4, '+966', 2, 'skpd', 'Y0l3MkNwZmpoL3lEc091Um82c0w2UT09', '2017-08-06 02:16:16'),
 (4, 'inspektur', 5, '+966', 0, 'inspektur', 'anpwSXkyVWtwcnFjZE4wMUZoZGowUT09', '2017-07-13 05:11:42'),
 (5, 'hanidam', 0, '+966', 0, 'hanidam', 'akJHbmxBZ3JtcmJmNldxSFd1dnZHUT09', '2017-07-27 23:31:26'),
-(6, 'admin', 1, '+6289900', 0, 'admin', 'ajh4Z0QyT3dhVjFJd0xtakg0NVJBUT09', '2017-07-11 02:40:34');
+(6, 'admin', 1, '+6289900', 0, 'admin', 'ajh4Z0QyT3dhVjFJd0xtakg0NVJBUT09', '2017-07-11 02:40:34'),
+(7, 'pampra', 4, '+628', 3, 'pampra', 'Nm82bXlOd0g1YVhmS3ZFOHJ5RFlRQT09', '2017-08-22 14:22:17');
 
 --
 -- Indexes for dumped tables
@@ -333,37 +345,42 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `berita`
 --
 ALTER TABLE `berita`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 --
 -- AUTO_INCREMENT for table `file`
 --
 ALTER TABLE `file`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `polling`
 --
 ALTER TABLE `polling`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+--
+-- AUTO_INCREMENT for table `probl`
+--
+ALTER TABLE `probl`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `protl`
 --
 ALTER TABLE `protl`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `skpd`
 --
 ALTER TABLE `skpd`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `temuan`
 --
 ALTER TABLE `temuan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

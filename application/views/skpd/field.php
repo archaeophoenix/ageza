@@ -65,9 +65,9 @@
                   </tr>
                 </thead>
                 <tbody>
-                <?php foreach ($list as $key => $value){ if($value['type'] == 0) {?>
+                <?php $i = 1; foreach ($list as $key => $value){ if($value['type'] == 0) { ?>
                   <tr>
-                    <td width="10%" style="vertical-align: middle;" id="no<?php echo $key;?>"><?php echo $key+1; ?></td>
+                    <td width="10%" style="vertical-align: middle;" id="no<?php echo $key;?>"><?php echo $i++; ?></td>
                     <td width="60%" style="vertical-align: middle;" class="text-capitalize"><?php echo $value['nama']; ?></td>
                     <td width="30%" style="vertical-align: middle;" class="text-center">
                       <?php if (is_null($id)){ ?>
@@ -100,9 +100,9 @@
                   </tr>
                 </thead>
                 <tbody>
-                <?php foreach ($list as $key => $value){ if($value['type'] == 1) {?>
+                <?php $i = 1; foreach ($list as $key => $value){ if($value['type'] == 1) {?>
                   <tr>
-                    <td width="10%" style="vertical-align: middle;" id="no<?php echo $key;?>"><?php echo $key+1; ?></td>
+                    <td width="10%" style="vertical-align: middle;" id="no<?php echo $key;?>"><?php echo $i++; ?></td>
                     <td width="60%" style="vertical-align: middle;" class="text-capitalize"><?php echo $value['nama']; ?></td>
                     <td width="30%" style="vertical-align: middle;" class="text-center">
                       <?php if (is_null($id)){ ?>
@@ -135,9 +135,9 @@
                   </tr>
                 </thead>
                 <tbody>
-                <?php foreach ($list as $key => $value){ if($value['type'] == 2) {?>
+                <?php $i = 1; foreach ($list as $key => $value){ if($value['type'] == 2) {?>
                   <tr>
-                    <td width="10%" style="vertical-align: middle;" id="no<?php echo $key;?>"><?php echo $key+1; ?></td>
+                    <td width="10%" style="vertical-align: middle;" id="no<?php echo $key;?>"><?php echo $i++; ?></td>
                     <td width="60%" style="vertical-align: middle;" class="text-capitalize"><?php echo $value['nama']; ?></td>
                     <td width="30%" style="vertical-align: middle;" class="text-center">
                       <?php if (is_null($id)){ ?>
