@@ -26,7 +26,7 @@ $(function() {
       }
     );
 
-    if($('.skpd')){
+    if($('.skpd').val() == '4'){
     	$('#skpd').removeAttr('disabled');
     }
 
