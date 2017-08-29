@@ -32,6 +32,14 @@ $(function() {
 
 });
 
+function spj(b){
+	var a = ($('input[name|="'+b+'_anggaran"]').val()) ? parseInt($('input[name|="'+b+'_anggaran"]').val()) : 0 ;
+	var r = ($('input[name|="'+b+'_realisasi"]').val()) ? parseInt($('input[name|="'+b+'_realisasi"]').val()) : 0 ;
+	var s = (a && r) ? a - r : '' ;
+	s = (s < 0) ? '' : s ;
+	$('input[name|="'+b+'_sisa"]').val(s);
+}
+
 function dpks(param){
 	var nilai = $('.'+param).val();
 	console.log(nilai);

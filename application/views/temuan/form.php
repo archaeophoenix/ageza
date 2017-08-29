@@ -32,6 +32,23 @@
                   <div class="col-xs-3"><label style="vertical-align: middle;" class="form-label text-center text-capitalize">Anggaran Pendapatan &amp; Belanja</label></div>
                   <div class="col-xs-9"><input style="border-radius: 50px;" type="text" class="form-control text-capitalize" name="pendapatan" value="<?php echo $data['pendapatan']; ?>" placeholder=""></div>
                 </div>
+                <!-- <div class="form-group">
+                  <div class="col-xs-3"><label style="vertical-align: middle;" class="form-label text-center text-capitalize">Type Belanja</label></div>
+                  <div class="col-xs-9">
+                    <div class="radio radio-inline">
+                      <input type="radio" class="radiotype" value="0" checked>
+                      <label for="radio5">Belanja Langsung &amp; Belanja Tak Langsung</label>
+                    </div>
+                    <div class="radio radio-inline">
+                      <input type="radio" class="radiotype" value="1">
+                      <label for="radio5">Belanja Langsung</label>
+                    </div>
+                    <div class="radio radio-inline">
+                      <input type="radio" class="radiotype" value="2">
+                      <label for="radio6">Belanja Tak Langsung</label>
+                    </div>
+                  </div>
+                </div> -->
               </div>
             </div>
             <div class="section">
@@ -43,11 +60,11 @@
                 </div>
                 <div class="form-group">
                   <div class="col-xs-3"><label style="vertical-align: middle;" class="form-label text-center text-capitalize">anggaran</label></div>
-                  <div class="col-xs-9"><input style="border-radius: 50px;" type="text" class="form-control text-capitalize" name="btl_anggaran" value="<?php echo $data['btl_anggaran']; ?>" placeholder=""></div>
+                  <div class="col-xs-9"><input style="border-radius: 50px;" type="text" pattern="\d+" oninput="spj('btl');" class="form-control text-capitalize" name="btl_anggaran" value="<?php echo $data['btl_anggaran']; ?>" placeholder="isikan angka"></div>
                 </div>
                 <div class="form-group">
                   <div class="col-xs-3"><label style="vertical-align: middle;" class="form-label text-center text-capitalize">realisasi</label></div>
-                  <div class="col-xs-9"><input style="border-radius: 50px;" type="text" class="form-control text-capitalize" name="btl_realisasi" value="<?php echo $data['btl_realisasi']; ?>" placeholder=""></div>
+                  <div class="col-xs-9"><input style="border-radius: 50px;" type="text" pattern="\d+" oninput="spj('btl');" class="form-control text-capitalize" name="btl_realisasi" value="<?php echo $data['btl_realisasi']; ?>" placeholder="isikan angka"></div>
                 </div>
                 <div class="form-group">
                   <div class="col-xs-3"><label style="vertical-align: middle;" class="form-label text-center text-capitalize">SPJ</label></div>
@@ -55,7 +72,7 @@
                 </div>
                 <div class="form-group">
                   <div class="col-xs-3"><label style="vertical-align: middle;" class="form-label text-center text-capitalize">sisa SPJ</label></div>
-                  <div class="col-xs-9"><input style="border-radius: 50px;" type="text" class="form-control text-capitalize" name="btl_sisa" value="<?php echo $data['btl_sisa']; ?>" placeholder=""></div>
+                  <div class="col-xs-9"><input style="border-radius: 50px; background-color: #fff;" type="text" class="form-control text-capitalize" name="btl_sisa" readonly="readonly" value="<?php echo $data['btl_sisa']; ?>" placeholder=""></div>
                 </div>
               </div>
             </div>
@@ -68,11 +85,11 @@
                 </div>
                 <div class="form-group">
                   <div class="col-xs-3"><label style="vertical-align: middle;" class="form-label text-center text-capitalize">anggaran</label></div>
-                  <div class="col-xs-9"><input style="border-radius: 50px;" type="text" class="form-control text-capitalize" name="bl_anggaran" value="<?php echo $data['bl_anggaran']; ?>" placeholder=""></div>
+                  <div class="col-xs-9"><input style="border-radius: 50px;" type="text" pattern="\d+" oninput="spj('bl');" class="form-control text-capitalize" name="bl_anggaran" value="<?php echo $data['bl_anggaran']; ?>" placeholder="isikan angka"></div>
                 </div>
                 <div class="form-group">
                   <div class="col-xs-3"><label style="vertical-align: middle;" class="form-label text-center text-capitalize">realisasi</label></div>
-                  <div class="col-xs-9"><input style="border-radius: 50px;" type="text" class="form-control text-capitalize" name="bl_realisasi" value="<?php echo $data['bl_realisasi']; ?>" placeholder=""></div>
+                  <div class="col-xs-9"><input style="border-radius: 50px;" type="text" pattern="\d+" oninput="spj('bl');" class="form-control text-capitalize" name="bl_realisasi" value="<?php echo $data['bl_realisasi']; ?>" placeholder="isikan angka"></div>
                 </div>
                 <div class="form-group">
                   <div class="col-xs-3"><label style="vertical-align: middle;" class="form-label text-center text-capitalize">SPJ</label></div>
@@ -80,7 +97,7 @@
                 </div>
                 <div class="form-group">
                   <div class="col-xs-3"><label style="vertical-align: middle;" class="form-label text-center text-capitalize">sisa SPJ</label></div>
-                  <div class="col-xs-9"><input style="border-radius: 50px;" type="text" class="form-control text-capitalize" name="bl_sisa" value="<?php echo $data['bl_sisa']; ?>" placeholder=""></div>
+                  <div class="col-xs-9"><input style="border-radius: 50px; background-color: #fff;" type="text" class="form-control text-capitalize" name="bl_sisa" readonly="readonly" value="<?php echo $data['bl_sisa']; ?>" placeholder=""></div>
                 </div>
               </div>
             </div>

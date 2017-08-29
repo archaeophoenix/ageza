@@ -91,5 +91,13 @@ class Temuan extends CI_Controller {
         $this->load->view('footer', $footer);
     }
 
+    function cobaan(){
+        echo '<form action="'.base_url().'temuan/cobacoba" method="post"><input type="text" readonly="readonly" name="name" value="ok sip"><button type="submit">ok</button></form>';
+    }
+
+    function cobacoba(){
+        print_r($_POST);
+    }
+
 }
 // SELECT berita.ketua, (SELECT persen FROM protl WHERE id_berita = berita.id ORDER by tmstmp DESC LIMIT 1) persen FROM `berita` 
